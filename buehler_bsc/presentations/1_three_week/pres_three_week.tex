@@ -1,0 +1,705 @@
+\documentclass[handout,xcolor=pdftex,table,10pt,yellow,mathserif]{beamer}
+\usepackage[numbers]{natbib}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{ulem}
+\usepackage{algorithm2e}
+\usepackage{tikz}
+\usepackage{pgflibraryshapes}
+\usepackage{beamerthemesplit}
+\mode<presentation> {
+\usetheme{PSI}
+}
+\usepackage[english]{babel}
+\usetikzlibrary{shapes,arrows,snakes,backgrounds,arrows.meta,mindmap,trees}
+\usepackage[overlay,absolute]{textpos}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfpages}
+\usetikzlibrary{}
+\usepackage{verbatim}
+\usepackage{bbding}
+\xdefinecolor{mygreen}{RGB}{0,220,0}
+\xdefinecolor{myblue}{RGB}{26,150,255}
+
+\usepackage{datetime}
+\usepackage{pgf-umlcd}
+\usepackage{pgf-umlsd}
+\usepackage{pgfgantt}
+
+
+
+\newcommand{\qvec}{\mathbf{q}}
+\newcommand{\lieoperator}[1]{{:\!#1\!:\!}}
+\newcommand{\poissonbracket}[1]{ \left[ #1 \right] }
+\newcommand{\lietransformation}[1]{e^{:\!#1\!:}}
+
+\newcommand*\tick{\item[\color{mygreen}\Checkmark]}
+
+
+\newtheorem{thm}{Theorem}
+
+% ************************ space ************************************
+\newcommand{\hhs}[1]{\hspace{#1mm}}
+\newcommand{\hs}{\hspace{5mm}}
+\newcommand{\vp}{\vspace{1mm}}
+\newcommand{\vs}{\vspace{5mm}}
+\newcommand{\jl}{$\frac{}{}$} %User defined for empty symbol to jump line
+% ********************** newcommand *********************************
+\newcommand{\mbf}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\hb}[1]{\hspace{-#1 mm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\QED}{\hfill $\Box$}
+% *********************** frequently used math symbols from AMS *******
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+
+\newcounter{myWeekNum}
+\stepcounter{myWeekNum}
+\newcommand{\myWeek}{\themyWeekNum
+    \stepcounter{myWeekNum}
+    \ifnum\themyWeekNum=53
+         \setcounter{myWeekNum}{1}
+    \else\fi
+}
+
+\definecolor{Maroon}{rgb}{.5,.1,.25}% Used for Trinity University
+
+
+\mode<presentation>
+{
+  \usepackage{pgf}
+  \usepackage{hyperref}
+  \setbeamercovered{invisible}
+  %\setbeamercovered{transparent}  
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+\setbeamercolor{uppercolgreen}{fg=white,bg=yellow!35}
+\setbeamercolor{lowercolgreen}{fg=black,bg=yellow!90}
+
+
+\title{Three Week Presentation}
+
+\subtitle{Building blocks for Finite Element computations in
+IPPL}
+
+\author{Lukas Bühler}
+
+\newdate{presdate}{24}{10}{2023}
+\date{\displaydate{presdate}}
+
+\titlegraphic{
+ \includegraphics[width=10cm]{./figures/figures-slides/PSI} \\
+}
+
+\begin{document}
+
+ \frame{
+ \maketitle
+}
+%
+ \frame{
+ \tableofcontents
+}
+
+% PROBLEM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Problem}
+
+\begin{frame}{Problem}
+
+\begin{itemize}
+    \item Usecase for FEM in IPPL
+        \pause
+        \begin{itemize}
+            \item Goal: Solving Maxwell equations
+            \item FDTD is 2nd order, FEM can be higher accuracy
+        \end{itemize}
+        \pause
+    \item Arguments against external libraries
+        \pause
+        \begin{itemize}
+            \item Avoiding data copies
+            \item Less coupling to external libraries, more modularity
+            \item More control: exascale, performant, portable FEM in IPPL
+        \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{FEM Introduction}
+
+\begin{frame}{Finite Element Method}
+    \begin{itemize}
+        \item Formulate the PDE in \emph{variational formulation}:
+        
+        Example: Poisson Equation
+        \[
+            \left\{ \begin{array}{r l}- \Delta \boldsymbol{u} = \boldsymbol{f} &\text{in} \ \Omega\\
+            \boldsymbol{u} = \boldsymbol{0} &\text{on} \ \partial \Omega\end{array}\right. \quad \Rightarrow \quad
+            \int_\Omega \nabla \boldsymbol{u} \cdot  \nabla \boldsymbol{v} = \int_\Omega \boldsymbol{f} \cdot \boldsymbol{v} \quad \forall \boldsymbol{v} \in V
+        \]
+
+        \pause
+
+        \item Mesh the domain with Elements: $\Omega = \bigcup^{N_E}_{e=1} K_e$
+        
+        \pause
+
+        \item Each element has a corresponding local system of equations: $\mathbf{A}_K\boldsymbol{x} = \boldsymbol{b}_K$
+        
+        \pause
+
+        \item Assemble the global system of equations
+            \begin{align*}
+                \mathbf{A}\boldsymbol{x} = \boldsymbol{b}
+            \end{align*}
+    \end{itemize}
+    \pause
+
+    This system of equations can be solved \emph{matrix-free}!
+
+
+\end{frame}
+
+\begin{frame}{Conjugate Gradient (CG) Method}
+    \begin{itemize}
+        \item Matrix-free, avoids building the global FEM matrix
+        \item Iterative algorithm, terminates when remainder is sufficiently small
+        \item Relies on the ``action'' of the matrix on a vector.
+    \end{itemize}
+
+    \pause\vspace{1cm}
+
+    CG evaluates $\mathbf{A}\boldsymbol{x}$, with a given $\boldsymbol{x}$, every iteration.
+
+    Requires $\boldsymbol{b}$ at the beginning of the algorithm.
+\end{frame}
+
+\begin{frame}{Building blocks}
+    \begin{itemize}
+        \item Evaluate basis functions (and their gradient) on elements
+        \item Transformation from local to global coordinate system for element
+        \item Numerical integration rule using polynomial interpolation on element
+        \item Functions to interface FEM with CG.
+    \end{itemize}
+\end{frame}
+
+
+\section{My Task and Timeline}
+
+\begin{frame}{My Task}
+    Task: Implementation of the building blocks and corresponding unit tests in IPPL.
+    \vspace*{10pt}
+
+    \pause
+
+    Building blocks:
+    \pause
+    \begin{enumerate}
+        \item Reference element base class and child element classes with local to global transformations for
+            \begin{itemize}
+                \item Edge (1D)
+                \item Quadrilateral (2D)
+                \item Hexahedral (3D)
+            \end{itemize}
+
+            \pause
+
+        \item Finite element space base class
+            \pause
+            \begin{itemize}
+                \item Mesh (and vertices) to elements mapping \pause
+                \item Child classes with corresponding basis functions for the FEM spaces:
+                    \begin{itemize}
+                        \item Lagrange
+                        \item Nédélec
+                        \item Raviart-Thomas
+                    \end{itemize}
+            \end{itemize}    
+
+            \pause
+        
+        \item Quadrature rule base class and Gauss-Jacobi quadrature rule
+    \end{enumerate}
+\end{frame}
+
+
+\setcounter{myWeekNum}{38}
+\ganttset{%
+calendar week text={\myWeek{}}%
+}
+\begin{frame}[label=timeline]{Timeline}
+    \begin{figure}[H]
+        \centering
+        \resizebox{!}{7cm}{%
+        \begin{ganttchart}[
+            vgrid={*{6}{draw=none}, dotted},
+            x unit=.08cm,
+            y unit title=.6cm,
+            y unit chart=.6cm,
+            today={2023-10-24},
+            progress=today,
+            group incomplete/.append style={fill=gray},
+            group left shift=0,
+            group right shift=0,
+            group height=.2,
+            group peaks tip position=0,
+            group peaks width=1,
+            group peaks height=.2,
+            time slot format=isodate,
+            time slot format/start date=2023-09-18]{2023-09-18}{2023-12-22}
+            \ganttset{bar height=.6}
+            \gantttitlecalendar{year, month=shortname, week} \\
+            \ganttgroup{Familiarization}{2023-09-18}{2023-10-15} \\
+            \ganttbar[bar/.append style={fill=olive}]{Researching \& Reading}{2023-09-18}{2023-10-15}\\
+            \ganttbar[bar/.append style={fill=olive}]{Familiarization with IPPL}{2023-09-25}{2023-10-15}\\
+
+            % Implementation
+            \ganttgroup{Implementation}{2023-10-02}{2023-11-26} \\
+            \ganttbar[bar/.append style={fill=teal}]{Building Blocks}{2023-10-02}{2023-11-12}\\
+            \ganttbar[bar/.append style={fill=teal}]{Unit Testing}{2023-10-16}{2023-11-26}\\
+            \ganttbar[bar/.append style={fill=teal}]{Parallelization}{2023-10-30}{2023-11-26}\\
+            \ganttmilestone[inline=false, milestone/.append style={fill=teal}]{Working FEM Poisson Solver}{2023-11-26} \\
+
+            
+            % Writing
+            \ganttgroup{Writing \& Presentations}{2023-10-19}{2023-12-22} \\
+            \ganttmilestone[inline=false, milestone/.append style={fill=violet}]{Three Week Presentation}{2023-10-24} \\
+            \ganttmilestone[inline=false, milestone/.append style={fill=violet}]{Mid-term Presentation}{2023-11-21} \\
+            \ganttmilestone[inline=false, milestone/.append style={fill=violet}]{Final Presentation}{2023-12-19} \\
+            \ganttbar[bar/.append style={fill=violet}]{Thesis}{2023-11-13}{2023-12-22}
+        \end{ganttchart}
+        }
+    \end{figure}
+\end{frame}
+
+
+\section{Implementation}
+
+
+\subsection{Software Architecture}
+
+\begin{frame}{Software Architecture}
+
+    \begin{figure}
+        \centering
+        \resizebox{\hsize}{!}{%
+            \begin{tikzpicture}
+
+                \begin{class}[text width=3cm]{FEMPoissonSolver}{0,-4}
+                \end{class}
+
+                \pause
+
+                \begin{class}[text width=5cm]{FiniteElementSpace}{0,0}
+                    \attribute{\{abstract\}}
+                    \attribute{typename T}
+                    \attribute{unsigned Dim}
+                    \attribute{unsigned NumElementVertices}
+                    \attribute{unsigned NumIntegrationPoints}
+                \end{class}
+                \aggregation{FEMPoissonSolver}{}{}{FiniteElementSpace}
+
+                \pause
+
+                \begin{class}[text width=5cm]{LagrangeSpace}{8,0}
+                    \attribute{typename T}
+                    \attribute{unsigned Dim}
+                    \attribute{unsigned NumElementVertices}
+                    \attribute{unsigned NumIntegrationPoints}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (LagrangeSpace) -- (FiniteElementSpace);
+
+
+                \pause
+
+                \begin{class}[text width=5cm,fill=white]{NedelecSpace}{-8,0}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (NedelecSpace) -- (FiniteElementSpace);
+
+                \begin{class}[text width=5cm,fill=white]{RaviartThomasSpace}{-8,-1.5}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (RaviartThomasSpace) -- (FiniteElementSpace);
+
+                \pause
+
+                \begin{class}[text width=3cm]{Mesh}{-9.3, 4}
+                    \attribute{typename T}
+                    \attribute{unsigned Dim}
+                \end{class}
+                \aggregation{FiniteElementSpace}{}{}{Mesh}
+
+                \pause
+
+                % ELEMENTS
+
+                \begin{class}[text width=4cm]{Element}{0, 4}
+                    \attribute{\{abstract\}}
+                    \attribute{typename T}
+                    \attribute{unsigned GeometricDim}
+                    \attribute{unsigned TopologicalDim}
+                    \attribute{unsigned NumVertices}
+                \end{class}
+                \aggregation{FiniteElementSpace}{}{}{Element}
+
+                \pause
+
+                \begin{class}[text width=4cm]{EdgeElement}{-4.5, 6.5}
+                    \attribute{typename T}
+                    \attribute{unsigned GeometricDim}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (EdgeElement) -- (Element);
+
+                \pause
+
+                \begin{class}[text width=4cm]{QuadrilateralElement}{0, 6.5}
+                    \attribute{typename T}
+                    \attribute{unsigned GeometricDim}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (QuadrilateralElement) -- (Element);
+
+                \pause
+
+                \begin{class}[text width=4cm,fill=white]{HexahedralElement}{4.5, 6.5}
+                    \attribute{typename T}
+                    \attribute{unsigned GeometricDim}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (HexahedralElement) -- (Element);
+
+
+                \pause
+
+                % QUADRATURE
+
+                \begin{class}[text width=5.5cm]{Quadrature}{10.5, 4}
+                    \attribute{\{abstract\}}
+                    \attribute{typename T}
+                    \attribute{unsigned NumIntegrationPoints}
+                \end{class}
+                \aggregation{FiniteElementSpace}{}{}{Quadrature}
+
+                \pause
+
+                \begin{class}[text width=5.5cm,fill=white]{GaussJacobiQuadrature}{10.5, 6.5}
+                \end{class}
+                \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (GaussJacobiQuadrature) -- (Quadrature);
+
+            \end{tikzpicture}%
+        }
+    \end{figure}
+
+\end{frame}
+
+
+\subsection{Finite Element Space class: Mesh mapping and Basis Functions}
+
+\begin{frame}{Mesh types}
+    \begin{itemize}
+        \item Unstructured Mesh
+        
+            \begin{figure}
+                \includegraphics[height=1.5cm]{figures/330px-Unstructured_grid.svg.png}
+            \end{figure}
+
+        \item Structured Mesh
+            \begin{figure}
+                \centering
+                \includegraphics[height=2cm]{figures/Rectilinear_grid.svg.png}
+                \includegraphics[height=2cm]{figures/Regular_grid.svg.png}
+                \includegraphics[height=2cm]{figures/Cartesian_grid.svg.png}
+                \caption{Rectilinear mesh, Regular mesh, Cartesian mesh\footnote{Source: Wikimedia Commons. Drawn by Slffea, vectorized by Mysid.}}
+            \end{figure}
+    \end{itemize}
+    \pause
+    $\Rightarrow$ IPPL Only has structured meshes
+    \vspace*{0.25cm}
+    
+\end{frame}
+
+\begin{frame}{Mesh: Element and Vertex mapping}
+    \begin{figure}
+        \centering
+        \includegraphics[height=6cm]{figures/Three Week Pres Notes/grid_2d.png}
+        \caption{Example $4\times3$ 2D regular mesh}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Basis functions}
+    \begin{align*}
+        b_h^j(x_i) = \delta_{ij} = \left\{ \begin{array}{l l} 1, & i = j\\ 0, & i \neq j \end{array}\right. %&&\text{\cite{numpde}}
+    \end{align*}
+
+    \pause
+
+    Lagrange 1st order shape functions:
+    \begin{itemize}
+        \item 1D: $x \in [0, 1]$
+            \begin{align*}
+                b_h^1 &= 1 - x\\
+                b_h^2 &= x
+            \end{align*}
+        \item 2D: $(x, y) \in [0, 1]^2$
+            \begin{align*}
+                b_h^1 &= (1 - x) (1 - y)\\
+                b_h^2 &= x (1 - y)\\
+                b_h^3 &= (1 - x) y\\
+                b_h^4 &= x y
+            \end{align*}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Finite Element Spaces: Lagrange (1st order) 1D}
+    \begin{figure}
+        \centering
+        \includegraphics[width=5cm]{figures/lagrange_1st_basis_1d.png}    
+        \caption{Local Shape functions for 1D 1st order Lagrange}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=6cm]{figures/lagrange_1st_bases_1d.png}
+        \caption{Shape functions of 1D uniform mesh with ten DoFs. (1D 1st order Lagrange)}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Finite Element Spaces: Lagrange (1st order) 2D}
+    \begin{figure}
+        \centering
+        \includegraphics[width=5cm]{figures/lagrange_1st_basis_2d.png}\hspace*{0.5cm}  
+        \includegraphics[width=5cm]{figures/lagrange_1st_basis_2d_n12.png}
+        \caption{Left: local shape functions, Right: Basis of Node 12 on 5x5 mesh (2D 1st order Lagrange)}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{FiniteElementSpace Class}
+    \begin{center}
+        \includegraphics[height=7cm]{figures/classippl_1_1FiniteElementSpace__coll__graph.png}
+    \end{center}
+\end{frame}
+
+
+
+\subsection{Element Classes and Transformations}
+
+\begin{frame}{Elements: Local mapping}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\hsize]{figures/Three Week Pres Notes/local_mapping.png}
+        \caption{Local vertex mapping for EdgeElement, QuadrilateralElement, HexahedralElement (from left to right)}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Element Transformations}
+
+    \begin{itemize}
+        \item Transformation to and from local and global coordinates using affine transfomations
+            \begin{center}
+            \includegraphics[height=2cm]{figures/affine_transformation_me.png}
+            \end{center}
+
+            \pause
+
+        \item Local to Global: $\boldsymbol{x} = \mathbf{J}_K^{-1}\hat{\boldsymbol{x}} + \boldsymbol{\tau}_K$,\pause
+            with $\boldsymbol{\tau}_K = \boldsymbol{v}_0$
+
+            \vspace*{0.25cm}\pause
+            $\displaystyle
+                \mathbf{J}^{-1}_K := \begin{bmatrix}
+                    \boldsymbol{v}_x^1 - \boldsymbol{v}_x^0 & \boldsymbol{v}_x^2 - \boldsymbol{v}_x^0\\
+                    \boldsymbol{v}_y^1 - \boldsymbol{v}_y^0 & \boldsymbol{v}_y^2 - \boldsymbol{v}_y^0
+                \end{bmatrix} \quad
+            $ (General)\vspace*{0.25cm}
+            \pause
+
+            $\displaystyle
+                \mathbf{J}^{-1}_K := \begin{bmatrix}
+                    \boldsymbol{v}_x^1 - \boldsymbol{v}_x^0 & 0\\
+                    0 & \boldsymbol{v}_y^2 - \boldsymbol{v}_y^0
+                \end{bmatrix} \quad
+            $ (Grid, only scaling)
+            \vspace*{0.25cm}
+        
+        \pause
+        
+        \item Global to Local: $\hat{\boldsymbol{x}} = \mathbf{J}_K(\boldsymbol{x} - \boldsymbol{\tau}_K)$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Element Classes}
+    \begin{center}
+        \includegraphics[height=6cm]{figures/classippl_1_1Element__inherit__graph.png}
+
+    \end{center}
+\end{frame}
+
+
+
+% \subsection{Assembly}
+
+% \begin{frame}{Assembly}
+%     We want to solve the FEM problem $\mathbf{A}\boldsymbol{x} = \boldsymbol{b}$ without having to build the complete Galerkin matrix $\mathbf{A}$. (Matrix-free)
+    
+% \end{frame}
+
+\section{Future}
+
+\begin{frame}{Plan for the (near) future}
+    \begin{itemize}
+        \item Currently working on: Element transformations. \pause
+        \item Next steps: \begin{enumerate} \pause
+            \item Implement \texttt{evaluateAx}, \texttt{evaluateLoadVector} \pause
+            \item Implement Gauss-Jacobi Quadrature \pause
+            \item Going from 1D and 2D to 3D \pause
+            \item Thread- and Process-level Parallelization
+        \end{enumerate}
+    \end{itemize}
+    \pause
+    Add unit tests continually to test completed implementations.
+\end{frame}
+
+
+\begin{frame}{References}
+\begin{thebibliography}{99}
+    %\bibitem[J. Yang, A. Adelmann, et al., NIM-A {\bf 704}(11) (2013)] {daeiso} J. Yang, Adelmann et al.,  NIM-A {\bf 704}(11) 84-91 (2013)
+    \bibitem[Hiptmair NumCSE] {numcse} R. Hiptmair. Numerical Methods for Computational Science and Engineering. 2019. URL: \href{https://www.sam.math.ethz.ch/~grsam/NCSE20/NumCSE_Lecture_Document.pdf}{https://www.sam.math.ethz.ch/~grsam/NCSE20/NumCSE\_Lecture\_Document.pdf}
+    \bibitem[Hiptmair NumPDE] {numpde} R. Hiptmair. Numerical Methods for (Partial) Differential Equations. 2022. URL: \href{https://www.sam.math.ethz.ch/~grsam/NUMPDEFL/NUMPDE.pdf}{https://www.sam.math.ethz.ch/~grsam/NUMPDEFL/NUMPDE.pdf}
+\end{thebibliography}
+\end{frame}
+
+\againframe{timeline}
+
+\section*{Appendix}
+
+\subsection*{Quadrature}
+
+\begin{frame}[noframenumbering]{Appendix A: Quadrature}
+    
+    $m$-point \emph{quadrature rule} on $[a,b]$, $m \in \mathbb{N}$
+    \begin{align}
+        \int_a^b f(t) \ \mathrm{d}t \approx \sum_{j=1}^m w_j \, f(p_j)
+    \end{align}
+    where $w_j \in \mathbb{R}$ are the \emph{quadrature weights} and $\boldsymbol{p}_j$ \emph{quadrature nodes} $\in [a, b]$. 
+    
+    %\cite{numcse}
+\end{frame}
+
+\subsection*{Pseudo-Code}
+
+\begin{frame}[noframenumbering]{Appendix B: Pseudo-code}
+    
+    \texttt{evaluateAx($\boldsymbol{x}$)}
+    \IncMargin{1em}
+    \RestyleAlgo{boxed}
+    \begin{algorithm}[H]
+        \linespread{1.35}\selectfont
+
+        $z \gets 0$
+
+        \For{$i \gets 0$ \KwTo $N_\text{DoFs}$; $i = i + 1$}{
+            $\mathbf{J}^{-1}, det\mathbf{J} \gets$ \FuncSty{getInverseTransformationJacobian}(element)\\
+            \FuncSty{evaluatePDE}$(i, j, \boldsymbol{q}_k) \ \leftarrow \ \mathbf{J}^{-1} \nabla \boldsymbol{\varphi}_i(\boldsymbol{q}_k) \cdot \mathbf{J}^{-1} \nabla \boldsymbol{\varphi}_j(\boldsymbol{q}_k)$\\
+            \For{$j \gets 0$ \KwTo $N_\text{DoFs}$; $j = j + 1$} {
+                $\mathbf{A}^K_{ij} \gets \sum_{k=0}^{N_I} w_k \cdot \FuncSty{evaluatePDE}(i,j, \boldsymbol{q}_k)$\\
+                $z \gets z + A_{ij}^K \boldsymbol{x}_j$
+            }
+        }
+        \caption{\texttt{evaluateAx} (Poisson equation)}
+        \end{algorithm}
+\end{frame}
+
+% DERIVATION EXAMPLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Derivation Example}
+
+\begin{frame}[noframenumbering]{Appendix C: Example: Poisson Equation - Strong to weak formulation}
+
+    \begin{itemize}
+        \item Poisson equation in \emph{strong form}, with Dirichlet boundary conditions and
+            given source term $\boldsymbol{f}$.
+
+            \begin{align}
+                - \Delta \boldsymbol{u} & = \boldsymbol{f} \quad \text{in} \ \Omega \label{eq:poisson_strong}\\
+                \boldsymbol{u} &= \boldsymbol{0} \quad \text{on} \ \partial \Omega \nonumber
+            \end{align}    
+
+        \pause
+
+        \item Integral equation
+            \begin{align*}
+                -\int_\Omega \Delta \boldsymbol{u} \cdot \boldsymbol{v} = \int_\Omega \boldsymbol{f} \cdot \boldsymbol{v} \quad \forall \boldsymbol{v} \in V
+            \end{align*}
+
+        \pause
+
+        \item \emph{Weak form} of the Poisson equation
+            \begin{align}
+                \int_\Omega \nabla \boldsymbol{u} \cdot  \nabla \boldsymbol{v} = \int_\Omega \boldsymbol{f} \cdot \boldsymbol{v} \quad \forall \boldsymbol{v} \in V
+                \label{eq:poisson_weak}
+            \end{align}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Appendix C: Example: Poisson Equation - Discretization}
+
+    \begin{itemize}
+        \item Restrict spaces: $v, u \in V_h \subset V$ (Galerkin finite element method)
+        
+        \pause
+
+        \item Space discretization (Meshing)
+            $\displaystyle \quad \Omega = \bigcup^{N_E}_{e = 1} K_e$
+            \begin{align*}
+                \sum_{e=1}^{N_E} \int_{K_e} \nabla \boldsymbol{u} \cdot \nabla \boldsymbol{v} = \sum_{e=1}^{N_E} \int_{K_e} \boldsymbol{f} \cdot \boldsymbol{v} \quad \forall \boldsymbol{v} \in V_h
+            \end{align*}
+
+        \pause
+
+        \item Write functions in terms of the basis functions
+        
+            \[
+                \boldsymbol{u} = \sum_i u_i \boldsymbol{\varphi}_i, \quad \boldsymbol{v} = \sum_j v_j \boldsymbol{\varphi}_j    
+            \]
+
+            \begin{align}
+                \sum_i u_i \sum_{e=1}^{N_E} \int_{K_e} \nabla \boldsymbol{\varphi}_i \cdot \nabla \boldsymbol{\varphi}_j = \sum^{N_E}_{e=1} \int_{K_e} \boldsymbol{f} \cdot \boldsymbol{\varphi}_j \quad \forall \boldsymbol{\varphi}_j \label{eq:poisson_fem_1}
+            \end{align}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[noframenumbering]{Appendix C: Example: Linear System of Equations}
+
+    \begin{align}
+        \sum_i u_i \underbrace{\sum_{e=1}^{N_E} \int_{K_e} \nabla \boldsymbol{\varphi}_i \cdot \nabla \boldsymbol{\varphi}_j}_{\mathbf{A}_{ij}} = \underbrace{\sum^{N_E}_{e=1} \int_{K_e} \boldsymbol{f} \cdot \boldsymbol{\varphi}_j}_{\boldsymbol{b}_j} \quad \forall \boldsymbol{\varphi}_j \tag{\ref{eq:poisson_fem_1}}
+    \end{align}
+
+    \pause
+
+    Solving the finite element method consists of solving a linear system of equations:
+
+    \[\mathbf{A}\boldsymbol{x} = \boldsymbol{b}\]
+
+\end{frame}
+
+
+\end{document}

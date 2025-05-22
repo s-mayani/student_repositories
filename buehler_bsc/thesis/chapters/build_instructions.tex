@@ -1,0 +1,197 @@
+
+
+\chapter{Resources and Details}
+
+\section{Resources}
+
+\begin{itemize}
+    \item IPPL repository (GitHub): \href{https://github.com/IPPL-framework/ippl}{https://github.com/IPPL-framework/ippl}
+    \item IPPL FEM branch (GitHub): \href{https://github.com/s-mayani/ippl/tree/fem-framework}{https://github.com/s-mayani/ippl/tree/fem-framework}
+    \item IPPL build scripts (GitHub): \href{https://github.com/IPPL-framework/ippl-build-scripts}{https://github.com/IPPL-framework/ippl-build-scripts}
+    \item Student repository (PSI GitLab): \href{https://gitlab.psi.ch/AMAS-students/buehler\_bsc}{https://gitlab.psi.ch/AMAS-students/buehler\_bsc}
+\end{itemize}
+
+\section{IPPL Build Instructions}
+
+\begin{enumerate}
+    \item Make sure the following prerequisites are installed:
+
+          \begin{itemize}
+              \item curl (\href{https://curl.se}{https://curl.se})
+              \item git (\href{https://git-scm.com}{https://git-scm.com})
+              \item Make (\href{https://www.gnu.org/software/make}{https://www.gnu.org/software/make})
+              \item CMake (\href{https://cmake.org}{https://cmake.org})
+              \item A compatible C++ compiler:
+                    \begin{itemize}
+                        \item GCC (\href{https://gcc.gnu.org}{https://gcc.gnu.org})
+                        \item Clang (\href{https://clang.llvm.org}{https://clang.llvm.org})
+                    \end{itemize}
+              \item MPI, for example OpenMPI (\href{https://www.open-mpi.org}{https://www.open-mpi.org})
+              \item GoogleTest (\href{https://github.com/google/googletest}{https://github.com/google/googletest})
+          \end{itemize}
+
+    \item Clone the build script repository.
+
+          \texttt{git clone https://github.com/IPPL-framework/ippl-build-scripts.git}
+
+          This will clone four Bash scripts into a new \texttt{ippl-build-scripts} directory:
+
+          \begin{itemize}
+              \item \texttt{100-build-kokkos}
+              \item \texttt{200-build-heffte}
+              \item \texttt{300-build-ippl}
+              \item \texttt{999-build-everything}
+          \end{itemize}
+
+          The scripts are used to set up all the dependencies, as well as for building IPPL itself.
+
+          The commit used at the time of writing of the \texttt{ippl-build-scripts} repository was commit \texttt{e9a3e1f},
+          in later commits, some steps might be different.
+
+          To switch to that commit, run: \texttt{git checkout e9a3e1f}
+
+    \item Set up the build scripts to use the FEM branch.
+
+          The IPPL FEM framework was developed in a separate fork of the IPPL repository (listed as ``IPPL FEM branch'' in the `Resources' section).
+          At the time of writing, the FEM framework introduced in this thesis was not yet merged
+          into any branch of the official IPPL GitHub repository, but instead lives in a branch in the forked repository.
+          If the FEM framework was merged into the \texttt{main} branch in the meantime, this step can be safely ignored.
+          If it was not yet merged, the URL of the IPPL repository needs to be altered in the \texttt{300-build-ippl} Bash script and the branch needs to be switched.
+
+          The unaltered script (\texttt{300-build-ippl}) contains the following snippet given in Code \ref{code:script-ippl-1}.
+
+          \begin{Code}
+              \begin{minted}{sh}
+        if [ -d "ippl" ] 
+        then
+            echo "Found existing IPPL source directory"
+        else
+            echo "Clone ippl repo ... "
+            if [ ! -z "$USE_SSH" ]; then
+                git clone git@github.com:IPPL-framework/ippl.git
+            else
+                git clone https://github.com/IPPL-framework/ippl.git
+            fi
+        fi
+          \end{minted}
+              \caption{Unaltered script snippet from \texttt{300-build-ippl}}
+              \label{code:script-ippl-1}
+          \end{Code}
+
+          In this snippet, we need to alter the repository URL to the URL of the repository that contains
+          the FEM framework. Additionally, we add \texttt{git} commands to switch the branch after cloning.
+
+          The script should be altered to make the above snippet look like the following snippet given in Code \ref{code:script-ippl-2}.
+
+          \begin{Code}
+              \begin{minted}{bash}
+        if [ -d "ippl" ] 
+        then
+            echo "Found existing IPPL source directory"
+        else
+            echo "Clone ippl repo ... "
+            if [ ! -z "$USE_SSH" ]; then
+                git clone git@github.com:s-mayani/ippl.git ippl
+            else
+                git clone https://github.com/s-mayani/ippl.git ippl
+            fi
+            # Navigate into the cloned folder to switch the branch
+            cd ippl
+            git fetch
+            git switch fem-framework
+            cd ..
+        fi
+          \end{minted}
+              \caption{Altered script snippet from \texttt{300-build-ippl}}
+              \label{code:script-ippl-2}
+          \end{Code}
+
+          After altering the script, it will now clone the desired repository and switch to the FEM branch.
+
+    \item Run the build scripts to install the dependencies and build ippl.
+
+          All that is left to do is run the build scripts with the desired options to build the IPPL repository.
+          The available options can be found in the \texttt{README} of the build scripts repository under ``Flags''.
+
+          To build everything, run the following command:
+
+          \texttt{./999-build-everything -t serial -kfi --export}
+
+          The command will also set the required environment variables.
+          The \texttt{-t} argument sets the build target, \texttt{-k} installs Kokkos,
+          \texttt{-f} installs heFFTe and \texttt{-i} installs IPPL.
+
+          Running the command from above, will create a directory for ippl and inside it
+          a build directory \texttt{ippl-build-scripts/ippl/build\_serial/}.
+          This build directory will contain all the executables.
+          To rebuild in the future, navigate inside this directory and use \texttt{make}.
+
+\end{enumerate}
+
+\section{Documentation Build Instructions}
+\label{app:doxygen}
+
+The IPPL framework has a Doxygen documentation that can be built locally,
+and viewed in the browser.
+To build it, make sure you have Doxygen and its prerequisites installed.
+Then navigate into the \texttt{doc/} directory in the IPPL repository
+and run the following command:
+
+\begin{minted}{bash}
+doxygen Doxyfile
+\end{minted}
+
+Then simply open the file \texttt{doc/html/index.html} in the browser of your choice to read the
+documentation.
+
+\pagebreak
+
+\section{Plot Generation}
+
+Each of the plots used in this work is produced in two steps.
+In the first step, the data is generated by running a test executable, which is compiled when building IPPL,
+and the generated data is stored in a file. This will be either a Comma-Separated Values (CSV) file
+or a text file that stores the raw output.
+In the second step, the data is plotted using Python and a Jupyter Notebook.
+
+The Jupyter Notebooks can be found in the student repository (PSI GitLab) inside the plots directory.
+Inside the \texttt{plots} directory, there are two directories,
+\texttt{convergence} containing the convergences plots and the corresponding Jupyter notebook
+and \texttt{lagrange\_space} containing two directories for 1D and 2D.
+
+\subsection{Lagrangian finite element space plots}
+
+For the \texttt{LagrangeSpace} plots, the executables are inside the build directory
+(\texttt{build\_serial}, \texttt{build\_openmp}, etc.), under \texttt{<build\_dir>/test/FEM/}.
+Where an executable for 1D and one for 2D can be found: \texttt{TestLagrangeSpace1D} and \texttt{TestLagrangeSpace2D}.
+Their source files can be found under \texttt{src/test/FEM/}.
+
+After running the executables and before running the notebooks, copy the generated CSV files \texttt{1D\_lagrange\_local\_basis.csv} and
+\texttt{2D\_lagrange\_local\_basis.csv} to the same directory as the notebooks named
+
+To create the plot for 1D, run the Jupyter notebook named \texttt{plot\_lagrange\_1d.ipynb} at \texttt{plots/lagrange\_space/1d}
+in the student GitLab repository
+and for 2D run the Jupyter Notebook \texttt{plot\_lagrange\_2d.ipynb} at \texttt{plots/lagrange\_space/2d}.
+
+This will generate the plot from figure \ref{fig:lagrange_1st_2d}.
+
+\subsection{Convergence plots}
+
+For the FEM convergence plot, the test is located in the \texttt{solver} directory in the build folder.
+The test is called \texttt{TestFEMPoissonSolver}. (\texttt{<build\_dir>/solver/TestFEMPoissonSolver}).
+The source file for this test is located at \texttt{/src/test/solver/TestFEMPoissonSolver.cpp}.
+Run the executables and store the output in a text file. I chose the naming scheme of \texttt{sinus1d.dat} to \texttt{sinus3d.dat}
+depending on the number of dimensions.
+
+Run the executable from the build directory with the command below,
+by replacing \texttt{<Dim>} with the integer 1, 2, or 3 for 1D, 2D and 3D:
+\begin{minted}{sh}
+./test/solver/TestFEMPoissonSolver <Dim> --info 5 > sinus<Dim>d.dat
+\end{minted}
+
+The output will be piped into a file called \texttt{sinus1d.dat}, \texttt{sinus2d.dat} or \texttt{sinus3d.dat} in the build directory.
+After running the solver test for all three dimensions,
+copy all three files for the three dimensions to \texttt{plots/convergence} in the student GitLab repository.
+Then simply run the Jupyter Notebook in the same directory called \texttt{convergence.ipynb}.
+
+This will generate the plots from figures \ref{fig:convergence_sinusoidal_1d}, \ref{fig:convergence_sinusoidal_2d} and \ref{fig:convergence_sinusoidal_3d}.

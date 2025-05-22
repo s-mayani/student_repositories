@@ -1,0 +1,22 @@
+\frametitle{Undulators and Lorentz boosts}
+Transformation of undulator fields:
+\begin{align*}
+\mathbf{B}_{lab}(\mathbf{r}) = \begin{bmatrix} 0 \\ B_0 \cosh{(k \cdot y_{lab})} \sin{(k \cdot z_{lab})} \\ B_0 \sinh{(k \cdot y_{lab})} \cos{(k \cdot z_{lab})} \end{bmatrix}
+\end{align*}
+\pause
+\begin{align*}
+  r_{lab} &= \mathbf{\Lambda}^{-1}(r_{bunch}) \\
+  \mathbf{E}_{bunch} &= \gamma(\mathbf{E}_{lab} + \mathbf{v} \times \mathbf{B}_{lab}) - (\gamma - 1)\left(\mathbf{E}_{lab} \cdot \frac{\mathbf{v}}{||\mathbf{v}||}\right) \\
+  \mathbf{B}_{bunch} &= \gamma(\mathbf{B}_{lab} - \mathbf{v} \times \mathbf{E}_{lab}) - (\gamma - 1)\left(\mathbf{B}_{lab} \cdot \frac{\mathbf{v}}{||\mathbf{v}||}\right) \\
+  \text{or equivalently  } \mathbf{F}^{\alpha\beta}_{bunch} &= \mathbf{\Lambda}^\beta_\alpha \mathbf{F}^{\alpha \beta}_{lab}\mathbf{\Lambda}_\beta^\alpha
+\end{align*}
+%\end{frame}
+%\begin{frame}[fragile]
+In code:
+\begin{lstlisting}[style=CppStyle]
+{
+  lorentzBoost<double> boost({0.0, 0.0, 0.99});
+                                  //Lab to bunch frame
+  ippl::Matrix<double, 4, 4> mat = boost.unprimedToPrimed();
+}
+\end{lstlisting}

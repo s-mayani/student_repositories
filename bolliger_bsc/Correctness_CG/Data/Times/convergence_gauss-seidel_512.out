@@ -1,0 +1,29 @@
+Warning: Option '9' is not parsed by Ippl.
+Warning: Option 'gauss-seidel' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '0' is not parsed by Ippl.
+Config{0}> Got 9 as size parameter
+Config{0}> Solver is preconditioned
+Config{0}> Preconditioner is gauss-seidel
+Config{0}> Solver is set up
+Config{0}> Solver is done
+Convergence{0}> 512,1.447919673100726e-05,5.692395624046352e-11,401
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> findInternal........ Wall tot = 1.5569e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max =  9.227e-06
+Timings{0}>                      Wall avg = 7.80675e-06
+Timings{0}>                      Wall min =  7.154e-06
+Timings{0}> 
+Timings{0}> PCG iter............ Wall max =    16.1704
+Timings{0}>                      Wall avg =    16.1704
+Timings{0}>                      Wall min =    16.1704
+Timings{0}> 
+Timings{0}> Preconditioner...... Wall max =    11.8554
+Timings{0}>                      Wall avg =    11.7746
+Timings{0}>                      Wall min =    11.7111
+Timings{0}> 
+Timings{0}> ---------------------------------------------

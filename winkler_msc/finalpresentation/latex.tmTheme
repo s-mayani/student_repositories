@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    Inspired GitHub Color Scheme for Sublime Text 3
+    Copyright 2015 Seth Lopez
+    Released under the MIT License <http://opensource.org/licenses/MIT>
+    https://github.com/sethlopezme/InspiredGitHub.tmtheme
+-->
+<plist version="1.0">
+    <dict>
+        <key>name</key>
+        <string>GitHub</string>
+        <key>settings</key>
+        <array>
+
+            <!--
+                User Interface
+            -->
+            <dict>
+                <key>settings</key>
+                <dict>
+                    <!-- General -->
+                    <key>background</key>
+                    <string>#ffffff</string>
+                    <key>foreground</key>
+                    <string>#323232</string>
+                    <key>invisibles</key>
+                    <string>#000000</string>
+                    <key>caret</key>
+                    <string>#323232</string>
+
+                    <!-- Gutter -->
+                    <key>gutter</key>
+                    <string>#ffffff</string>
+                    <key>gutterForeground</key>
+                    <string>#b3b3b3</string>
+
+                    <!-- Guides -->
+                    <key>guide</key>
+                    <string>#e8e8e8</string>
+                    <key>stackGuide</key>
+                    <string>#e8e8e8</string>
+                    <key>activeGuide</key>
+                    <string>#b3b3b3</string>
+
+                    <!-- Highlighting -->
+                    <key>lineHighlight</key>
+                    <string>#f5f5f5</string>
+                    <key>findHighlight</key>
+                    <string>#f8eec7</string>
+                    <key>findHighlightForeground</key>
+                    <string>#323232</string>
+                    <key>selection</key>
+                    <string>#f8eec7</string>
+                    <key>selectionBorder</key>
+                    <string>#ffffff</string>
+
+                    <!-- Brackets -->
+                    <key>bracketsForeground</key>
+                    <string>#63a35c</string>
+                    <key>bracketsOptions</key>
+                    <string>underline</string>
+                    <key>bracketContentsForeground</key>
+                    <string>#63a35c</string>
+                    <key>bracketContentsOptions</key>
+                    <string>underline</string>
+
+                    <!-- Tags -->
+                    <key>tagsForeground</key>
+                    <string>#63a35c</string>
+                    <key>tagsOptions</key>
+                    <string>underline</string>
+                </dict>
+            </dict>
+
+            <!--
+                Comment
+            -->
+            <dict>
+                <key>name</key>
+                <string>Comment</string>
+                <key>scope</key>
+                <string>comment</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#006600</string>
+                    <key>fontStyle</key>
+                    <string>regular</string>
+                </dict>
+            </dict>
+
+            <!--
+                String
+            -->
+            <dict>
+                <key>name</key>
+                <string>String</string>
+                <key>scope</key>
+                <string>string</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#183691</string>
+                </dict>
+            </dict>
+
+            <!--
+                RegExp Operator
+            -->
+            <dict>
+                <key>name</key>
+                <string>RegExp Operator</string>
+                <key>scope</key>
+                <string>regexp-operator</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#a71d5d</string>
+                </dict>
+            </dict>
+
+            <!--
+                RegExp Character Class
+            -->
+            <dict>
+                <key>name</key>
+                <string>RegExp Character Class</string>
+                <key>scope</key>
+                <string>string.regexp.characterclass punctuation.definition.string.begin, string.regexp.characterclass punctuation.definition.string.end</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#a71d5d</string>
+                </dict>
+            </dict>
+
+            <!--
+                Number
+            -->
+            <dict>
+                <key>name</key>
+                <string>Number</string>
+                <key>scope</key>
+                <string>constant.numeric</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#000000</string>
+                </dict>
+            </dict>
+
+            <!--
+                Built-in Constant
+            -->
+            <dict>
+                <key>name</key>
+                <string>Built-in Constant</string>
+                <key>scope</key>
+                <string>constant.language</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#008603</string>
+                </dict>
+            </dict>
+
+            <!--
+                User-defined Constant
+            -->
+            <dict>
+                <key>name</key>
+                <string>User-defined Constant</string>
+                <key>scope</key>
+                <string>constant.character, constant.other, variable.other.constant</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#008603</string>
+                </dict>
+            </dict>
+
+            <!--
+                Variable
+            -->
+            <dict>
+                <key>name</key>
+                <string>Variable</string>
+                <key>scope</key>
+                <string>variable</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#323232</string>
+                </dict>
+            </dict>
+
+            <!--
+                Keyword
+            -->
+            <dict>
+                <key>name</key>
+                <string>Keyword</string>
+                <key>scope</key>
+                <string>keyword</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#000066</string>
+                    <key>fontStyle</key>
+                    <string>regualr</string>
+                </dict>
+            </dict>
+
+            <!--
+                Bitwise
+            -->
+            <dict>
+                <key>name</key>
+                <string>Bitwise</string>
+                <key>scope</key>
+                <string>bitwise-operator</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#a71d5d</string>
+                    <key>fontStyle</key>
+                    <string>bold</string>
+                </dict>
+            </dict>
+
+            <!--
+                Operator Accessor
+            -->
+            <dict>
+                <key>name</key>
+                <string>Operator Accessor</string>
+                <key>scope</key>
+                <string>punctuation.accessor</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#a71d5d</string>
+                    <key>fontStyle</key>
+                    <string>bold</string>
+                </dict>
+            </dict>
+
+            <!--
+                Storage
+            -->
+            <dict>
+                <key>name</key>
+                <string>Storage</string>
+                <key>scope</key>
+                <string>storage</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#0000cc</string>
+                    <key>fontStyle</key>
+                    <string>bold</string>
+                </dict>
+            </dict>
+
+            <!--
+                Storage Type
+            -->
+            <dict>
+                <key>name</key>
+                <string>Storage Type</string>
+                <key>scope</key>
+                <string>storage.type</string>
+                <key>settings</key>
+                <dict>
+                    <key>foreground</key>
+                    <string>#0000cc</string>
+                    <key>fontStyle</key>
+                    <string>bold</string>
+                </dict>
+            </dict>
+        </array>
+    </dict>
+</plist>

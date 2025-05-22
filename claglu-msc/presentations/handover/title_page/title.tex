@@ -1,0 +1,35 @@
+\def\vfilll{\vskip 0pt plus 1filll minus 0pt }
+\begin{frame}
+  % Title page image:
+  \vspace{0.3cm}
+  \begin{adjustbox}{width=\paperwidth, center}
+    \begin{tikzpicture}
+      \centering
+      \filldraw[fill=lightgray!40!white, draw = none] (0,0) rectangle (3.3,0.5\textheight);
+      % Logos:
+      \node[anchor=south west,inner sep=0] at (0.4,3.4)
+           {\includegraphics[width=2.5cm]{logos/PSI.pdf}};
+      \node[anchor=south west,inner sep=0] at (0.5,1.8)
+           {\includegraphics[width=2.4cm]{logos/eth_logo_kurz_pos-eps-converted-to.pdf}};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+      \node (heli) [anchor=south west,inner sep=0] at (0,0)
+            {\includegraphics[height=0.5\textheight]{logos/PSI_helicopter}};
+      \node [anchor=south west, inner sep = 1,fill=white, opacity=0.8] at (3.5, 0.0)
+            {\tiny WIR SCHAFFEN WISSEN – HEUTE FÜR MORGEN};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+      \filldraw[fill=lightgray!40!white, draw = none] (0,0) rectangle (1,0.5\textheight);
+    \end{tikzpicture}
+  \end{adjustbox}
+  \vspace{0.1cm}\\
+  {\usebeamerfont{subtitle} \footnotesize \insertauthor\, ::  \insertinstitute}
+  \vfilll
+  \vspace{0.4cm}
+  {\usebeamerfont{title} \LARGE \inserttitle}\\
+  \vfilll
+  \vspace{0.2cm}
+  {\usebeamerfont{subtitle} \footnotesize \insertdate}\\
+  \vfilll
+  \null\hfill\tiny Contact: \url{\myEmail}
+\end{frame}

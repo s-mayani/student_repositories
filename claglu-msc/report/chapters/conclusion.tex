@@ -1,0 +1,79 @@
+\chapter{Conclusion}
+\label{chapter:conclusion}
+
+In this work we presented an implementation of the Langevin collision operator via a Particle-in-Cell
+scheme for modeling the Vlasov-Poisson-Fokker-Planck equation.
+We explored multiple methods for solving the electrostatic and Rosenbluth potentials by comparing
+their performance to analytical test cases.
+Additionally, we demonstrated 2\textsuperscript{nd} order algebraic error convergence for both the dynamical friction
+and diffusion term.
+
+Subsequently, we applied the solver to the challenging problem of simulating the disorder induced
+heating process (\gls{dih}) in an initially cold sphere.
+Analyzing the impact of the coefficients on the normalized emittance, we found the friction
+coefficient to be too small to cause any effect.
+A possible explanation is that the \gls{dih} problem starts off from
+an unphysical zero velocity initial condition.
+We showed that the diffusion matrices during the first few plasma periods tend to be negative
+definite when close to the simulation boundary. This property inhibits the Euler-Maruyama time
+integration method as it makes use of the matrices Cholesky decomposition.
+Further investigation showed that the frequency at which such negative definite matrices occur rapidly
+decreases after the off-diagonal elements start to show an oscillatory behavior.
+This indicates that there is some warm-up time in which assumptions on the collisional operator could
+be violated, leading to these unphysical diffusion matrices.
+
+During our investigations of appropriate numerical operators for the Rosenbluth potentials,
+we developed a tool that enables the composition of user-defined operators into a single
+callable instance that is generated at compile time.
+\newpage
+\section{Outlook}
+
+The investigation on the Langevin collision operator gave rise to many unexpected and interesting questions which
+could be explored in a potential continuation of this project.
+
+We divide this section into suggestions serving two differing purposes:
+
+\begin{enumerate}
+    \item Further investigation on the collision operator when applied to the \gls{dih} problem.
+    \item Possible algorithmic and general performance improvements.
+\end{enumerate}
+
+We suggest a continuation of the investigation on the apparent negative definiteness of the
+diffusion matrices in the early stages of the \gls{dih} simulation. Especially, we think is beneficial to
+better understand the origin of the noise that impacts the off-diagonal entries. Also, it could help
+to inspect how the eigenvalues are distributed between the matrices.
+As an intermediate solution, one could use a diagonal restriction of the afflicted matrices, making them
+factorizable. The \gls{ldlt} decomposition we currently use would allow this to be implemented without
+much overhead. However, we point out that one should be aware of and investigate possible negative
+impacts this linearization brings along.
+
+Another direction of research could be, to better understand how the interplay between mesh
+spacing and time step influences the collisional coefficients' values. This has partly been explored
+by Stoel \cite{stoel} on another test case, though we expect it to be of even higher importance in
+the \gls{dih} problem due to the peculiar initial conditions causing a discontinuity at the origin.
+We suggest exploring this with methods akin to the one used by Adam
+\cite{subcyclingAdam1982}, also known as subcycling, during the early stages of the simulation.
+Similarly as the number of macro-particles per cell is low for most of the velocity domain it would be
+worthwile investigating how increasing this number reduces the observed error in the collisional
+coefficients.
+
+We have shown the correctness of our collisional operator on analytical test cases.
+Thus, we suggest testing it on a simpler physical test case to examine if we
+encounter similar issues as with the \gls{dih} problem or not.
+As an example a stationary initial velocity distribution (i.e. Maxwellian) could be used.
+This would also allow investigating the energy dissipation introduced by the Euler-Maruyama integrator.
+
+This report has been a case study of the applicability of a collisional operator to the \gls{dih} problem.
+Our main focus did not lie on implementing a highly optimized and efficient solver before we could
+show its correctness. Nevertheless, during the development process we have found many ways how one
+could optimize it.
+The current implementation of the solver supports shared-memory parallelism with \gls{openmp} and
+\gls{simd} parallelism via single GPU execution.
+Distributed memory parallelism (via \gls{mpi}) is currently not supported due to the domain
+decomposition being defined solely by the particle distribution on the spatial grid.
+One could implement the concept of super-cells introduced by Qiang \cite{qiang2000self} which uses
+separate velocity grids for each \gls{mpi} rank to circumvent these limitations.
+Another potential performance improvement concerns the computation of the two collisional terms.
+It could be carried out completely asynchronously on the GPU via the CUDA streams concept,
+as their computation is independent up to the point where the collisional coefficients are used
+to update the particle velocities.

@@ -1,0 +1,103 @@
+\ProvidesPackage{lukasbuehler_eth_summary_style}
+
+
+% Used packages
+\usepackage{amsmath, amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{multicol}
+%\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{lastpage}
+\usepackage{tabularx}
+\usepackage{enumerate}
+\usepackage{mathtools}
+
+\usepackage{enumitem}
+% \setlist{nosep}
+
+% More operators
+% \DeclareMathOperator{\arccot}{arccot}
+% \DeclareMathOperator{\arsinh}{arsinh}
+% \DeclareMathOperator{\arcosh}{arcosh}
+% \DeclareMathOperator{\artanh}{artanh}
+% \DeclareMathOperator{\arcoth}{arcoth}
+
+% \pagenumbering{arabic}
+% \setlength{\parindent}{0pt} % No paragraph indent, needed in combination with defintion boxes with mdframed
+
+% % Theorems (German)
+% \newtheoremstyle{mythm}
+% {\topsep}
+% {\topsep}
+% {\normalfont}
+% {0pt}
+% {\bfseries}
+% {\vspace{5px}}
+% {\newline}
+% {\underline{\thmname{#1}~\thmnumber{#2}:\thmnote{ #3}}}
+
+% \theoremstyle{mythm}
+
+% \newtheorem{mdrezept}{Rezept}
+% \newenvironment{rezept}
+% {
+%     \vspace{0px}
+%     \begin{minipage}{\hsize}
+%         \vspace{0px}
+%         \begin{mdframed}[backgroundcolor=white, nobreak=false, linewidth=1pt]
+%             \begin{mdrezept}
+%                 }
+%                 {
+%             \end{mdrezept}
+%         \end{mdframed}
+%         \vspace{2px}
+%     \end{minipage}
+% }
+% \newcommand{\mdrezeptautorefname}{Rezept}
+
+% \newtheorem{mddef}{Def.}
+% \newenvironment{definition}
+% {
+%     \vspace{2px}
+%     \begin{minipage}{\hsize}
+%         \vspace{2px}
+%         \begin{mdframed}[backgroundcolor=white, nobreak=false, linewidth=1pt]
+%             \begin{mddef}
+%                 }
+%                 {
+%             \end{mddef}
+%         \end{mdframed}
+%         \vspace{2px}
+%     \end{minipage}
+% }
+% \newcommand{\mddefautorefname}{Def.}
+
+% \newtheorem{thm}{Thm.}
+% \newcommand{\thmautorefname}{Thm.}
+
+% \newtheorem{bsp}{Beispiel}
+% \newcommand{\bspautorefname}{Beispiel}
+
+% \newtheorem{satz}{Satz}
+% \newcommand{\satzautorefname}{Satz}
+
+% \newtheorem{lemma}{Lemma}
+% \newcommand{\lemmaautorefname}{Lemma}
+
+% \newtheorem{cor}{Korollar}
+% \newcommand{\corautorefname}{Korollar}
+
+% commands
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\limtoinf}[1]{\lim_{#1 \to \infty}}
+%\newcommand{\norm}[2]{\left\lVert#1\right\rVert_{#2}}
+\newcommand{\partderiv}[2]{\frac{\partial #2}{\partial #1}}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+%\renewcommand{\nabla}{\nabla}
+%\newcommand{\grad}[0]{\nabla}
+%\renewcommand{\abs}[1]{\left\lvert#1\right\rvert}
+%\newcommand{\det}[0]{\text{det}}

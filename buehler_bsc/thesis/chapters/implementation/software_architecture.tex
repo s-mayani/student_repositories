@@ -1,0 +1,172 @@
+\section{Software Architecture}
+\label{sec:software_architecture}
+
+From a software architecture perspective, the FEM framework was designed to have high modularity
+and is easily extensible as a result.
+A quick overview is given in the Unified Modeling Language (UML) diagram in figure \ref{fig:software_arch_uml}.
+
+The main interface for all the building blocks is the abstract \texttt{FiniteElementSpace} class.
+It has a reference to the mesh, the reference element and the quadrature rule that is used in the assembly.
+
+The IPPL \texttt{Mesh} class is abstract as well and other mesh classes like the IPPL \texttt{UniformMesh} class inherit from it.
+At the moment, only rectilinear meshes are supported in IPPL.
+
+The reference element class is abstract and it defines the transformation functions. It has pure virtual
+functions to force its child classes to implement the functions to support these transformations.
+Implemented classes that inherit from it are the \texttt{EdgeElement}, \texttt{QuadrilateralElement} and \texttt{HexahedralElement} classes.
+
+The \texttt{Quadrature} class is also abstract and implements the functions for transforming 1D quadrature
+weights and nodes to tensor product quadrature nodes and weights on the reference elements.
+At the moment there are two different quadrature rules implemented that inherit from the
+\texttt{Quadrautre} base class. The \texttt{MidpointQuadrature} rule that was implemented for testing and
+the \texttt{GaussJacobiQuadrature} class which implements the Gauss-Jacobi quadrature rule.
+
+The \texttt{LagrangeSpace} class inherits from the abstract \texttt{FiniteElementSpace} base class
+and defines the degree of freedom (DOF) operations and assembly functions for the Lagrangian finite elements.
+
+The \texttt{FEMSolver} class is used to showcase the FEM framework.
+It solves the Poisson equation using first-order Lagrangian finite element methods
+with the existing conjugate gradient algorithm from IPPL and the Gauss-Jacobi quadrature rule.
+
+\begin{figure}[h]
+    \centering
+    \resizebox{\hsize}{!}{%
+        \begin{tikzpicture}
+
+            \begin{class}[text width=5cm]{FiniteElementSpace}{0,0}
+                \attribute{\{abstract\}}
+                \attribute{typename T}
+                \attribute{unsigned Dim}
+                \attribute{unsigned NumElementDOFs}
+                \attribute{typename QuadratureType}
+                \attribute{typename FieldLHS}
+                \attribute{typename FieldRHS}
+            \end{class}
+
+            \begin{class}[text width=5cm]{LagrangeSpace}{6.25,0}
+                \attribute{typename T}
+                \attribute{unsigned Dim}
+                \attribute{unsigned Order}
+                \attribute{typename QuadratureType}
+                \attribute{typename FieldLHS}
+                \attribute{typename FieldRHS}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (LagrangeSpace) -- (FiniteElementSpace);
+
+            \begin{class}[text width=3cm]{Mesh}{-5.5, 4}
+                \attribute{\{abstract\}}
+                \attribute{typename T}
+                \attribute{unsigned Dim}
+            \end{class}
+            \aggregation{FiniteElementSpace}{}{}{Mesh}
+
+            % ELEMENTS
+
+            \begin{class}[text width=4cm]{Element}{0, 4}
+                \attribute{\{abstract\}}
+                \attribute{typename T}
+                \attribute{unsigned Dim}
+                \attribute{unsigned NumVertices}
+            \end{class}
+            \aggregation{FiniteElementSpace}{}{}{Element}
+
+            \begin{class}[text width=4cm]{EdgeElement}{-4.5, 6.5}
+                \attribute{typename T}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (EdgeElement) -- (Element);
+
+            \begin{class}[text width=4cm]{QuadrilateralElement}{0, 6.5}
+                \attribute{typename T}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (QuadrilateralElement) -- (Element);
+
+            \begin{class}[text width=4cm]{HexahedralElement}{4.5, 6.5}
+                \attribute{typename T}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (HexahedralElement) -- (Element);
+
+            % QUADRATURE
+
+            \begin{class}[text width=4cm]{Quadrature}{6, 4}
+                \attribute{\{abstract\}}
+                \attribute{typename T}
+                \attribute{unsigned NumNodes1D}
+                \attribute{typename ElementType}
+            \end{class}
+            \aggregation{FiniteElementSpace}{}{}{Quadrature}
+
+            \begin{class}[text width=5cm]{GaussJacobiQuadrature}{12, 3.5}
+                \attribute{typename T}
+                \attribute{unsigned NumNodes1D}
+                \attribute{typename ElementType}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (GaussJacobiQuadrature) -- (Quadrature);
+
+            \begin{class}[text width=5cm]{MidpointQuadrature}{12, 6.5}
+                \attribute{typename T}
+                \attribute{unsigned NumNodes1D}
+                \attribute{typename ElementType}
+            \end{class}
+            \draw[-{Triangle[length=2mm,width=2mm,fill=white]}, umlcolor, line width=0.2mm] (MidpointQuadrature) -- (Quadrature);
+
+            % SOLVER
+
+            \begin{class}[text width=4cm]{FEMPoissonSolver}{12,-1}
+                \attribute{typename FieldLHS}
+                \attribute{typename FieldLHS}
+            \end{class}
+            \aggregation{FEMPoissonSolver}{}{}{LagrangeSpace}
+            \aggregation{FEMPoissonSolver}{}{}{GaussJacobiQuadrature}
+
+        \end{tikzpicture}%
+    }
+    \caption{Software architecture of the FEM framework, showing the classes with their template arguments.}
+    \label{fig:software_arch_uml}
+\end{figure}
+
+
+\begin{figure}[h]
+    \dirtree{%
+        .1 ippl/.
+        % .2 doc/.
+        .2 src/.
+        .3 FEM/.
+        .4 Elements/.
+        .5 EdgeElement.h.
+        .5 EdgeElement.hpp.
+        .5 Element.h.
+        .5 Element.hpp.
+        .5 HexahedralElement.h.
+        .5 HexahedralElement.hpp.
+        .5 QuadrilateralElement.h.
+        .5 QuadrilateralElement.hpp.
+        .4 Quadrature/.
+        .5 GaussJacobiQuadrature.h.
+        .5 GaussJacobiQuadrature.hpp.
+        .5 MidpointQuadrature.h.
+        .5 MidpointQuadrature.hpp.
+        .5 Quadrature.h.
+        .5 Quadrature.hpp.
+        .4 CMakeLists.txt.
+        .4 FiniteElementSpace.h.
+        .4 FiniteElementSpace.hpp.
+        .4 LagrangeSpace.h.
+        .4 LagrangeSpace.hpp.
+        % .2 test/.
+        % .3 FEM/.
+        % .3 solver/.
+        % .4 TestFEMPoissonSolver.cpp.
+        % .2 unit\_test/.
+        % .3 FEM/.
+        % .4 CmakeLists.txt.
+        % .4 EdgeElement.cpp.
+        % .4 FiniteElementSpace.cpp.
+        % .4 GaussJacobiQuadrature.cpp.
+        % .4 LagrangeSpace.cpp.
+        % .4 MidpointQuadrature.cpp.
+        % .4 Quadrature.cpp.
+        % .4 QuadrilateralElement.cpp.
+    }
+
+    \caption{IPPL FEM framework source file structure.}
+\end{figure}

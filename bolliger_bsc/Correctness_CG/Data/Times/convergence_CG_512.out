@@ -1,0 +1,20 @@
+Warning: Option '9' is not parsed by Ippl.
+Config{0}> Got 9 as size parameter
+Config{0}> Solver is not preconditioned
+Config{0}> Solver is set up
+Config{0}> Solver is done
+Convergence{0}> 512,1.447919673190937e-05,1.361928637083919e-11,447
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> findInternal........ Wall tot = 1.3225e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max =  7.493e-06
+Timings{0}>                      Wall avg = 7.25825e-06
+Timings{0}>                      Wall min =  7.103e-06
+Timings{0}> 
+Timings{0}> CG_loop............. Wall max =    3.59431
+Timings{0}>                      Wall avg =    3.59423
+Timings{0}>                      Wall min =    3.59414
+Timings{0}> 
+Timings{0}> ---------------------------------------------

@@ -1,0 +1,83 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[c]{Hessian Operator}
+    \begin{itemize}
+        \item Old implementation chose operators at compile-time via $\texttt{constexpr}$ return statement
+        \item Doesn't allow for loop through index ranges of $\partial \Omega$
+        \item Potential solution, use $\texttt{std::variant}$ to store them in container; discouraged by Alex
+    \end{itemize}
+
+    Current Idea: 
+    \begin{itemize}
+        \item Decouple stencils from operators themselves
+        \item Instantiate 1D stencils (pass them to Hessian operator) at runtime for each index range
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Diffusion Coefficient: At Gridcells}
+    \begin{enumerate}
+        \item Matrix entries exhibits magnitudes in range $[10^{14}, 10^{19}]$
+    \end{enumerate}
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.05\linewidth]{figures/D_matrix_time_comparison.png}
+      \caption{Value average over time.}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.05\linewidth]{figures/D_distribution.pdf}
+      \caption{Distribution of the values at the last iteration}
+      \label{fig:Fd_asymptotic_behavior_reference}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Cholesky Decomposed $\boldsymbol D$ : At Particles}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.65\linewidth]{figures/Q_distribution.pdf}
+      \caption{Potential numerical instabilities in current Cholesky Algorithm.}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Adjusted) Timeline}
+
+\begin{table}[]
+    \def\arraystretch{1.5}
+    \begin{tabular}{p{0.08\linewidth} | p{0.85\linewidth}}
+        Date & Target Goals \\
+        \hline \hline
+        16/05 & Setup v-space datastructures in \texttt{LangevinParticles.hpp}. Add Friction coefficient. Add Solver for 2nd Rosenbluth potential $g(\vec v)$.\\
+        23/05 & Analyse structure of $\boldsymbol D$. Finish Diffusion coefficient computation (via onesided Hessian operator). \\
+        30/05 & Analyse interplay between collision coeff.`s (see whether Severin`s conclusions are confirmed or can be disproved). \\
+              & Profiling of runtime and memory consumption. \\
+        06/06 & Start improving most pressing bottlenecks. Start writing. \\
+        17/07 & Submission. \\
+    \end{tabular}
+    \caption{Timeline with approximate milestones}
+\end{table}
+
+\end{frame}
+
+\end{document}

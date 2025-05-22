@@ -1,0 +1,54 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+\begin{frame}[c]{Progress}
+    \begin{itemize}
+        \item[\done]  Merged all changes from \texttt{master} (emittance coincides with previous version)
+        \item[\done]  Memory HWM ($256^3$, no collisions): $1.6$ GB
+        \item[$\square$] Setup v-space datastructures (incl. Matrix-Field for Diffusion Tensor)
+        \begin{itemize}
+            \item[$\square$] Check what fields can be shared among the solvers (given sequential execution)
+            \item[$\square$] Vector-Field for $\vec{F}$
+            \item[$\square$] Matrix-Field for $\boldsymbol{D}$?
+        \end{itemize}
+        \item[$\square$] Cholesky decomposition of $3\times3$ matrix
+        \item[$\square$] Solvers for Rosenbluth Potentials:
+        \begin{itemize}
+            \item[$\square$] Hockney Solver: $h(\vec v)$
+            \item[$\square$] Biharmonic Solver: $g(\vec v)$
+            \item[$\square$] Onesided Hessian for $\boldsymbol D(\vec v)$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Adjusted) Timeline}
+\begin{table}[]
+\def\arraystretch{1.5}
+\begin{tabular}{p{0.08\linewidth} | p{0.85\linewidth}}
+Date & Target Goals \\
+\hline \hline
+16/05 & Setup v-space datastructures in \texttt{LangevinParticles.hpp}. Add Friction coefficient. Add Solver for 2nd Rosenbluth potential $g(\vec v)$.\\
+23/05 & Analyse structure of $\boldsymbol D$. Finish Diffusion coefficient computation (via onesided Hessian operator). \\
+30/05 & Analyse interplay between collision coeff.`s (see whether Severin`s conclusions are confirmed or can be disproved). \\
+      & Profiling of runtime and memory consumption. \\
+06/06 & Start improving most pressing bottlenecks. Start writing. \\
+17/07 & Submission. \\
+\end{tabular}
+\caption{Timeline with approximate milestones}
+\end{table}
+
+\end{frame}
+
+\end{document}

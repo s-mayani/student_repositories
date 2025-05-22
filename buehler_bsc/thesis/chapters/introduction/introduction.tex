@@ -1,0 +1,39 @@
+
+\chapter{Introduction}
+
+Many fundamental physics equations governing natural phenomena cannot be solved analytically.
+However, using computer simulations we can solve complex equations numerically.
+This process can be accelerated using supercomputers.
+Supercomputers, or computer clusters, underwent many evolutionary changes
+in pursuit of more performance, measured by the number of computations per second,
+more precisely, the number of floating point operations per second (FLOP/s).
+In the past few years, there was a race to the first exascale supercomputer,
+a supercomputer that is capable of calculating at least $10^{18}$ IEEE 754 double precision (64 bit) floating point
+operations per second (Exaflop/s).
+The term `exascale computing' refers to computing systems being capable of that.
+In June of 2022, the Frontier system, located at Oak Ridge National Laboratory (ORNL),
+achieved a High-Performance Linpack (HPL) benchmark score of 1.102 Exaflop/s
+and was crowned the first true exascale machine \cite{noauthor_june_2023}.
+
+Moving to the era of exascale, heterogeneous computing architectures,
+with different kinds of processors and/or possibly different kinds of GPUs in the same system, are unavoidable.
+Because of this, we seek to provide tools to computational physicists to carry out
+extreme-scale simulations on the next generation of computing architectures.
+The IPPL (Independent Parallel Particle Layer) library \cite{frey_ippl-frameworkippl_2023} is a
+performance portable framework for Particle-In-Cell (PIC) methods in \texttt{C++}.
+It is being developed by collaborators from Paul Scherrer Institute (PSI),
+Jülich Supercomputing Center (JSC)
+and the University of St Andrews.
+Currently, IPPL supports electrostatic PIC simulations.
+Development of a full electromagnetic (EM) solver is ongoing.
+
+EM solvers are useful for simulating Free Electron Lasers,
+where the radiation interacts with free electrons,
+whose motions are governed by the electromagnetic Maxwell equations.
+
+The goal of this thesis is to explore one of the numerical methods used for
+EM solvers, the Finite Element Method (FEM) and implement the building blocks
+for it. The thesis is structured as follows: First, we present the methodology
+and the software framework, then we cover the implementation of the
+building blocks and finally we discuss the result with convergence plots, followed by our
+conclusion and a few words on future work.

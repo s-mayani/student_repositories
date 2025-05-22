@@ -1,0 +1,222 @@
+\documentclass[10pt]{report}
+
+\usepackage{lukasbuehler_style}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[a4paper]{geometry}
+\usepackage{listings}
+\usepackage{placeins}
+\usepackage{siunitx}
+\usepackage[dvipsnames,svgnames]{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,snakes,matrix,arrows.meta,backgrounds,decorations.pathreplacing,mindmap,trees,intersections}%fit
+
+\usepackage[lowercase]{theoremref}
+%\usepackage{tikz-uml}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{verbatimbox}
+\usepackage{colortbl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+\usepackage{physics}
+\usepackage[titletoc,title]{appendix}
+\usepackage{booktabs}
+\usepackage{cleveref}
+\usepackage{float}
+\newfloat{Code}{h}{myc}
+
+% New
+%\usepackage{datetime}
+\usepackage{pgf-umlcd}
+\usepackage{pgf-umlsd}
+%\usepackage{pgfgantt}
+\usepackage{dirtree}
+\usepackage{pgfplots}
+\usepackage{minted}
+\usepackage{algorithm2e}
+%\usepackage[toc,page]{appendix}
+
+
+\captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+%\urlstyle{same} % 09.09.2015, http://latex-community.org/forum/viewtopic.php?f=50&t=4191
+\bibliographystyle{IEEEtran}
+
+\include{math}
+\include{sectioning}
+\include{myenvironment}
+
+\newtheorem{theorem}{Theorem} %13.05.2015, https://www.sharelatex.com/learn/Theorems_and_proofs#Proofs
+\newtheorem{definition}{Definition}
+
+%\newcommand{\ref}[1] {Fig.\ \ref{#1}}
+\newcommand{\lstref}[1] {Lst.\ \ref{#1}}
+\newcommand{\tabref}[1] {Tab.\ \ref{#1}}
+\newcommand{\secref}[1] {Sec.\ \ref{#1}}
+\newcommand{\outref}[1] {Output \ref{#1}}
+\newcommand{\enumref}[1] {Appendix \ref{#1}}
+\newtheorem{mydef}{Definition}
+% \newcommand{\eqsref}[1] {Eq.\ \ref{#1}}
+
+\lstdefinestyle{MyLstDesign}{
+    basicstyle=\scriptsize\ttfamily,
+    captionpos=b,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    frame=L,
+    xleftmargin=0.65cm,
+    numbers=left,
+    commentstyle=\itshape\color{red},
+    keywordstyle=\color{black!50!green}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PAGESTYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HEADER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{\nouppercase{\leftmark}}
+\fancyhead[L]{ETH Zurich \& PSI Villigen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FOOTER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancyfoot{} % clear everything
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Lukas Bühler}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% 06.09.2015, http://stackoverflow.com/questions/2709898/change-list-of-listings-text
+% \renewcommand{\lstlistingname}{List of Listings}
+\renewcommand{\lstlistlistingname}{List of Listings}
+
+% 12.09.2015, http://tex.stackexchange.com/questions/10159/grouping-the-list-of-listings-by-chapter
+\let\Chapter\chapter
+\def\chapter{\addtocontents{lol}{\protect\addvspace{10pt}}\Chapter}
+
+\begin{document}
+% Computation of higher order Space Charge Effects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \title{Matched Distributions in Cyclotrons with Higher Order Moments of the Charge Distribution}
+% \author{Matthias Frey}
+% \maketitle
+\begin{titlepage}
+    \title{
+        \begin{figure}
+            \includegraphics[scale=0.65]{pictures/ethlogo_full}
+            \hfill
+            \includegraphics[scale=0.4]{pictures/psi_logo_gray}
+        \end{figure}\vspace*{-5cm}
+        \begin{tikzpicture}
+            \draw[very thick] (0,0) -- (\textwidth,0) {};
+        \end{tikzpicture}\FloatBarrier\parindent 0pt
+        \bfseries {\huge \sc{Building blocks for Finite Element computations in
+                IPPL}}
+        \begin{tikzpicture}
+            \draw[very thick] (0,0) -- (\textwidth,0) {};
+        \end{tikzpicture}}
+    \author{
+        \textsc{{{\LARGE Bachelor Thesis}}} \\[5pt]
+        \small in Computational Science and Engineering \\[5pt]
+        \small Department of Mathematics \\[5pt] \small ETH Zurich \vspace{0.4cm} \\[0.2in]
+        \\ \small written by \\[5pt]
+        %\small \sc{BSc ETH xxx} \\
+        \sc{Lukas Bühler} \\
+        \vspace{1cm} \\
+        \small supervised by \\[5pt]
+        Dr.\ A.\ Adelmann (ETH \& PSI)\\
+        \vspace{0.5cm} \\
+        \small scientific advisers \\[5pt]
+        Sonali Mayani (PSI)\\
+        Dr. M. Frey (University of St Andrews)\\
+        Dr. S. Muralikrishnan (Jülich Supercomputing Center)\\
+        \vspace{1.5cm} \\
+        \today
+    }
+    \date{}
+    % \clearpage
+    \maketitle
+    \thispagestyle{empty}
+\end{titlepage}
+
+\setcounter{page}{0}  % set page number -> such that table of contents is first page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{abstract}
+
+% \end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+
+
+% 27.08.2015, http://tex.stackexchange.com/questions/11579/captions-for-figures-in-listoffigures
+
+% 27.08.2015, https://www.sharelatex.com/learn/Lists_of_tables_and_figures
+\listoffigures
+%\listoftables
+%\lstlistoflistings
+% 06.09.2015, http://tex.stackexchange.com/questions/165903/optional-caption-in-listings-for-listoflistings
+
+%\listofmyoutputs
+
+\newpage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{chapters/introduction/introduction}
+
+\include{chapters/methodology}
+
+\include{chapters/implementation/implementation}
+\include{chapters/implementation/fem_space}
+\include{chapters/implementation/elements}
+\include{chapters/implementation/lagrange}
+\include{chapters/implementation/quadrature}
+
+\include{chapters/implementation/assembly}
+\include{chapters/implementation/solver}
+
+\include{chapters/implementation/results}
+
+\include{chapters/conclusion}
+
+\include{chapters/future_work}
+
+\include{chapters/acknowledgements}
+
+\bibliography{thesis.bib}
+
+\begin{appendices}
+    \include{chapters/build_instructions}
+
+    \include{chapters/implementation_help}
+
+\end{appendices}
+
+\includepdf[pages={-}]{declaration-originality-signed.pdf}
+
+\end{document}
+

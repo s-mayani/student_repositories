@@ -1,0 +1,28 @@
+# Ctags
+tags
+.DS_Store
+# Clangd cache
+.cache/
+# Vim Sessions
+Session.vim
+# Latex compiler generated files
+figures/*.pdf
+*.json
+*.csv
+*.aux
+*.bbl
+*.fdb_latexmk
+*.fls
+*.log
+*.lof
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.blg
+*.vrb
+_minted-main/
+
+# Jupyter Notebook
+.ipynb_checkpoints

@@ -1,0 +1,28 @@
+Warning: Option '9' is not parsed by Ippl.
+Warning: Option 'richardson' is not parsed by Ippl.
+Warning: Option '4' is not parsed by Ippl.
+Warning: Option '0' is not parsed by Ippl.
+Config{0}> Got 9 as size parameter
+Config{0}> Solver is preconditioned
+Config{0}> Preconditioner is richardson
+Config{0}> Solver is set up
+Config{0}> Solver is done
+Convergence{0}> 512,1.447919673037301e-05,3.763614475619451e-11,312
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> findInternal........ Wall tot = 1.2795e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max =  7.443e-06
+Timings{0}>                      Wall avg = 7.28125e-06
+Timings{0}>                      Wall min =  7.084e-06
+Timings{0}> 
+Timings{0}> PCG iter............ Wall max =    8.19114
+Timings{0}>                      Wall avg =    8.19113
+Timings{0}>                      Wall min =    8.19111
+Timings{0}> 
+Timings{0}> Preconditioner...... Wall max =    4.94943
+Timings{0}>                      Wall avg =    4.87352
+Timings{0}>                      Wall min =    4.83484
+Timings{0}> 
+Timings{0}> ---------------------------------------------

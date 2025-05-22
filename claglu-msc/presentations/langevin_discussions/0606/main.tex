@@ -1,0 +1,76 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[c]{Emergent Identities: Gaussian Test-Case}
+    Initial probability density: $f(r) = \mathcal N(\mu, \sigma) = \mathcal N(0, 1) = \frac{1}{\sqrt{8 \pi^3}} \exp{(-\frac{r^2}{2})}$ \\
+    What identities currently hold:
+    \begin{itemize}
+        \item[\done] $h(r) = \frac{2}{r}\ \text{erf} (\frac{r}{\sqrt{2}})$
+        \item[\done] $g(r) =  \left [ \sqrt{\frac{2}{\pi}} \exp{(-\frac{r^2}{2})} +  (r + \frac{1}{r})\ \text{erf}(\frac{r}{\sqrt{2}})\right]$
+        \item[\done] $F_d = \Gamma \nabla h(r) = \Gamma \frac{2}{r^2} \left[ \frac{1}{r} \text{erf}({\frac{r}{2}}) - \sqrt{\frac{2}{\pi}} \exp{(- \frac{r^2}{2})}  \right]$
+        \item[\done] $Tr(\boldsymbol D) = \Gamma \nabla^2 g = \Gamma h$
+        \item[$\square$] $\nabla \cdot \boldsymbol D = \nabla \cdot (\Gamma \nabla \nabla g) = \Gamma \nabla \nabla^2 g = F_d = \Gamma \nabla h$
+    \end{itemize}
+
+    Conclusion: 
+    \begin{itemize}
+        \item Our solutions of the off-diagonals of $\boldsymbol D$ are incorrect 
+        \item The analytical solution computed with Mathematica of either one coefficient is wrong
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{$\boldsymbol D$-Field Analysis: Gaussian Test-Case}
+    Solver result looks similar to what we've seen in the Maxwellian. \\
+    
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.05\linewidth]{figures/D01.png}
+      \caption{$\boldsymbol D_{xy}$ comparison (different colorbar ranges!)}
+      \label{fig:D00_comparison}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[c]{TODO}
+    \begin{itemize}
+        \item[$\square$] Make off-diagonals of $\boldsymbol D$ coincide with analytical solutions
+        \item[$\square$] Create convergence plots for these coefficients
+        \item[$\square$] Start assembling a list of the results I've gathered in the last 4.5 months
+        \item[$\square$] [Onesided Hessian]
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{(Adjusted) Timeline}
+
+\begin{table}[]
+    \def\arraystretch{1.5}
+    \begin{tabular}{p{0.08\linewidth} | p{0.85\linewidth}}
+        Date & Target Goals \\
+        \hline \hline
+        16/05 & Setup v-space datastructures in \texttt{LangevinParticles.hpp}. Add Friction coefficient. Add Solver for 2nd Rosenbluth potential $g(\vec v)$.\\
+        23/05 & Analyse structure of $\boldsymbol D$. Finish Diffusion coefficient computation (via onesided Hessian operator). \\
+        30/05 & Analyse interplay between collision coeff.`s (see whether Severin`s conclusions are confirmed or can be disproved). \\
+              & Profiling of runtime and memory consumption. \\
+        06/06 & Start improving most pressing bottlenecks. Start writing. \\
+        17/07 & Submission. \\
+    \end{tabular}
+    \caption{Timeline with approximate milestones}
+\end{table}
+
+\end{frame}
+
+\end{document}

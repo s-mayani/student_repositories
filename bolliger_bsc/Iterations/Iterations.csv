@@ -1,0 +1,4 @@
+Test,CG,Gauss-Seidel(2,2),Richardson(4),SSOR(4,2)
+Landau_GPU,768.76,316.67,386.12,203.33
+Penning_GPU,747.11,424.18,508.21,262.49
+Test_CG,225,226,176,171

@@ -1,0 +1,63 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[c]{Friction Coefficient too small with VICO?}
+    Results from Sonali on a test-case having domain-size and input in same magnitude to what we see in DIH:
+        \begin{itemize}
+            \item VICO solver error converges
+            \item HOCKNEY solver error does not converge
+        \end{itemize}
+    $\implies$ VICO solver might nonetheless give us the 'correct' solution and HOCKNEY's $F_d$ is wrong.
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.8\linewidth]{figures/emittance.pdf}
+      \caption{Normalized Emittance with / without collisions.}
+      \label{fig:emittance}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[c]{Domain Resizing for FFT}
+    Run FFT Poisson solve on $[-1,1]^3$ to compute $\nabla h(v)$ and $g(v)$:
+    \begin{itemize}
+        \item Rescale particle velocities to $[-1,1]^3$ with $\overline v = \Theta(v) = v/2v_{max} + v_{vmax}$
+        \item Scatter density on $[-1,1]^3$ and run Poisson solvers
+        \item Gather and rescale potentials with inverse functions
+            % \begin{itemize}
+            %     \item $(\Theta^{-1}(h(v)))' = (\Theta^{-1})'(h(v)) h'(v) = 2v_{max} h(v)$
+            %     \item $\Theta^{-1}g(v) = 2v_{max} g(v) - v_{max}$
+            % \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{$F_d$ is too small in HOCKNEY and VICO}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.95\linewidth]{figures/normalizedSolve_emittance.pdf}
+      \caption{Normalized Emittance with / without collisions. Computed on rescaled velocity-space.}
+      \label{fig:emittance}
+    \end{figure}
+    $\implies$ VICO solver gives us the 'correct' solution and HOCKNEY's $F_d$ needed normalization of v-space $\checkmark$.
+\end{frame}
+
+\begin{frame}[t]{TODOs}
+    \begin{itemize}
+        \item Extend `TestLangevinPotentials.cpp` to resemble domain normalization we do in `Langevin.cpp`
+        \item Continue writing
+    \end{itemize}
+\end{frame}
+
+\end{document}

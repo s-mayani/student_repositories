@@ -1,0 +1,294 @@
+
+@misc{settgast_performant_2023,
+	title = {Performant low-order matrix-free finite element kernels on {GPU} architectures},
+	url = {http://arxiv.org/abs/2308.09839},
+	abstract = {Numerical methods such as the Finite Element Method (FEM) have been successfully adapted to utilize the computational power of GPU accelerators. However, much of the effort around applying FEM to GPU’s has been focused on high-order FEM due to higher arithmetic intensity and order of accuracy. For applications such as the simulation of subsurface processes, high levels of heterogeneity results in high-resolution grids characterized by highly discontinuous (cell-wise) material property fields. Moreover, due to the significant uncertainties in the characterization of the domain of interest, e.g. geologic reservoirs, the benefits of high order accuracy are reduced, and low-order methods are typically employed. In this study, we present a strategy for implementing highly performant low-order matrix-free FEM operator kernels in the context of the conjugate gradient (CG) method. Performance results of matrix-free Laplace and isotropic elasticity operator kernels are presented and are shown to compare favorably to matrix-based SpMV operators on V100, A100, and MI250X GPUs.},
+	language = {en},
+	urldate = {2023-08-25},
+	publisher = {arXiv},
+	author = {Settgast, Randolph R. and Dudouit, Yohann and Castelletto, Nicola and Tobin, William R. and Corbett, Benjamin C. and Klevtsov, Sergey},
+	month = aug,
+	year = {2023},
+	note = {arXiv:2308.09839 [cs, math]},
+	keywords = {Computer Science - Mathematical Software, Mathematics - Numerical Analysis},
+	file = {Settgast et al. - 2023 - Performant low-order matrix-free finite element ke.pdf:/home/lukas/Zotero/storage/W5533DR2/Settgast et al. - 2023 - Performant low-order matrix-free finite element ke.pdf:application/pdf},
+}
+
+@inproceedings{ljungkvist_matrix-free_2017,
+	address = {Virginia Beach, VA, USA},
+	title = {Matrix-{Free} {Finite}-{Element} {Computations} {On} {Graphics} {Processors} with {Adaptively} {Refined} {Unstructured} {Meshes}},
+	isbn = {978-1-5108-3822-2},
+	url = {http://dl.acm.org/citation.cfm?id=3108097},
+	doi = {10.22360/SpringSim.2017.HPC.004},
+	abstract = {This paper concerns efﬁcient matrix-free ﬁnite-element algorithms on modern manycore processors such as graphics cards (GPUs) as an alternative to sparse matrix-vector products. In matrix-free ﬁnite element algorithms, the assembly and solution phases are merged, yielding a signiﬁcantly lower memory bandwidth footprint, with a corresponding increase in efﬁciency on bandwidth limited processors. Additionally, no system matrix must be assembled or stored in memory.},
+	language = {en},
+	urldate = {2023-03-16},
+	booktitle = {25th {High} {Performance} {Computing} {Symposium} ({HPC} 2017)},
+	publisher = {Society for Modeling and Simulation International (SCS)},
+	author = {Ljungkvist, Karl},
+	year = {2017},
+	file = {2017 - Matrix-Free Finite-Element Computations On Graphic.pdf:/home/lukas/Zotero/storage/JWSNFDFG/2017 - Matrix-Free Finite-Element Computations On Graphic.pdf:application/pdf},
+}
+
+@article{bangerth_dealiigeneral-purpose_2007,
+	title = {deal.{II}—{A} general-purpose object-oriented finite element library},
+	volume = {33},
+	issn = {0098-3500},
+	url = {https://dl.acm.org/doi/10.1145/1268776.1268779},
+	doi = {10.1145/1268776.1268779},
+	abstract = {An overview of the software design and data abstraction decisions chosen for deal.II, a general purpose finite element library written in C++, is given. The library uses advanced object-oriented and data encapsulation techniques to break finite element implementations into smaller blocks that can be arranged to fit users requirements. Through this approach, deal.II supports a large number of different applications covering a wide range of scientific areas, programming methodologies, and application-specific algorithms, without imposing a rigid framework into which they have to fit. A judicious use of programming techniques allows us to avoid the computational costs frequently associated with abstract object-oriented class libraries. The paper presents a detailed description of the abstractions chosen for defining geometric information of meshes and the handling of degrees of freedom associated with finite element spaces, as well as of linear algebra, input/output capabilities and of interfaces to other software, such as visualization tools. Finally, some results obtained with applications built atop deal.II are shown to demonstrate the powerful capabilities of this toolbox.},
+	number = {4},
+	urldate = {2023-04-20},
+	journal = {ACM Transactions on Mathematical Software},
+	author = {Bangerth, W. and Hartmann, R. and Kanschat, G.},
+	month = aug,
+	year = {2007},
+	keywords = {Object-orientation, software design},
+	pages = {24--es},
+	file = {Full Text PDF:/home/lukas/Zotero/storage/5YMIRTYQ/Bangerth et al. - 2007 - deal.II—A general-purpose object-oriented finite e.pdf:application/pdf},
+}
+
+@article{anderson_mfem_2021,
+	series = {Development and {Application} of {Open}-source {Software} for {Problems} with {Numerical} {PDEs}},
+	title = {{MFEM}: {A} modular finite element methods library},
+	volume = {81},
+	issn = {0898-1221},
+	shorttitle = {{MFEM}},
+	url = {https://www.sciencedirect.com/science/article/pii/S0898122120302583},
+	doi = {10.1016/j.camwa.2020.06.009},
+	abstract = {MFEM is an open-source, lightweight, flexible and scalable C++ library for modular finite element methods that features arbitrary high-order finite element meshes and spaces, support for a wide variety of discretization approaches and emphasis on usability, portability, and high-performance computing efficiency. MFEM’s goal is to provide application scientists with access to cutting-edge algorithms for high-order finite element meshing, discretizations and linear solvers, while enabling researchers to quickly and easily develop and test new algorithms in very general, fully unstructured, high-order, parallel and GPU-accelerated settings. In this paper we describe the underlying algorithms and finite element abstractions provided by MFEM, discuss the software implementation, and illustrate various applications of the library.},
+	language = {en},
+	urldate = {2023-04-20},
+	journal = {Computers \& Mathematics with Applications},
+	author = {Anderson, Robert and Andrej, Julian and Barker, Andrew and Bramwell, Jamie and Camier, Jean-Sylvain and Cerveny, Jakub and Dobrev, Veselin and Dudouit, Yohann and Fisher, Aaron and Kolev, Tzanio and Pazner, Will and Stowell, Mark and Tomov, Vladimir and Akkerman, Ido and Dahm, Johann and Medina, David and Zampini, Stefano},
+	month = jan,
+	year = {2021},
+	keywords = {Finite element methods, High-order methods, High-performance computing, Matrix-free algorithms, Numerical PDEs, Open-source scientific software},
+	pages = {42--74},
+	file = {ScienceDirect Full Text PDF:/home/lukas/Zotero/storage/PI5LNBMN/Anderson et al. - 2021 - MFEM A modular finite element methods library.pdf:application/pdf;ScienceDirect Snapshot:/home/lukas/Zotero/storage/TMKUBUQJ/S0898122120302583.html:text/html},
+}
+
+@article{castillo_femster_2005,
+	title = {{FEMSTER}: {An} object-oriented class library of high-order discrete differential forms},
+	volume = {31},
+	issn = {0098-3500, 1557-7295},
+	shorttitle = {{FEMSTER}},
+	url = {https://dl.acm.org/doi/10.1145/1114268.1114269},
+	doi = {10.1145/1114268.1114269},
+	abstract = {FEMSTER is a modular finite element class library for solving three-dimensional problems arising in electromagnetism. The library was designed using a modern geometrical approach based on differential forms (or
+              p
+              -forms) and can be used for high-order spatial discretizations of well-known H(
+              div
+              )- and H(
+              curl
+              )-conforming finite element methods. The software consists of a set of abstract interfaces and concrete classes, providing a framework in which the user is able to add new schemes by reusing the existing classes or by incorporating new user-defined data types.},
+	language = {en},
+	number = {4},
+	urldate = {2023-10-04},
+	journal = {ACM Transactions on Mathematical Software},
+	author = {Castillo, Paul and Rieben, Robert and White, Daniel},
+	month = dec,
+	year = {2005},
+	pages = {425--457},
+	file = {Full Text PDF:/home/lukas/Zotero/storage/EDFEMXXA/Castillo et al. - 2005 - FEMSTER An object-oriented class library of high-.pdf:application/pdf},
+}
+
+@article{lowan_table_1942,
+	title = {Table of the zeros of the {Legendre} polynomials of order 1-16 and the weight coefficients for {Gauss}’ mechanical quadrature formula},
+	volume = {48},
+	issn = {0273-0979, 1088-9485},
+	url = {https://www.ams.org/bull/1942-48-10/S0002-9904-1942-07771-8/},
+	doi = {10.1090/S0002-9904-1942-07771-8},
+	language = {en},
+	number = {10},
+	urldate = {2023-11-24},
+	journal = {Bulletin of the American Mathematical Society},
+	author = {Lowan, Arnold N. and Davids, Norman and Levenson, Arthur},
+	year = {1942},
+	pages = {739--743},
+	file = {Lowan et al. - 1942 - Table of the zeros of the Legendre polynomials of .pdf:/home/lukas/Zotero/storage/QJHURTAE/Lowan et al. - 1942 - Table of the zeros of the Legendre polynomials of .pdf:application/pdf},
+}
+
+@misc{muralikrishnan_scaling_2022,
+	title = {Scaling and performance portability of the particle-in-cell scheme for plasma physics applications through mini-apps targeting exascale architectures},
+	url = {http://arxiv.org/abs/2205.11052},
+	doi = {10.48550/arXiv.2205.11052},
+	abstract = {We perform a scaling and performance portability study of the particle-in-cell scheme for plasma physics applications through a set of mini-apps we name "Alpine", which can make use of exascale computing capabilities. The mini-apps are based on Independent Parallel Particle Layer, a framework that is designed around performance portable and dimension independent particles and fields. We benchmark the simulations with varying parameters such as grid resolutions (\$512{\textasciicircum}3\$ to \$2048{\textasciicircum}3\$) and number of simulation particles (\$10{\textasciicircum}9\$ to \$10{\textasciicircum}\{11\}\$) with the following mini-apps: weak and strong Landau damping, bump-on-tail and two-stream instabilities, and the dynamics of an electron bunch in a charge-neutral Penning trap. We show strong and weak scaling and analyze the performance of different components on several pre-exascale architectures such as Piz-Daint, Cori, Summit and Perlmutter. While the scaling and portability study helps identify the performance critical components of the particle-in-cell scheme in the current state-of-the-art computing architectures, the mini-apps by themselves can be used to develop new algorithms and optimize their high performance implementations targeting exascale architectures.},
+	urldate = {2023-11-27},
+	publisher = {arXiv},
+	author = {Muralikrishnan, Sriramkrishnan and Frey, Matthias and Vinciguerra, Alessandro and Ligotino, Michael and Cerfon, Antoine J. and Stoyanov, Miroslav and Gayatri, Rahulkumar and Adelmann, Andreas},
+	month = nov,
+	year = {2022},
+	note = {arXiv:2205.11052 [physics]},
+	keywords = {Mathematics - Numerical Analysis, Computer Science - Distributed, Parallel, and Cluster Computing, Physics - Computational Physics, Physics - Plasma Physics},
+	file = {arXiv Fulltext PDF:/home/lukas/Zotero/storage/DHL34U3Z/Muralikrishnan et al. - 2022 - Scaling and performance portability of the particl.pdf:application/pdf;arXiv.org Snapshot:/home/lukas/Zotero/storage/JR5EEDBZ/2205.html:text/html},
+}
+
+@article{hiptmair_numerical_2023,
+	title = {Numerical {Methods} for ({Partial}) {Differential} {Equations}},
+	url = {https://people.math.ethz.ch/~grsam/NUMPDEFL/NUMPDE.pdf},
+	language = {en},
+	author = {Hiptmair, R},
+	year = {2023},
+	file = {Hiptmair - 2023 - Numerical Methods for (Partial) Differential Equat.pdf:/home/lukas/Zotero/storage/Z5AMJRZD/Hiptmair - 2023 - Numerical Methods for (Partial) Differential Equat.pdf:application/pdf},
+}
+
+@article{hiptmair_numerical_2020,
+	title = {Numerical {Methods} for {Computational} {Science} and {Engineering}},
+	url = {https://people.math.ethz.ch/~grsam/NCSE20/NumCSE_Lecture_Document.pdf},
+	language = {en},
+	author = {Hiptmair, R},
+	year = {2020},
+	file = {Hiptmair - 2020 - Numerical Methods for Computational Science and En.pdf:/home/lukas/Zotero/storage/WFUS4KH7/Hiptmair - 2020 - Numerical Methods for Computational Science and En.pdf:application/pdf},
+}
+
+@misc{craffael_lehrfem_2023,
+	title = {{LehrFEM}++},
+	copyright = {MIT},
+	url = {https://github.com/craffael/lehrfempp},
+	abstract = {Simplistic Finite Element Framework for research and education},
+	urldate = {2023-11-27},
+	author = {craffael},
+	month = aug,
+	year = {2023},
+	note = {original-date: 2018-04-06T14:21:27Z},
+	keywords = {education, finite-element-analysis},
+}
+
+@article{carter_edwards_kokkos_2014,
+	title = {Kokkos: {Enabling} manycore performance portability through polymorphic memory access patterns},
+	volume = {74},
+	issn = {0743-7315},
+	shorttitle = {Kokkos},
+	url = {https://www.osti.gov/biblio/1106586},
+	doi = {10.1016/j.jpdc.2014.07.003},
+	abstract = {The manycore revolution can be characterized by increasing thread counts, decreasing memory per thread, and diversity of continually evolving manycore architectures. High performance computing (HPC) applications and libraries must exploit increasingly finer levels of parallelism within their codes to sustain scalability on these devices. We found that a major obstacle to performance portability is the diverse and conflicting set of constraints on memory access patterns across devices. Contemporary portable programming models address manycore parallelism (e.g., OpenMP, OpenACC, OpenCL) but fail to address memory access patterns. The Kokkos C++ library enables applications and domain libraries to achieve performance portability on diverse manycore architectures by unifying abstractions for both fine-grain data parallelism and memory access patterns. In this paper we describe Kokkos’ abstractions, summarize its application programmer interface (API), present performance results for unit-test kernels and mini-applications, and outline an incremental strategy for migrating legacy C++ codes to Kokkos. Furthermore, the Kokkos library is under active research and development to incorporate capabilities from new generations of manycore architectures, and to address a growing list of applications and domain libraries.},
+	language = {English},
+	number = {12},
+	urldate = {2023-11-27},
+	journal = {Journal of Parallel and Distributed Computing},
+	author = {Carter Edwards, H. and Trott, Christian R. and Sunderland, Daniel},
+	month = jul,
+	year = {2014},
+	note = {Institution: Sandia National Lab. (SNL-NM), Albuquerque, NM (United States)
+Number: SAND-2013-5603J
+Publisher: Elsevier},
+	file = {Full Text PDF:/home/lukas/Zotero/storage/X7KCVML5/Carter Edwards et al. - 2014 - Kokkos Enabling manycore performance portability .pdf:application/pdf},
+}
+
+@book{gough_gnu_2009,
+	edition = {3rd},
+	title = {{GNU} {Scientific} {Library} {Reference} {Manual} - {Third} {Edition}},
+	isbn = {978-0-9546120-7-8},
+	abstract = {The GNU Scientific Library (GSL) is a free numerical library for C and C++ programmers. It provides over 1,000 routines for solving mathematical problems in science and engineering. Written by the developers of GSL this reference manual is the definitive guide to the library. The GNU Scientific Library is free software, distributed under the GNU General Public License (GPL). All the money raised from the sale of this book supports the development of the GNU Scientific Library. This is the third edition of the manual, and corresponds to version 1.12 of the library (updated January 2009).},
+	publisher = {Network Theory Ltd.},
+	author = {Gough, Brian},
+	year = {2009},
+}
+
+@inproceedings{ayala_heffte_2020,
+	address = {Cham},
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {{heFFTe}: {Highly} {Efficient} {FFT} for {Exascale}},
+	isbn = {978-3-030-50371-0},
+	shorttitle = {{heFFTe}},
+	doi = {10.1007/978-3-030-50371-0_19},
+	abstract = {Exascale computing aspires to meet the increasing demands from large scientific applications. Software targeting exascale is typically designed for heterogeneous architectures; henceforth, it is not only important to develop well-designed software, but also make it aware of the hardware architecture and efficiently exploit its power. Currently, several and diverse applications, such as those part of the Exascale Computing Project (ECP) in the United States, rely on efficient computation of the Fast Fourier Transform (FFT). In this context, we present the design and implementation of heFFTe (Highly Efficient FFT for Exascale) library, which targets the upcoming exascale supercomputers. We provide highly (linearly) scalable GPU kernels that achieve more than \$\$40\{{\textbackslash}times \}\$\$speedup with respect to local kernels from CPU state-of-the-art libraries, and over \$\$2\{{\textbackslash}times \}\$\$speedup for the whole FFT computation. A communication model for parallel FFTs is also provided to analyze the bottleneck for large-scale problems. We show experiments obtained on Summit supercomputer at Oak Ridge National Laboratory, using up to 24,576 IBM Power9 cores and 6,144 NVIDIA V-100 GPUs.},
+	language = {en},
+	booktitle = {Computational {Science} – {ICCS} 2020},
+	publisher = {Springer International Publishing},
+	author = {Ayala, Alan and Tomov, Stanimire and Haidar, Azzam and Dongarra, Jack},
+	editor = {Krzhizhanovskaya, Valeria V. and Závodszky, Gábor and Lees, Michael H. and Dongarra, Jack J. and Sloot, Peter M. A. and Brissos, Sérgio and Teixeira, João},
+	year = {2020},
+	keywords = {Exascale, FFT, GPUs, Scalable algorithm},
+	pages = {262--275},
+	file = {Full Text PDF:/home/lukas/Zotero/storage/2N4WBPZS/Ayala et al. - 2020 - heFFTe Highly Efficient FFT for Exascale.pdf:application/pdf},
+}
+
+@misc{frey_ippl-frameworkippl_2023,
+	title = {{IPPL}-framework/ippl: {IPPL}-3.1.0},
+	copyright = {Other (Open)},
+	shorttitle = {{IPPL}-framework/ippl},
+	url = {https://zenodo.org/doi/10.5281/zenodo.8389192},
+	abstract = {Major changes
+
+IPPL moved from gitlab to github with this release hence many of the merged MRs point to the read only version of gitlab
+
+
+
+Mixed execution spaces https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/188
+
+Mixed precision https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/154
+
+Extension of unit tests https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/201
+
+FFT optimizations https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/192
+
+Removal of ippl class https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/181
+
+Long range part of P3M solver https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/170
+
+MPI buffers moved to particle attributes \#215 
+
+
+Minor changes
+
+
+
+Use Kokkos for math constants and mathematical functions https://gitlab.psi.ch/OPAL/Libraries/ippl/-/merge\_requests/165
+
+Various bug fixes},
+	urldate = {2023-11-27},
+	publisher = {Zenodo},
+	author = {Frey, Matthias and Vinciguerra, Alessandro and Muralikrishnan, Sriramkrishnan and Mayani, Sonali and Montanaro, Veronica and Adelmann, Andreas},
+	month = sep,
+	year = {2023},
+	doi = {10.5281/ZENODO.8389192},
+}
+
+@misc{noauthor_june_2023,
+	title = {June 2022 {\textbar} {TOP500}},
+	shorttitle = {{TOP500}},
+	url = {https://www.top500.org/lists/top500/2022/06/},
+	urldate = {2023-12-01},
+	journal = {TOP500},
+	month = dec,
+	year = {2023},
+	file = {June 2022 | TOP500:/home/lukas/Zotero/storage/97TI3B4H/06.html:text/html},
+}
+
+@article{yee_finite-difference_1997,
+	title = {The finite-difference time-domain ({FDTD}) and the finite-volume time-domain ({FVTD}) methods in solving {Maxwell}'s equations},
+	volume = {45},
+	issn = {1558-2221},
+	url = {https://ieeexplore.ieee.org/document/558651},
+	doi = {10.1109/8.558651},
+	abstract = {The finite-difference time-domain (FDTD) and its current generalizations have been demonstrated to be useful and powerful tools for the calculation of the radar cross section (RCS) of complicated objects, the radiation of antennas in the presence of other structures, and other applications. The mathematical techniques for conformal FDTD have matured; the primary impediments to its implementation are the complex geometries and material properties associated with the problem. Even under these circumstances, FDTD is more flexible to implement because it is based on first principles instead of a clever mathematical trick. This paper gives an account of some new results on conformal FDTD obtained by the authors and their associates at Lockheed Martin Space Company since 1988. The emphasis is on nonsmooth boundary condition simulation.},
+	number = {3},
+	urldate = {2023-12-22},
+	journal = {IEEE Transactions on Antennas and Propagation},
+	author = {Yee, K.S. and Chen, J.S.},
+	month = mar,
+	year = {1997},
+	note = {Conference Name: IEEE Transactions on Antennas and Propagation},
+	pages = {354--363},
+	file = {IEEE Xplore Abstract Record:/home/lukas/Zotero/storage/XI3S58AF/558651.html:text/html},
+}
+
+@article{trefethen_exponentially_2014,
+	title = {The {Exponentially} {Convergent} {Trapezoidal} {Rule}},
+	volume = {56},
+	issn = {0036-1445, 1095-7200},
+	url = {http://epubs.siam.org/doi/10.1137/130932132},
+	doi = {10.1137/130932132},
+	abstract = {It is well known that the trapezoidal rule converges geometrically when applied to analytic functions on periodic intervals or the real line. The mathematics and history of this phenomenon are reviewed, and it is shown that far from being a curiosity, it is linked with computational methods all across scientiﬁc computing, including algorithms related to inverse Laplace transforms, special functions, complex analysis, rational approximation, integral equations, and the computation of functions and eigenvalues of matrices and operators.},
+	language = {en},
+	number = {3},
+	urldate = {2023-12-22},
+	journal = {SIAM Review},
+	author = {Trefethen, Lloyd N. and Weideman, J. A. C.},
+	month = jan,
+	year = {2014},
+	pages = {385--458},
+	file = {Trefethen and Weideman - 2014 - The Exponentially Convergent Trapezoidal Rule.pdf:/home/lukas/Zotero/storage/PW7CHNRG/Trefethen and Weideman - 2014 - The Exponentially Convergent Trapezoidal Rule.pdf:application/pdf},
+}

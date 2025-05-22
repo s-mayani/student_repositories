@@ -1,0 +1,163 @@
+
+% Template by Arnau, based on:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[.08pt]{beamer}
+% \usefonttheme{serif}
+%% serif
+%% professionalfonts
+%% structurebold
+%% structureitalicserif
+%% structuresmallcapsserif
+
+\mode<presentation> {
+
+\usetheme{Boadilla}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+% \usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+\usecolortheme{seahorse}  % The them I usually use, because it resembles the PSI template.
+% \usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+% \setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+}
+
+\setbeamertemplate{sections/subsections in toc}[sections numbered]  % Controls style of number in the table of contents.
+
+% Packages:
+\usepackage{adjustbox}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{animate}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{cancel}
+%\usepackage{dutchcal}
+\usepackage{float}
+\usepackage{graphicx} % Allows including images
+\usepackage{hhline}
+\usepackage{listings}
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily,
+  mathescape
+}
+\usepackage{minted}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{multimedia}
+\usepackage[authoryear]{natbib}
+\usepackage{scrextend}
+\changefontsizes{8pt}
+%\usepackage{siunitx}
+%\usepackage{soul}
+\usepackage{tikz}
+\usetikzlibrary{mindmap, trees, arrows, shapes, backgrounds, matrix, decorations.pathreplacing, decorations.pathmorphing, positioning, arrows.meta,plotmarks, calc}
+\usepackage{verbatim}
+\usepackage{xmpmulti}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	linkcolor=blue
+}
+
+ %\bibliographystyle{unsrt}  % This style cites with numbers, e.g. [2]
+%\bibliographystyle{unsrtnat}  % This style cites with names, e.g. [Adelmann, 2019]
+
+\usepackage{caption}
+\captionsetup{justification   = raggedright,
+              singlelinecheck = false}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tikz stuff:
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes}
+\usetikzlibrary{matrix, arrows,decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{fadings}
+\usetikzlibrary{arrows.meta,bending}
+%\usepackage{tikzscale}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\let\hyperlink\@secondoftwo\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+\setbeamertemplate{navigation symbols}{}  % Remove navigation symbols
+\setbeamersize{text margin left=1cm,text margin right=1cm}
+
+\setbeamertemplate{caption}[numbered]
+
+%% To-do lists
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%% Maths definitions.
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\supp}{supp}
+\DeclareMathOperator*{\Var}{\mathrm{Var}}
+\DeclareMathOperator*{\Cov}{\mathrm{Cov}}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\DeclareMathOperator*{\MSE}{\text{MSE}}
+\DeclareMathOperator*{\sgn}{\text{sgn}}
+\DeclareMathOperator*{\Epsilon}{\mathcal{E}}
+\DeclareMathOperator*{\bigO}{\mathcal{O}}
+\DeclareMathOperator*{\smalls}{s}
+\newcommand{\mvec}[1]{\boldsymbol{#1}}
+\newcommand\underrel[2]{\mathrel{\mathop{#2}\limits_{#1}}}
+
+
+\newcommand{\frametitlepsi}[1]{\frametitle{\hspace{0.8cm}\includegraphics[width=1.5cm]{logos/PSI.pdf}\hspace{1.1cm} #1}}

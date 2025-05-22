@@ -1,0 +1,293 @@
+\section{Matrix-free Cell-oriented Assembly Algorithm with Local Computations}
+
+\label{sec:assembly}
+
+Assembly in FEM refers to the computation of the entries of
+the stiffness matrix $\mat{A}$ and the entries of the right-hand side vector, or load vector, $\vec{\varphi}$\
+of the linear system of equations: $\mat{A}\vec{\mu} = \vec{\varphi}$.
+
+Recall the definition from section \ref{sec:fem_intro} of the stiffness matrix
+(Def. \ref{def:stiffness_mat}):
+
+\begin{align}
+    \mat{A} = \left[ \mathrm{a}(b_h^j, b_h^i) \right]^N_{i,j=1}, \ \in \R^{N,N},
+    \tag{\ref{eq:stiffness_mat}}
+\end{align}
+
+and the load vector (Def. \ref{def:load_vec}):
+
+\begin{align}
+    \vec{\varphi} = \left[ \ell(b_h^i) \right]^N_{i=1} \in \R^{N}. \tag{\ref{eq:load_vec}}
+\end{align}
+
+For each element, we define the \emph{element stiffness matrix} and \emph{element load vector}.
+
+\begin{definition}[Element stiffness matrix and load vector]
+    Given a mesh element $K$ and the local shape functions $\{\hat{b}^1, \dots, \hat{b}^M \}$,
+    where $M$ is the number of local shape functions, we define the \emph{element stiffness matrix}:
+    \begin{align}
+        \mat{A}_K := \left[ \mathrm{a}(b_K^j, b_K^i) \right]_{i,j=1}^M \in \R^{M,M},
+    \end{align}
+    and the \emph{element load vector}:
+    \begin{align}
+        \vec{\varphi}_K := \left[ \ell(b_K^i) \right]_{i=1}^M \in \R^M.
+    \end{align}
+\end{definition}
+
+The element stiffness matrix $\mat{A}_K$ has as many rows and columns as there are local degrees of freedom.
+For example, for a one-dimensional edge element with the degrees of freedom on the vertices, $\mat{A}_K$ is a
+two-by-two matrix. For a 2D mesh and a quadrilateral element with the degrees of freedom also on the vertices,
+it is a four-by-four matrix.
+
+The stiffness matrix $\mat{A}$ can be `assembled' by iterating over all the elements,
+computing the local element stiffness matrices for every element and then
+using them to accumulate the contribution to the global stiffness matrix.
+However, in this work, we are using a `matrix-free' assembly algorithm and are
+not storing the full global stiffness matrix $\mat{A}$ at any point in time.
+The implementation of the matrix-free assembly algorithm is covered in the next section.
+
+\subsection{Matrix-free Assembly Algorithm for the Stiffness Matrix}
+
+As briefly explained in section \ref{sec:matrix_free}, we implemented a
+matrix-free assembly algorithm that interfaces with the Conjugate Gradient (CG)
+method and returns the product of the stiffness matrix $\mat{A}$ and an
+arbitrary vector $\vec{x}$ that is passed to the function: $\mat{A}\vec{x}$.
+We call this assembly function \texttt{evaluateAx}
+and in addition to the vector $\vec{x}$, it also takes in
+a \texttt{C++} Lambda function, named \texttt{eval}, as an input argument.
+
+The \texttt{eval} function evaluates the approximation of the bilinear form
+for a given problem. It is defined outside of the assembly function and
+passed as an argument to make the assembly function independent of the PDE
+that is to be solved.
+Later in this section, we derive the assembly function for the Poisson
+equation and in the end, we arrive at the assembly function that was implemented
+together with the corresponding \texttt{eval} function for the Poisson equation.
+
+The assembly algorithm is cell-oriented, meaning we iterate over all the elements
+of the mesh instead of the degrees of freedom. For each element, we perform two
+steps. First, we compute the element stiffness matrix $\mat{A}_K$ and second,
+we compute the contribution of this element with its corresponding element stiffness matrix,
+and the vector $\vec{x}$ to the matrix-vector product $\mat{A}\vec{x}$ that is returned.
+
+
+Let's start at the first step: Computing the element stiffness matrix $\mat{A}_K$ for a given element $K$.
+The entries of the element stiffness matrix are defined using the element bilinear form $\mathrm{a}(\cdot, \cdot)$,
+which stems from the weak form of the problem.
+The bilinear form of the Poisson equation with homogeneous Dirichlet boundary conditions is (see section \ref{sec:poisson_eq}):
+\begin{align}
+    (\mat{A}_K)_{i,j} = a(b_K^i, b_K^j) = \int_K \nabla b_K^j \cdot \nabla b_K^i \ d\vec{x}.
+\end{align}
+
+However, instead of integrating over a different element $K$ each iteration,
+we can transform this integral onto a reference element $\hat{K}$ with unit dimensions
+and compute it there ahead of time and then simply do the transformation for every element.
+
+We will briefly explain the variables used in this derivation.
+$I$ and $J$ are the global degrees of freedom corresponding to the local degrees of freedom $i$ and $j$.
+Where a degree of freedom $I$ corresponds to one or more local degrees of freedom $i$ for different elements if the elements are adjacent
+and it lies on the boundaries of those elements.
+Given a local degree of freedom $i$, and an element $K$, the choice of the global degree of freedom $I$ is unique.
+In the other direction, if a global degree of freedom $I$ is on an element $K$,
+the choice of the local degree of freedom for the element is unique as well.
+We defined $b_K^I$ and $b_K^J$ to be the shape functions corresponding to the local degrees of freedom $i$ and $j$
+of element $K$, defined on the global coordinate system.
+The shape functions of the reference element $\hat{K}$ are $\hat{b}_i$ with $i \in {1, ..., M}$, where $M$ is the number
+of degrees of freedom on an element.
+
+We start at the definition of the entry of the element stiffness matrix at row $i$ and column $j$,
+corresponding to the local degrees of freedom $i$ and $j$ of the element $K$ (Equation \ref{eq:ass_el_stiff_mat_1}).
+To compute the integral on the reference element $\hat{K}$ instead of the global element $K$
+we use the transformation $\mat{\Phi}_K$ and its pullback $\mat{\Phi}_K^*$ (Equation \ref{eq:ass_el_stiff_mat_2}).
+The transformations are defined in section \ref{sec:transformations}.
+Next, the pullback is applied to the gradients. This is done to evaluate the gradients of the local shape function on the reference element instead (Equation \ref{eq:ass_el_stiff_mat_3}).
+This way, all the computations are done on the reference element and can be precomputed.
+After that, we can use numerical quadrature (see section \ref{sec:quadrature}) to approximate the integral (Equation \ref{eq:ass_el_stiff_mat_4}).
+
+\begin{align}
+    (\mat{A}_K)_{i,j} & = \int_K \nabla b_K^J(\vec{x}) \cdot \nabla b_K^I(\vec{x}) \ d\vec{x},                                   \label{eq:ass_el_stiff_mat_1} \\
+                      & = \int_{\hat{K}} \mat{\Phi}_{K}^* \nabla b_{K}^J(\vec{\hat{x}})
+    \cdot \mat{\Phi}_{K}^* \nabla b_{K}^I(\hat{\vec{x}}) \, |\det \mat{D\Phi}_K(\hat{\vec{x}})| \ d\hat{\vec{x}},                \label{eq:ass_el_stiff_mat_2} \\
+                      & = \int_{\hat{K}} (\mat{D\Phi}_{K})^{-\top} \nabla \hat{b}^j(\vec{\hat{x}})
+    \cdot (\mat{D\Phi}_{K})^{-\top} \nabla \hat{b}^i(\hat{\vec{x}}) |\det \mat{D\Phi}_K(\hat{\vec{x}})| \ d\hat{\vec{x}},        \label{eq:ass_el_stiff_mat_3} \\
+                      & \approx \sum_k^{N_\text{Int}} \hat{\omega}_k (\mat{D\Phi}_{K})^{-\top} \nabla \hat{b}^j(\hat{\vec{q}}_k)
+    \cdot (\mat{D\Phi}_{K})^{-\top} \nabla \hat{b}^i(\hat{\vec{q}}_k) |\det \mat{D\Phi}_K(\hat{\vec{q}}_k)|,                     \label{eq:ass_el_stiff_mat_4}
+\end{align}
+
+where $\hat{\omega}_k$ is the weight of the quadrature rule associated with
+$\hat{\vec{q}}_k$, which is the $k$-th quadrature node on the reference element $\hat{K}$.
+
+The eval function is then defined as:
+\begin{equation}
+    \begin{aligned}
+        \texttt{eval}(i, j, k) := (\mat{D \Phi}_K(\hat{\vec{q}}_k))^{-\top}
+        \nabla \hat{b}^j(\hat{\vec{q}}_k)
+        \cdot
+        (\mat{D \Phi}(\hat{\vec{q}}_k))^{-\top}
+        \nabla \hat{b}^i(\hat{\vec{q}}_k) \,
+        |\det \mat{D \Phi}_K(\hat{\vec{q}}_k)|
+    \end{aligned}
+    \label{eq:eval}
+\end{equation}
+
+The second step in each iteration of the assembly function is the computation of the contribution of the element to the global stiffness matrix $\mat{A}$.
+The assembly function returns a vector $\vec{z}$, which is the product of the global stiffness matrix $\mat{A}$ and the vector $\vec{x}$: $\vec{z} = \mat{A}\vec{x}$.
+Each entry $\vec{z}_I$ at the global degree of freedom $I$ is the dot-product
+of the $I$-th row of $\mat{A}$ and vector $\vec{x}$: $\vec{z}_I = (\mat{A})_{I,:} \cdot \vec{x}$.
+
+Recall that the local degree of freedom $i$ in element $K$ corresponds to a global degree of freedom $I$.
+This mapping is stored in the \texttt{FiniteElementSpace} class and is computed once for each element
+and then stored at the beginning of each iteration of the assembly algorithm.
+
+The $i$-th entry in the list of global degrees of freedom \texttt{globalDOFs} for element $K$, is the index $I$ of the global degree of freedom.
+Therefore the contribution to the global stiffness matrix $\mat{A}$ of an element stiffness matrix $\mat{A}_K$ is computed with:
+
+\begin{algorithm}
+    \For{$i\in \texttt{localDOFs}$} {
+        $I = \texttt{globalDOFs}[i]$
+
+        \For{$j \in \texttt{localDOFs}$} {
+            $J = \texttt{globalDOFs}[j]$
+
+            $(\mat{A})_{I,J} \gets (\mat{A})_{I,J} + (\mat{A}_K)_{i,j}$
+        }
+    }
+\end{algorithm}
+
+To compute the contribution of an element and its corresponding element matrix to the resulting vector $\vec{z}$
+we therefore have to add to the $z_I$ entry:
+
+\begin{align}
+    \vec{z}_I = \vec{z}_I + (\mat{A}_K)_{i,j} \cdot \vec{x}_J
+\end{align}
+
+The pseudocode for the full algorithm for the assembly of the left-hand side (\texttt{evaluateAx}) is given in Algorithm \ref{alg:evalAx}.
+
+\begin{algorithm}[h]
+    \vspace{0.5cm}
+    \small
+    \linespread{1.35}\selectfont
+    \KwIn{$\vec{x}$, $\texttt{eval}(i, j, k)$}
+
+    $\vec{z} \gets \vec{0}$ {\color{darkgray}\tcp{Resulting vector to return}}
+
+    \For{Element $K$ in Mesh}{
+
+    $\texttt{localDOFs} \gets \texttt{getLocalDOFsForElement}(K)$
+
+    $\texttt{globalDOFs} \gets \texttt{getGlobalDOFsForElement}(K)$
+
+    {\color{darkgray}\tcp{1. Compute the Element matrix $\mat{A}_K$}}
+
+    \For{$i \in \texttt{localDOFs}$}{
+    \For{$j \in \texttt{localDOFs}$}{
+    $\displaystyle
+        (\mat{A}_K)_{i,j} \approx \sum_{k}^{N_\text{Int}}
+        \hat{\omega}_k
+        \underbrace{
+            (\mat{D \Phi}_K(\hat{\vec{q}}_k))^{-\top}
+            \nabla \hat{b}^j(\hat{\vec{q}}_k)
+            \cdot
+            (\mat{D \Phi}(\hat{\vec{q}}_k))^{-\top}
+            \nabla \hat{b}^i(\hat{\vec{q}}_k) \,
+            |\det \mat{D \Phi}_K(\hat{\vec{q}}_k)|
+        }_{=:\texttt{eval}(i, j, k)}
+    $
+    }}
+
+    {\color{darkgray}\tcp{2. Compute $\vec{z} = \mat{A}\vec{x}$ contribution with $\mat{A}_K$}}
+    \For{$i\in \texttt{localDOFs}$} {
+        $I = \texttt{globalDOFs}[i]$
+
+        \For{$j \in \texttt{localDOFs}$} {
+            $J = \texttt{globalDOFs}[j]$
+
+            $\vec{z}_I \gets \vec{z}_I + (\mat{A}_K)_{i,j} \cdot \vec{x}_J$
+        }
+    }
+    }
+    \KwRet{$\vec{z}$}
+    \vspace{0.5cm}
+
+    \caption{\texttt{evaluateAx} (for the specific case of the Poisson equation).}
+    \label{alg:evalAx}
+\end{algorithm}
+
+\subsection{Assembly Algorithm for the Load Vector}
+
+The assembly algorithm for the right-hand-side is very similar to the left-hand side:
+\begin{enumerate}
+    \item Assembly of the element load vector.
+    \item Accumulation of the contribution to $\vec{\varphi}$.
+\end{enumerate}
+
+The linear form of the load vector is (from section \ref{sec:fem_intro}):
+\begin{align}
+    \ell(b^I_K) = \int_K f(\vec{x}) b^I_K(\vec{x}) \ d\vec{x},
+\end{align}
+
+where $f$ is the source function and $b^I_K$ is the shape function of the $I$-th global degree of freedom of element $K$.
+
+Using the method outlined in the previous section, we arrive at the algorithm for the computation of the
+load vector shown in Algorithm \ref{alg:evalLoadVector}.
+For this assembly function of the right-hand side, we don't pass an \texttt{eval} function
+but the right-hand side source function $f$.
+
+\begin{algorithm}[h]
+    \vspace{0.5cm}
+    \small
+    \linespread{1.35}\selectfont
+    \KwIn{$\vec{x}$, $f$}
+
+    $\vec{\varphi} \gets \vec{0}$ {\color{darkgray}\tcp{Resulting load vector to return}}
+
+    \For{Element $K$ in Mesh}{
+
+    $\texttt{localDOFs} \gets \texttt{getLocalDOFsForElement}(K)$
+
+    $\texttt{globalDOFs} \gets \texttt{getGlobalDOFsForElement}(K)$
+
+    {\color{darkgray}\tcp{1. Compute the Element matrix $\mat{A}_K$}}
+
+    \For{$i \in \texttt{localDOFs}$}{
+    $\displaystyle
+        (\vec{\varphi}_K)_{i} \approx \sum_{k}^{N_\text{Int}}
+        \hat{\omega}_k
+        f(\mat{\Phi}_K(\hat{\vec{x}})) \hat{b}^i(\hat{\vec{q}}_k) \,
+        |\det \mat{D \Phi}_K(\hat{\vec{q}}_k)|
+    $
+    }
+
+    {\color{darkgray}\tcp{2. Compute load vector $\vec{\varphi}$ contribution of $\vec{\varphi}_K$}}
+    \For{$i\in \texttt{localDOFs}$} {
+        $I = \texttt{globalDOFs}[i]$
+
+        $\vec{\varphi}_I \gets \vec{\varphi}_I + (\vec{\varphi}_K)_i$
+    }
+    }
+    \KwRet{$\vec{\varphi}$}
+    \vspace{0.5cm}
+    \caption{\texttt{evaluateLoadVector} (for the specific case of the Poisson equation).}
+    \label{alg:evalLoadVector}
+\end{algorithm}
+
+\subsection{Essential Boundary conditions}
+
+In FEM, Dirichlet boundary conditions are synonymous with essential boundary conditions.
+
+Essential boundary conditions are enforced on the functions in the trial space.
+Natural boundary conditions or Neumann boundary conditions, are enforced through the variational equation.
+They therefore appear in the bilinear form and are implemented in the \texttt{eval} function of the problem.
+
+
+\subsubsection{Homogeneous Dirichlet Boundary Conditions}
+
+To implement homogeneous Dirichlet boundary conditions, or zero Dirichlet boundary conditions,
+one can set the entries of the stiffness matrix corresponding to the degrees of freedom on the boundary to zero
+\cite[Chapter~2.7.6]{hiptmair_numerical_2023}.
+
+To support them, the left-hand-side assembly algorithm was modified to skip all DOFs on the boundary when accumulating the contributions
+from the element stiffness matrices to force them to be zero.
+
+Due to time constraints, we must leave heterogeneous Dirichlet boundary conditions,
+and other types of boundary conditions, to be implemented in future work.

@@ -1,0 +1,54 @@
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+\begin{frame}[c]{Tested Parts of the Algorithm}
+    \begin{multicols}{2}
+    \begin{itemize}
+        \item[\done]  Initial conditions ($\rho$)
+        \item[\done]  Time integration
+        \item[\done]  $\gamma$-factor
+        \item[\done]  Solver output ($\phi$)
+        \item[\done]  \texttt{Grad} operation ($\vec{E}$)
+        \item[\done]  GPU statistics computation \\(\>$120 \times$ speedup)
+    \end{itemize}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.10\linewidth]{figures/grid256_Nemittance_gpu.pdf}
+        \caption{Normalized Emittance.}
+      \label{fig:awesome_image6}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}{Next Steps}
+    \begin{itemize}
+        \item[$\square$] Setup v-space datastructures (Matrix-Field for Diffusion Tensor?)
+        \begin{itemize}
+            \item[$\square$] Check what fields can be shared among the solvers (given sequential execution)
+            \item[$\square$] Vector-Field for $\vec{F}$
+            \item[$\square$] Matrix-Field for $\bm D$?
+        \end{itemize}
+        \item[$\square$] Cholesky decomposition of $3\times3$ matrix
+        \item[$\square$] Solvers for Rosenbluth Potentials:
+        \begin{itemize}
+            \item[$\square$] Hockney Solver: $h(\vec v)$
+            \item[$\square$] Biharmonic Solver: $g(\vec v)$
+            \item[$\square$] Onesided Hessian for $\bm D(\vec v)$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\end{document}

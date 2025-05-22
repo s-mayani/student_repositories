@@ -1,0 +1,163 @@
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+\begin{frame}{Charge Density}
+    \begin{itemize}
+        \item Charge density $\rho$ coincides if one adds ion charge subtraction to Ulmer's code
+        \item Ion charge subtraction doesn't change emittance for Cold Sphere initial conditions (as expected)
+        \item Should check actual difference between the two $\rho$ fields
+    \end{itemize}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.0\linewidth]{figures/rho_comparison.png}
+        \caption{Charge density range with different normalization / constant ion charge subtraction.}
+      \label{fig:rho_comparison}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Normalized Potential doesn't coincide}
+    \begin{itemize}
+        \item Will have to look at slices and how their shape differs
+        \item Maybe this comes from a mesh size that is too small (currently $32^3$)
+    \end{itemize}
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/langevin_phi_normalized.png}
+        \caption{Normalized Potential in Langevin's code.}
+      \label{fig:awesome_image6}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/p3m_phi_normalized.png}
+      \caption{Normalized Potential in Ulmer's code.}
+      \label{fig:awesome_image6}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+%\begin{frame}{Next steps}
+    %\begin{itemize}
+        %\item Check why our potential is positive
+        %\item Ulmer does volume normalization only in Frequency space. Afterwards he multiplies the field again with cell volume. Why?
+    %\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Summary of explored causes}
+            %\begin{itemize}
+                %\item Time integration not identical \done
+                %\item Check $\gamma$-factor \done
+                %\item Check focusing strength \done
+                %\item Check initial conditions \done
+                %\item Prefactor in E-field computation (stems from different definition of Green's function) \done
+            %\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Unit Mismatch}
+        %\begin{itemize}
+            %\item Ulmer : [$cm/s$]
+            %\item Langevin : [$cm/ms$]
+            %\item Contradiction in Coulomb constant suggests that Ulmer simulated a sphere which is 100$\times $ larger)
+            %\item Running Langevin with $r_{new} = 100 \times r_{old}$ doesn't reduce the increase in emittance; adapted $\texttt{dt}$ due to smaller plasma frequency $w_p$
+        %\end{itemize}
+        %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+          %\includegraphics[width=0.45\linewidth]{figures/large_radius.pdf}
+            %\caption{Increasing radius of the initial sphere. Different magnitudes!}
+          %\label{fig:increased_radius}
+        %\end{figure}
+%\end{frame}
+
+%\begin{frame}{Starting from Scratch}
+
+        %\begin{itemize}
+            %\item Time Integration works as expected and are identical between the two codes
+            %\item Initial E-Field exhibits mismatch 
+        %\end{itemize}
+
+        %\begin{figure}[!htb]
+            %\centering
+            %\captionsetup{justification=centering}
+          %\includegraphics[width=0.9\linewidth]{figures/initial_Efield.png}
+            %\caption{Mismatch in E-field at $t=0$ (corrected units).}
+          %\label{fig:increased_radius}
+        %\end{figure}
+%\end{frame}
+
+
+%\begin{frame}{Ulmer on a smaller grid?}
+    %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+      %\includegraphics[width=0.6\linewidth]{figures/comparison_64_grid.pdf}
+        %\caption{Heating is also disturbed in Ulmer's case if mesh smaller than $256^3$.} 
+      %\label{fig:awesome_image6}
+    %\end{figure}
+%\end{frame}
+
+%\begin{frame}[t]{FFT solve for $\phi(\vec{x})$ and Compute $\texttt{grad}(\phi(\vec{x}))$ on a $256^3$ grid}
+    %\begin{multicols}{2}
+    %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+      %\includegraphics[width=1.0\linewidth]{figures/comparison_spectral_grad_256_emittance.pdf}
+        %\caption{Solve on a larger grid (same order of solver).} 
+      %\label{fig:awesome_image6}
+    %\end{figure}
+    %\columnbreak
+    %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+      %\includegraphics[width=1.0\linewidth]{figures/grid256_dragDiff.pdf}
+      %\caption{With Drag \& Diffusion turned on too expensive (~100x slower). Scaling factors as Severin suggested.}
+      %\label{fig:awesome_image6}
+    %\end{figure}
+    %\end{multicols}
+%\end{frame}
+
+
+%\begin{frame}{Conclusion and Outlook}
+    %\begin{large}
+    %Conclusion:
+    %\end{large}
+    %\begin{itemize}
+        %\item Spectral solver might not work well for this problem.
+        %\item Particle density per cell could be kept constant for changing grid size (then we might be able to run on a smaller grid)
+        %\item Regular FFT solver has lower order of convergence, but exhibits smaller increase in emittance.
+        %\begin{itemize}
+            %\item Hypothesis: Numerical errors accumulate in grad computation of the potential in Fourier space
+        %\end{itemize}
+    %\end{itemize}
+
+    %\begin{large}
+    %Options:
+    %\end{large}
+    %\begin{itemize}
+        %\item Further analyse why spectral solver performs worse in this case
+        %\item Continue with regular FFT solver (analyse why turning on collisions crashes the simulation)
+        %\item Explore a topic related to this but can be done separately
+    %\end{itemize}
+
+%\end{frame}
+
+%\begin{frame}[fragile]{Code Snippets}
+    %\inputminted{c++}{./code_snippets/stencils.cpp}
+    %\inputminted{c++}{./code_snippets/operator.cpp}
+%\end{frame}
+
+\end{document}

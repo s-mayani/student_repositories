@@ -1,0 +1,98 @@
+\chapter{Implementation Helpers}
+
+\label{chp:implementation_help}
+
+The purpose of this section is to give some guidance and thoughts on the implementation
+of some of the topics mentioned in the Future Work section (section \ref{sec:future_work}).
+Since we have not implemented the problems described in this section, we
+are not able to provide all the details for the respective implementations at this time,
+but we can provide some pointers as to where the current implementation needs to change
+and provide some additional thoughts where applicable.
+
+\section{Higher-order Lagrangian finite elements}
+
+Something we planned on implementing, but ran out of time for, were higher-order Lagrangian finite elements.
+The implementation in the \texttt{LagrangeSpace} class will need to be updated as well as the corresponding unit tests.
+The \texttt{LagrangeSpace} class already has a template argument for the order that is used in some functions and unit tests.
+In the \texttt{LagrangeSpace} class both the DOF functions need to be updated,
+as well as the functions that evaluate the shape function and the gradient of the shape function on the
+reference element at a given point on the reference element.
+
+
+
+\section{Non-homogeneous Dirichlet boundary conditions}
+
+For non-homogeneous Dirichlet boundary conditions, the assembly function
+\texttt{evaluateAx} in the \texttt{LagrangeSpace} needs to be updated, as well as the corresponding unit tests.
+The first change should be making the assembly function know which boundary condition it is dealing with.
+The type of boundary condition is stored in the field and should be retrieved from the LHS field object.
+
+Currently, in the assembly function, it assumes homogeneous Dirichlet boundary conditions.
+Under this assumption, the current implementation skips all the DOFs on the boundary
+when accumulating the contribution to the resulting vector $\vec{z}$.
+This is done to set the assembly matrix to zero for degrees of freedom on the boundary.
+This behavior will need to be modified to implement the non-homogeneous Dirichlet boundary conditions.
+Please refer to \cite[Chapter~2.7.6]{hiptmair_numerical_2023} for more details on how to implement them.
+
+\section{Other Finite Elements and their spaces}
+
+An essential step in implementing the electromagnetic solver with the Finite Element Time Domain (FETD)
+scheme is the implementation of the Nédélec and Raviart-Thomas finite element methods.
+
+To add a new finite element type, one needs to implement a new class that inherits from the \texttt{FiniteElementSpace} class
+and implements all the pure virtual functions from it.
+Meaning, that all the functions needed for the mapping from the local DOFs to the global DOFs and vice-versa need to be implemented,
+as well as the functions that evaluate the shape function and its gradient on the reference element.
+These functions should be implemented to be dimension-independent if possible, or at least work for 1D, 2D and 3D.
+As the next step, these implementations should also work for higher-order elements of the new type.
+
+The functions that need to be implemented are:
+
+\vspace*{0.5cm}\noindent
+\begin{tabular}{| l | p{6.5cm} |}
+    \hline
+    \texttt{numGlobalDOFs}                           & Returns the number of global degrees of freedom (DOFs) in the space for a given mesh.                                                            \\ \hline
+    \texttt{getLocalDOFIndex}                        & Returns the local DOF for a given element and a given global DOF.                                                                                \\ \hline
+    \texttt{getGlobalDOFIndex}                       & Returns the global DOF given an element and a local DOF.                                                                                         \\ \hline
+    \texttt{getLocalDOFIndices}                      & Returns the vector of local DOFs for the reference element for this space.                                                                       \\ \hline
+    \texttt{getGlobalDOFIndices}                     & Returns the global DOFs for a given element.                                                                                                     \\ \hline
+    \texttt{getGlobalDOFNDIndices}                   & Returns a vector of \texttt{NDIndex} for the global DOFs of a given element.                                                                     \\ \hline
+    \texttt{evaluateRefElementShapeFunction}         & Returns the scalar value of the reference element shape function for the given local DOF and given point on the reference element.               \\ \hline
+    \texttt{evaluateRefElementShapeFunctionGradient} & Returns the scalar value of the gradient of the reference element shape function for a given local DOF and local point on the reference element. \\ \hline
+    \texttt{evaluateAx}                              & This is the assembly function for the left-hand side. For reference refer to the implementation in \texttt{LagrangeSpace}.                       \\ \hline
+    \texttt{evaluateLoadVector}                      & This is the assembly function for the right-hand side. For reference refer to the implementation in \texttt{LagrangeSpace}.                      \\ \hline
+\end{tabular}
+\vspace*{0.5cm}
+
+Also, a very helpful resource for getting around the framework is the Doxygen documentation.
+To build the documentation, refer to Appendix \ref{app:doxygen}.
+
+After implementing this class a new solver should be implemented, to use this new type of finite elements.
+For that refer to the implementation of the \texttt{FEMPoissonSolver} which uses Lagrangian finite elements.
+
+\section{Bilinear Transformations}
+\label{sec:bilinear_transformations}
+
+We have implemented affine transformations in this work only, since IPPL only supports rectilinear meshes at this
+time and thus affine transformations suffice.
+Implementing bilinear transformations only really makes sense when IPPL supports unstructured meshes.
+
+To implement bilinear transformations, the implementations of the element classes need to be updated.
+The difficulty with bilinear transformations compared to affine transformations is that the transformation cannot
+be simply described by multiplication with a transformation matrix and a translation.
+The element classes handle all the transformations, namely \texttt{Element}, \texttt{EdgeElement}, \texttt{QuadrilateralElement}
+and \texttt{HexahedralElement}. The functions \texttt{globalToLocal} and \texttt{localToGlobal} are the main interfaces for the transformations
+and should stay, but their implementation will need to change to support bilinear transformations.
+
+For the theory behind bilinear transformations, refer to \cite[Chatper~2.8.2]{hiptmair_numerical_2023}.
+
+\section{Periodic boundary conditions}
+
+During the implementation of the solver, we shortly thought about implementing periodic boundary
+conditions, as we were very limited in the number of problems we were able to solve using only
+homogeneous Dirichlet boundary conditions.
+
+My idea on that was that one could manipulate only the stiffness matrix to implement periodic boundary conditions.
+On a cuboid mesh, one could remove the degrees of freedom of one of the two opposing boundaries and manipulate the
+stiffness matrix to be as if the degrees of freedom from one boundary are on both opposing boundaries.
+

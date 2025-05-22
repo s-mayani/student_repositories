@@ -1,0 +1,38 @@
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}{Progress}
+        \begin{itemize}
+            \item[\done] What has been done this week
+                \begin{itemize}
+                    \item[\done] lorem Ipsum
+                    \item[$\square$] lorem Ipsum
+                \end{itemize}
+
+            \item[\done] Field boundary conditions
+                \begin{itemize}
+                    \item[\done] other Ipsum
+                    \item[\done] other Ipsum
+                    \item[\done] other Ipsum
+                \end{itemize}
+        \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Laplace Operator in 3D}
+    \inputminted{c++}{./code_snippets/stencils.cpp}
+    \inputminted{c++}{./code_snippets/operator.cpp}
+\end{frame}
+
+\end{document}

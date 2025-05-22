@@ -1,0 +1,128 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+%\begin{frame}{Artefacts in Friction Coefficients}
+    %\begin{itemize}
+        %\item Horizontal / Vertical artefacts appear close to the x-/y-axes for Friction coefficient $F_d(\vec v)$.
+        %\item They are already present at the first iteration. In the potential itself they do not appear.
+    %\end{itemize}
+    %\begin{multicols}{2}
+    %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+      %\includegraphics[width=1.03\linewidth]{figures/H_64.png}
+      %\caption{Rosenbluth Potential $h(\vec v)$ at the 200th iteration.}
+      %\label{fig:rosenbluth_pot_h}
+    %\end{figure}
+    %\columnbreak
+    %\begin{figure}[!htb]
+        %\centering
+        %\captionsetup{justification=centering}
+      %\includegraphics[width=1.03\linewidth]{figures/Fd_64.png}
+      %\caption{$F_d(\vec v) = \Gamma \nabla_v h(\vec v)$ at the 200th iteration. Solved with open boundary Hockney Solver.}
+      %\label{fig:friction_coeff}
+    %\end{figure}
+    %\end{multicols}
+%\end{frame}
+
+\begin{frame}[c]{Friction Coefficient: Maxwellian Test-Case}
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/Fd_asymptotic_behavior_linear.pdf}
+      \caption{$F_d$ distribution across $v$ on a $64^3$ grid.}
+      \label{fig:Fd_asymptotic_behavior}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/Fd_error_convergence.pdf}
+      \caption{Relative error of $h(\vec v)$ at increasing gridsizes.}
+      \label{fig:Fd_error_convergence}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Friction Coefficient: Maxwellian Test-Case}
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/Fd_asymptotic_behavior.pdf}
+      \caption{$F_d$ log-log-distribution across $v$ on a $64^3$ grid. Expected $1/v^3$ fall-off.}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/reference_asymptotic_behavior.png}
+      \caption{Asymptotic fall-off as described in \cite{Qiang_selfConsistentLangevin}.}
+      \label{fig:Fd_asymptotic_behavior_reference}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Friction Coefficient: DIH}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.7\linewidth]{figures/friction_Nemittance.pdf}
+      \caption{DIH with and without added Friction coefficient.}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[c]{2nd Rosenbluth Potential: Maxwellian Test-Case}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.7\linewidth]{figures/diffusion_error_convergence.pdf}
+      \caption{$g(\vec v)$ potential at increasing gridsizes}
+      \label{fig:diffusion_coefficient_convergence}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Progress}
+    \begin{itemize}
+        \item[\done] Setup v-space datastructures 
+        \item Tools needed for Rosenbluth Potentials:
+        \begin{itemize}
+            \item[\done] Hockney Solver: $h(\vec v)$
+            \item[\done] Biharmonic Solver: $g(\vec v)$
+            \item[$\square$] Onesided Hessian: $\boldsymbol D(\vec v) = \Gamma \frac{\partial^2}{\partial \vec v \partial \vec v}$
+        \end{itemize}
+        \item Maxwellian Test-Case:
+        \begin{itemize}
+            \item[\done] $F_d(\vec v)$ 
+            \item[$\square$] $\boldsymbol D(\vec v)$ 
+        \end{itemize}
+        \item Application to DIH:
+        \begin{itemize}
+            \item[\done] $F_d(\vec v)$
+            \item[$\square$] $\boldsymbol D(\vec v)$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	\bibliographystyle{unsrtnat}
+	\bibliography{references.bib}
+\end{frame}
+
+\end{document}

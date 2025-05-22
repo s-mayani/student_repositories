@@ -1,0 +1,192 @@
+Warning: Option '256' is not parsed by Ippl.
+Warning: Option '256' is not parsed by Ippl.
+Warning: Option '256' is not parsed by Ippl.
+Warning: Option '134217728' is not parsed by Ippl.
+Warning: Option '20' is not parsed by Ippl.
+Warning: Option 'PCG' is not parsed by Ippl.
+Warning: Option '0.01' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+Warning: Option 'gauss-seidel' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '0' is not parsed by Ippl.
+Pre Run> Discretization:
+Pre Run> nt 20 Np= 134217728 grid = ( 256 , 256 , 256 )
+Initialize Particles> particles created and initial conditions assigned 
+residue,iterations
+scatter > 1.60413e-15
+5.69963e-08,351
+time, Ex_field_energy, Ex_max_norm
+0.0000000000000000e+00 9.8764363221219256e+00 1.1658892058201385e-01
+LandauDamping> Starting iterations ...
+Pre-step> Done
+scatter > 9.16644e-16
+3.07598e-08,310
+2.4543692606170259e-02 9.8683561056170799e+00 1.1623211355542443e-01
+Post-step:> Finished time step: 1 time: 0.0245437
+Pre-step> Done
+scatter > 8.02063e-16
+3.17297e-08,310
+4.9087385212340517e-02 9.8454179184749631e+00 1.1666739129129541e-01
+Post-step:> Finished time step: 2 time: 0.0490874
+Pre-step> Done
+scatter > 1.1458e-15
+3.20177e-08,310
+7.3631077818510776e-02 9.8077119853145582e+00 1.1555291539739357e-01
+Post-step:> Finished time step: 3 time: 0.0736311
+Pre-step> Done
+scatter > 2.06245e-15
+3.2131e-08,310
+9.8174770424681035e-02 9.7553631756391397e+00 1.1493135128557824e-01
+Post-step:> Finished time step: 4 time: 0.0981748
+Pre-step> Done
+scatter > 5.72902e-16
+3.21988e-08,310
+1.2271846303085129e-01 9.6885494417962530e+00 1.1483076566637652e-01
+Post-step:> Finished time step: 5 time: 0.122718
+Pre-step> Done
+scatter > 1.1458e-15
+3.23881e-08,310
+1.4726215563702155e-01 9.6074814131186148e+00 1.1612643509870622e-01
+Post-step:> Finished time step: 6 time: 0.147262
+Pre-step> Done
+scatter > 4.58322e-16
+3.24724e-08,310
+1.7180584824319181e-01 9.5124514703419401e+00 1.1359553455088971e-01
+Post-step:> Finished time step: 7 time: 0.171806
+Pre-step> Done
+scatter > 1.37497e-15
+3.25876e-08,310
+1.9634954084936207e-01 9.4037482729752426e+00 1.1275115997587995e-01
+Post-step:> Finished time step: 8 time: 0.19635
+Pre-step> Done
+scatter > 5.72902e-16
+3.26912e-08,310
+2.2089323345553233e-01 9.2817390481024162e+00 1.1357475642171236e-01
+Post-step:> Finished time step: 9 time: 0.220893
+Pre-step> Done
+scatter > 3.43741e-16
+3.29216e-08,310
+2.4543692606170259e-01 9.1468424788097238e+00 1.1299211602954372e-01
+Post-step:> Finished time step: 10 time: 0.245437
+Pre-step> Done
+scatter > 5.72902e-16
+3.29635e-08,310
+2.6998061866787282e-01 8.9995031440276598e+00 1.1079512038564929e-01
+Post-step:> Finished time step: 11 time: 0.269981
+Pre-step> Done
+scatter > 2.97909e-15
+3.31924e-08,310
+2.9452431127404310e-01 8.8401853102149204e+00 1.1026386876002356e-01
+Post-step:> Finished time step: 12 time: 0.294524
+Pre-step> Done
+scatter > 3.43741e-16
+3.32584e-08,310
+3.1906800388021339e-01 8.6693918086859227e+00 1.0983506647848218e-01
+Post-step:> Finished time step: 13 time: 0.319068
+Pre-step> Done
+scatter > 2.29161e-16
+3.34986e-08,310
+3.4361169648638368e-01 8.4876926294464905e+00 1.0969708007329017e-01
+Post-step:> Finished time step: 14 time: 0.343612
+Pre-step> Done
+scatter > 1.26039e-15
+3.37034e-08,310
+3.6815538909255396e-01 8.2957085831177224e+00 1.0798666408171305e-01
+Post-step:> Finished time step: 15 time: 0.368155
+Pre-step> Done
+scatter > 4.46864e-15
+3.38235e-08,310
+3.9269908169872425e-01 8.0940407744171132e+00 1.0666124168460639e-01
+Post-step:> Finished time step: 16 time: 0.392699
+Pre-step> Done
+scatter > 5.2707e-15
+3.41469e-08,310
+4.1724277430489454e-01 7.8833447105601833e+00 1.0465484381898783e-01
+Post-step:> Finished time step: 17 time: 0.417243
+Pre-step> Done
+scatter > 5.38528e-15
+3.42918e-08,310
+4.4178646691106482e-01 7.6642928113156792e+00 1.0334189494448150e-01
+Post-step:> Finished time step: 18 time: 0.441786
+Pre-step> Done
+scatter > 4.58322e-16
+3.4515e-08,310
+4.6633015951723511e-01 7.4375724294878971e+00 1.0300037414535494e-01
+Post-step:> Finished time step: 19 time: 0.46633
+Pre-step> Done
+scatter > 0
+3.28487e-08,311
+4.9087385212340540e-01 7.2039394504459437e+00 1.0102835515462964e-01
+Post-step:> Finished time step: 20 time: 0.490874
+LandauDamping> End.
+Timings> ---------------------------------------------
+Timings>      Timing results for 1 nodes:
+Timings> ---------------------------------------------
+Timings> total............... Wall tot =    1710.32
+Timings> 
+Timings> loadBalance......... Wall max =          0
+Timings>                      Wall avg =          0
+Timings>                      Wall min =          0
+Timings> 
+Timings> particlesCreation... Wall max =    4.59307
+Timings>                      Wall avg =    4.59307
+Timings>                      Wall min =    4.59307
+Timings> 
+Timings> solveWarmup......... Wall max =   0.512145
+Timings>                      Wall avg =   0.512145
+Timings>                      Wall min =   0.512145
+Timings> 
+Timings> PCG iter............ Wall max =    1647.07
+Timings>                      Wall avg =    1647.07
+Timings>                      Wall min =    1647.07
+Timings> 
+Timings> Preconditioner...... Wall max =    1444.64
+Timings>                      Wall avg =    1444.64
+Timings>                      Wall min =    1444.64
+Timings> 
+Timings> scatter............. Wall max =    24.8734
+Timings>                      Wall avg =    24.8734
+Timings>                      Wall min =    24.8734
+Timings> 
+Timings> accumulateHalo...... Wall max = 0.00743636
+Timings>                      Wall avg = 0.00743636
+Timings>                      Wall min = 0.00743636
+Timings> 
+Timings> solve............... Wall max =    1657.56
+Timings>                      Wall avg =    1657.56
+Timings>                      Wall min =    1657.56
+Timings> 
+Timings> fillHalo............ Wall max =  0.0186215
+Timings>                      Wall avg =  0.0186215
+Timings>                      Wall min =  0.0186215
+Timings> 
+Timings> gather.............. Wall max =    16.6336
+Timings>                      Wall avg =    16.6336
+Timings>                      Wall min =    16.6336
+Timings> 
+Timings> dumpData............ Wall max =  0.0636563
+Timings>                      Wall avg =  0.0636563
+Timings>                      Wall min =  0.0636563
+Timings> 
+Timings> pushVelocity........ Wall max =    2.37032
+Timings>                      Wall avg =    2.37032
+Timings>                      Wall min =    2.37032
+Timings> 
+Timings> pushPosition........ Wall max =    1.14016
+Timings>                      Wall avg =    1.14016
+Timings>                      Wall min =    1.14016
+Timings> 
+Timings> update.............. Wall max =     2.0768
+Timings>                      Wall avg =     2.0768
+Timings>                      Wall min =     2.0768
+Timings> 
+Timings> particleBC.......... Wall max =    2.07671
+Timings>                      Wall avg =    2.07671
+Timings>                      Wall min =    2.07671
+Timings> 
+Timings> updateParticle...... Wall max =          0
+Timings>                      Wall avg =          0
+Timings>                      Wall min =          0
+Timings> 
+Timings> ---------------------------------------------

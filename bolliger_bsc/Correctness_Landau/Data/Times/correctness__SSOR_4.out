@@ -1,0 +1,1349 @@
+Warning: Option '32' is not parsed by Ippl.
+Warning: Option '32' is not parsed by Ippl.
+Warning: Option '32' is not parsed by Ippl.
+Warning: Option '83886080' is not parsed by Ippl.
+Warning: Option '400' is not parsed by Ippl.
+Warning: Option 'PCG' is not parsed by Ippl.
+Warning: Option '0.05' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+Warning: Option 'ssor' is not parsed by Ippl.
+Warning: Option '4' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '1.57079632679' is not parsed by Ippl.
+Pre Run{0}> Discretization:
+Pre Run{0}> nt 400 Np= 83886080 grid = ( 32 , 32 , 32 )
+Initialize Particles{0}> Starting first repartition
+Initialize Particles{0}> particles created and initial conditions assigned 
+scatter {0}> 1.1458e-16
+LandauDamping{0}> Starting iterations ...
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 1 time: 0.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 2 time: 0.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 3 time: 0.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 4 time: 0.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 5 time: 0.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 6 time: 0.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 7 time: 0.35
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 8 time: 0.4
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 9 time: 0.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 10 time: 0.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 11 time: 0.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 12 time: 0.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 13 time: 0.65
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 14 time: 0.7
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 15 time: 0.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 16 time: 0.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 17 time: 0.85
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 18 time: 0.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 19 time: 0.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 20 time: 1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 21 time: 1.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 22 time: 1.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 23 time: 1.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 24 time: 1.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 25 time: 1.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 26 time: 1.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 27 time: 1.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 28 time: 1.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 29 time: 1.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 30 time: 1.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 31 time: 1.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 32 time: 1.6
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 33 time: 1.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 34 time: 1.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 35 time: 1.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 36 time: 1.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 37 time: 1.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 38 time: 1.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 39 time: 1.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 40 time: 2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 41 time: 2.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 42 time: 2.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 43 time: 2.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 44 time: 2.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 45 time: 2.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 46 time: 2.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 47 time: 2.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 48 time: 2.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 49 time: 2.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 50 time: 2.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 51 time: 2.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 52 time: 2.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 53 time: 2.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 54 time: 2.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 55 time: 2.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 56 time: 2.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 57 time: 2.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 58 time: 2.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 59 time: 2.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 60 time: 3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 61 time: 3.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 62 time: 3.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 63 time: 3.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 64 time: 3.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 65 time: 3.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 66 time: 3.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 67 time: 3.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 68 time: 3.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 69 time: 3.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 70 time: 3.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 71 time: 3.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 72 time: 3.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 73 time: 3.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 74 time: 3.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 75 time: 3.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 76 time: 3.8
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 77 time: 3.85
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 78 time: 3.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 79 time: 3.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 80 time: 4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 81 time: 4.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 82 time: 4.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 83 time: 4.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 84 time: 4.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 85 time: 4.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 86 time: 4.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 87 time: 4.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 88 time: 4.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 89 time: 4.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 90 time: 4.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 91 time: 4.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 92 time: 4.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 93 time: 4.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 94 time: 4.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 95 time: 4.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 96 time: 4.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 97 time: 4.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 98 time: 4.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 99 time: 4.95
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 100 time: 5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 101 time: 5.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 102 time: 5.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 103 time: 5.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 104 time: 5.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 105 time: 5.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 106 time: 5.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 107 time: 5.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 108 time: 5.4
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 109 time: 5.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 110 time: 5.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 111 time: 5.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 112 time: 5.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 113 time: 5.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 114 time: 5.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 115 time: 5.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 116 time: 5.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 117 time: 5.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 118 time: 5.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 119 time: 5.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 120 time: 6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 121 time: 6.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 122 time: 6.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 123 time: 6.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 124 time: 6.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 125 time: 6.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 126 time: 6.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 127 time: 6.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 128 time: 6.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 129 time: 6.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 130 time: 6.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 131 time: 6.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 132 time: 6.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 133 time: 6.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 134 time: 6.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 135 time: 6.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 136 time: 6.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 137 time: 6.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 138 time: 6.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 139 time: 6.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 140 time: 7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 141 time: 7.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 142 time: 7.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 143 time: 7.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 144 time: 7.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 145 time: 7.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 146 time: 7.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 147 time: 7.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 148 time: 7.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 149 time: 7.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 150 time: 7.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 151 time: 7.55
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 152 time: 7.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 153 time: 7.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 154 time: 7.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 155 time: 7.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 156 time: 7.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 157 time: 7.85
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 158 time: 7.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 159 time: 7.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 160 time: 8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 161 time: 8.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 162 time: 8.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 163 time: 8.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 164 time: 8.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 165 time: 8.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 166 time: 8.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 167 time: 8.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 168 time: 8.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 169 time: 8.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 170 time: 8.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 171 time: 8.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 172 time: 8.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 173 time: 8.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 174 time: 8.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 175 time: 8.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 176 time: 8.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 177 time: 8.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 178 time: 8.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 179 time: 8.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 180 time: 9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 181 time: 9.05
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 182 time: 9.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 183 time: 9.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 184 time: 9.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 185 time: 9.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 186 time: 9.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 187 time: 9.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 188 time: 9.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 189 time: 9.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 190 time: 9.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 191 time: 9.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 192 time: 9.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 193 time: 9.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 194 time: 9.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 195 time: 9.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 196 time: 9.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 197 time: 9.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 198 time: 9.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 199 time: 9.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 200 time: 10
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 201 time: 10.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 202 time: 10.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 203 time: 10.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 204 time: 10.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 205 time: 10.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 206 time: 10.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 207 time: 10.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 208 time: 10.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 209 time: 10.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 210 time: 10.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 211 time: 10.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 212 time: 10.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 213 time: 10.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 214 time: 10.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 215 time: 10.75
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 216 time: 10.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 217 time: 10.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 218 time: 10.9
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 219 time: 10.95
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 220 time: 11
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 221 time: 11.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 222 time: 11.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 223 time: 11.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 224 time: 11.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 225 time: 11.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 226 time: 11.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 227 time: 11.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 228 time: 11.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 229 time: 11.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 230 time: 11.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 231 time: 11.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 232 time: 11.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 233 time: 11.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 234 time: 11.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 235 time: 11.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 236 time: 11.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 237 time: 11.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 238 time: 11.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 239 time: 11.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 240 time: 12
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 241 time: 12.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 242 time: 12.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 243 time: 12.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 244 time: 12.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 245 time: 12.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 246 time: 12.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 247 time: 12.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 248 time: 12.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 249 time: 12.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 250 time: 12.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 251 time: 12.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 252 time: 12.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 253 time: 12.65
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 254 time: 12.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 255 time: 12.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 256 time: 12.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 257 time: 12.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 258 time: 12.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 259 time: 12.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 260 time: 13
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 261 time: 13.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 262 time: 13.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 263 time: 13.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 264 time: 13.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 265 time: 13.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 266 time: 13.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 267 time: 13.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 268 time: 13.4
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 269 time: 13.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 270 time: 13.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 271 time: 13.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 272 time: 13.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 273 time: 13.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 274 time: 13.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 275 time: 13.75
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 276 time: 13.8
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 277 time: 13.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 278 time: 13.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 279 time: 13.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 280 time: 14
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 281 time: 14.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 282 time: 14.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 283 time: 14.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 284 time: 14.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 285 time: 14.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 286 time: 14.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 287 time: 14.35
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 288 time: 14.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 289 time: 14.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 290 time: 14.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 291 time: 14.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 292 time: 14.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 293 time: 14.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 294 time: 14.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 295 time: 14.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 296 time: 14.8
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 297 time: 14.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 298 time: 14.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 299 time: 14.95
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 300 time: 15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 301 time: 15.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 302 time: 15.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 303 time: 15.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 304 time: 15.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 305 time: 15.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 306 time: 15.3
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 307 time: 15.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 308 time: 15.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 309 time: 15.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 310 time: 15.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 311 time: 15.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 312 time: 15.6
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 313 time: 15.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 314 time: 15.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 315 time: 15.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 316 time: 15.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 317 time: 15.85
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 318 time: 15.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 319 time: 15.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 320 time: 16
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 321 time: 16.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 322 time: 16.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 323 time: 16.15
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 324 time: 16.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 325 time: 16.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 326 time: 16.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 327 time: 16.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 328 time: 16.4
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 329 time: 16.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 330 time: 16.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 331 time: 16.55
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 332 time: 16.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 333 time: 16.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 334 time: 16.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 335 time: 16.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 336 time: 16.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 337 time: 16.85
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 338 time: 16.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 339 time: 16.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 340 time: 17
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 341 time: 17.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 342 time: 17.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 343 time: 17.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 344 time: 17.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 345 time: 17.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 346 time: 17.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 347 time: 17.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 348 time: 17.4
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 349 time: 17.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 350 time: 17.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 351 time: 17.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 352 time: 17.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 353 time: 17.65
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 354 time: 17.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 355 time: 17.75
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 356 time: 17.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 357 time: 17.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 358 time: 17.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 359 time: 17.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 360 time: 18
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 361 time: 18.05
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 362 time: 18.1
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 363 time: 18.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 364 time: 18.2
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 365 time: 18.25
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 366 time: 18.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 367 time: 18.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 368 time: 18.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 369 time: 18.45
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 370 time: 18.5
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 371 time: 18.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 372 time: 18.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 373 time: 18.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 374 time: 18.7
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 375 time: 18.75
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 376 time: 18.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 377 time: 18.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 378 time: 18.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 379 time: 18.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 380 time: 19
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 381 time: 19.05
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 382 time: 19.1
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 383 time: 19.15
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 384 time: 19.2
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 385 time: 19.25
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 386 time: 19.3
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 387 time: 19.35
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 388 time: 19.4
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 389 time: 19.45
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 390 time: 19.5
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 391 time: 19.55
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 392 time: 19.6
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 393 time: 19.65
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 394 time: 19.7
+Pre-step{0}> Done
+scatter {0}> 0
+Post-step:{0}> Finished time step: 395 time: 19.75
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 396 time: 19.8
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 397 time: 19.85
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 398 time: 19.9
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 399 time: 19.95
+Pre-step{0}> Done
+scatter {0}> 1.1458e-16
+Post-step:{0}> Finished time step: 400 time: 20
+LandauDamping{0}> End.
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> total............... Wall tot =    104.489
+Timings{0}> 
+Timings{0}> findInternal........ Wall max = 2.2153e-05
+Timings{0}>                      Wall avg = 2.14227e-05
+Timings{0}>                      Wall min = 2.0377e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max = 4.5515e-05
+Timings{0}>                      Wall avg = 4.15588e-05
+Timings{0}>                      Wall min = 3.8763e-05
+Timings{0}> 
+Timings{0}> loadBalance......... Wall max = 0.00203437
+Timings{0}>                      Wall avg = 0.00200654
+Timings{0}>                      Wall min = 0.00198732
+Timings{0}> 
+Timings{0}> basicOperations..... Wall max = 9.0841e-05
+Timings{0}>                      Wall avg = 8.8873e-05
+Timings{0}>                      Wall min = 8.7688e-05
+Timings{0}> 
+Timings{0}> perpReduction....... Wall max = 0.00102723
+Timings{0}>                      Wall avg = 0.000999432
+Timings{0}>                      Wall min = 0.000982908
+Timings{0}> 
+Timings{0}> allReduce........... Wall max = 0.000684022
+Timings{0}>                      Wall avg = 0.000637695
+Timings{0}>                      Wall min = 0.000606476
+Timings{0}> 
+Timings{0}> scatterR............ Wall max =  3.777e-06
+Timings{0}>                      Wall avg = 2.9505e-06
+Timings{0}>                      Wall min =  2.535e-06
+Timings{0}> 
+Timings{0}> updateLayout........ Wall max = 2.7733e-05
+Timings{0}>                      Wall avg = 2.64753e-05
+Timings{0}>                      Wall min = 2.5408e-05
+Timings{0}> 
+Timings{0}> updatePB............ Wall max =  2.535e-06
+Timings{0}>                      Wall avg =  2.505e-06
+Timings{0}>                      Wall min =  2.455e-06
+Timings{0}> 
+Timings{0}> particlesCreation... Wall max =  0.0791945
+Timings{0}>                      Wall avg =  0.0791918
+Timings{0}>                      Wall min =  0.0791906
+Timings{0}> 
+Timings{0}> solveWarmup......... Wall max =  0.0254786
+Timings{0}>                      Wall avg =  0.0254727
+Timings{0}>                      Wall min =  0.0254687
+Timings{0}> 
+Timings{0}> SSOR Init........... Wall max =    1.07354
+Timings{0}>                      Wall avg =    1.07076
+Timings{0}>                      Wall min =    1.06764
+Timings{0}> 
+Timings{0}> SSOR loop........... Wall max =    21.4442
+Timings{0}>                      Wall avg =    21.4239
+Timings{0}>                      Wall min =    21.4048
+Timings{0}> 
+Timings{0}> PCG iter............ Wall max =    84.2546
+Timings{0}>                      Wall avg =    84.2537
+Timings{0}>                      Wall min =    84.2529
+Timings{0}> 
+Timings{0}> Preconditioner...... Wall max =     22.918
+Timings{0}>                      Wall avg =    22.8941
+Timings{0}>                      Wall min =    22.8724
+Timings{0}> 
+Timings{0}> scatter............. Wall max =    3.57617
+Timings{0}>                      Wall avg =    3.57233
+Timings{0}>                      Wall min =    3.56834
+Timings{0}> 
+Timings{0}> accumulateHalo...... Wall max =   0.676111
+Timings{0}>                      Wall avg =   0.671767
+Timings{0}>                      Wall min =   0.668096
+Timings{0}> 
+Timings{0}> solve............... Wall max =     86.388
+Timings{0}>                      Wall avg =    86.3875
+Timings{0}>                      Wall min =    86.3867
+Timings{0}> 
+Timings{0}> fillHalo............ Wall max =   0.701183
+Timings{0}>                      Wall avg =   0.695996
+Timings{0}>                      Wall min =   0.692788
+Timings{0}> 
+Timings{0}> gather.............. Wall max =   0.807378
+Timings{0}>                      Wall avg =   0.807053
+Timings{0}>                      Wall min =    0.80687
+Timings{0}> 
+Timings{0}> dumpData............ Wall max =  0.0469439
+Timings{0}>                      Wall avg =  0.0435855
+Timings{0}>                      Wall min =  0.0383281
+Timings{0}> 
+Timings{0}> pushVelocity........ Wall max =     0.8925
+Timings{0}>                      Wall avg =    0.89188
+Timings{0}>                      Wall min =   0.891373
+Timings{0}> 
+Timings{0}> pushPosition........ Wall max =   0.447236
+Timings{0}>                      Wall avg =   0.446556
+Timings{0}>                      Wall min =   0.446106
+Timings{0}> 
+Timings{0}> update.............. Wall max =    10.6684
+Timings{0}>                      Wall avg =     10.612
+Timings{0}>                      Wall min =    10.5565
+Timings{0}> 
+Timings{0}> particleBC.......... Wall max =   0.904782
+Timings{0}>                      Wall avg =   0.904689
+Timings{0}>                      Wall min =    0.90458
+Timings{0}> 
+Timings{0}> updateParticle...... Wall max =    9.08495
+Timings{0}>                      Wall avg =     8.9355
+Timings{0}>                      Wall min =    8.80553
+Timings{0}> 
+Timings{0}> locateParticles..... Wall max =    4.84949
+Timings{0}>                      Wall avg =    4.77901
+Timings{0}>                      Wall min =     4.7071
+Timings{0}> 
+Timings{0}> sendPreprocess...... Wall max =    0.67623
+Timings{0}>                      Wall avg =    0.60686
+Timings{0}>                      Wall min =   0.537751
+Timings{0}> 
+Timings{0}> particleSend........ Wall max =    1.16063
+Timings{0}>                      Wall avg =    1.12275
+Timings{0}>                      Wall min =    1.08537
+Timings{0}> 
+Timings{0}> particleDestroy..... Wall max =   0.376448
+Timings{0}>                      Wall avg =   0.375333
+Timings{0}>                      Wall min =    0.37231
+Timings{0}> 
+Timings{0}> particleRecv........ Wall max =    2.15903
+Timings{0}>                      Wall avg =    2.04285
+Timings{0}>                      Wall min =    1.95579
+Timings{0}> 
+Timings{0}> ---------------------------------------------

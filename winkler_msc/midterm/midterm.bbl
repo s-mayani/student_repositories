@@ -1,0 +1,39 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Mur(1981)]{Mur1981}
+Gerrit Mur.
+\newblock Absorbing boundary conditions for the finite-difference approximation
+  of the time-domain electromagnetic-field equations.
+\newblock \emph{Transactions on Electromagnetic Compatibility}, 23\penalty0
+  (4):\penalty0 1--6, 1981.
+
+\bibitem[Fallahi(2020)]{fallahi2020mithra}
+Arya Fallahi.
+\newblock Mithra 2.0: A full-wave simulation tool for free electron lasers,
+  2020.
+
+\bibitem[Lehe(2016)]{Lund2016}
+Remi Lehe.
+\newblock Advanced electromagnetic particle-in-cell simulations.
+\newblock In \emph{USPAS Short Course Series: Computational Methods in
+  Accelerator Physics}, 2016.
+\newblock URL
+  \url{https://people.nscl.msu.edu/~lund/uspas/scs_2016/lec_adv/A1a_EM_PIC.pdf}.
+
+\bibitem[Umeda et~al.(2003)Umeda, Omura, Tominaga, and Matsumoto]{UMEDA200373}
+T~Umeda, Y~Omura, T~Tominaga, and H~Matsumoto.
+\newblock A new charge conservation method in electromagnetic particle-in-cell
+  simulations.
+\newblock \emph{Computer Physics Communications}, 156\penalty0 (1):\penalty0
+  73--85, 2003.
+\newblock ISSN 0010-4655.
+\newblock \doi{https://doi.org/10.1016/S0010-4655(03)00437-5}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0010465503004375}.
+
+\end{thebibliography}

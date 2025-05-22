@@ -1,0 +1,59 @@
+
+\section{Matrix-free Method for FEM computations}
+
+\label{sec:matrix_free}
+
+In 2017, Ljungkvist showed that matrix-free finite element algorithms
+have many benefits on modern manycore processors and graphics cards (GPUs)
+compared to alternative sparse matrix-vector products \cite{ljungkvist_matrix-free_2017}.
+Additionally, in 2023, Settgast et.\ al showed that in the context of the
+conjugate gradient (CG) method, the matrix-free approach compares favorably
+even for low-order FEM \cite{settgast_performant_2023}.
+
+Motivated by those findings, we chose to implement a matrix-free assembly algorithm that integrates
+into the conjugate gradient algorithm, which is already implemented in IPPL.
+
+The CG method is an iterative method and terminates once the norm of the residual is smaller than the specified tolerance $\epsilon \in \R_{>0}$.
+The pseudocode for the CG algorithm in IPPL is given in Algorithm \ref{alg:conjugate_gradient}.
+
+
+\begin{algorithm}[h]
+
+    %\vspace{0.3cm}
+    $\vec{x} \gets \text{initial guess, }(\text{usually }\vec{0})$
+
+    $\vec{b} \gets \vec{\varphi}$
+
+    $\vec{p} \gets \mat{A} \vec{x}$
+
+    $\vec{r} \gets \vec{b} - \vec{p}$
+
+    \While{$\|\vec{r}\|_2 < \epsilon$}{
+        $\vec{z} \gets \mat{A}\vec{p}$
+
+        \vspace{0.2cm}
+        $\displaystyle \alpha \gets \frac{\vec{r}^\top \vec{r}}{\vec{p}^\top \vec{z}}$
+        \vspace{0.2cm}
+
+        $\vec{x} \gets \vec{x} + \alpha \vec{p}$
+
+        $\vec{r}_\text{old} \gets \vec{r}$
+
+        $\vec{r} \gets \vec{r} - \alpha \vec{z}$
+
+        \vspace{0.2cm}
+        $\displaystyle \beta \gets \frac{\vec{r}^\top \vec{r}}{\vec{r}_\text{old}^\top \vec{r}_\text{old}}$
+        \vspace{0.2cm}
+
+        $\vec{p} \gets \vec{r} + \beta \vec{p}$
+    }
+    \vspace{0.3cm}
+    \caption{Pseudocode of the CG algorithm implemented in IPPL.}
+    \label{alg:conjugate_gradient}
+\end{algorithm}
+
+In the CG method, the stiffness matrix $\mat{A}$ is used in the initialization and in the while loop itself, and in both cases, it is multiplied with a vector.
+The implemented FEM framework provides an assembly function to replace this matrix-vector product $\mat{A}\vec{x}$.
+The assembly function will return the same resulting vector, but without building the full stiffness matrix $\mat{A}$, thus being ``matrix-free''.
+
+More detailed information regarding the implementation of this assembly algorithm is given in section \ref{sec:assembly}.

@@ -1,0 +1,82 @@
+% Packages:
+\usepackage{adjustbox}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{animate}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{cancel}
+\usepackage{float}
+\usepackage{graphicx} % Allows including images
+\usepackage{hhline}
+\usepackage{listings}
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+% Code listings
+\usepackage{minted}
+% Code listings style
+\setminted[c++]{linenos,
+                numbersep=5pt,
+                style=perldoc,
+                }
+
+\setmintedinline[c++]{style=colorful,}
+
+% Algorithm listings
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+% Needed to avoid curly braces for algorithm colors
+\renewcommand{\algorithmiccomment}[1]{#1}
+
+\usepackage{pifont}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{multimedia}
+\usepackage[authoryear]{natbib}
+\usepackage{scrextend}
+\changefontsizes{8pt}
+\usepackage{tikz}
+\usetikzlibrary{fit, tikzmark, mindmap, trees, arrows, shapes, backgrounds, matrix, decorations.pathreplacing, decorations.pathmorphing, positioning, arrows.meta,plotmarks, calc}
+\usepackage{IEEEtrantools,stackengine}
+\usepackage{verbatim}
+\usepackage{xmpmulti}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+
+ %\bibliographystyle{unsrt}  % This style cites with numbers, e.g. [2]
+\bibliographystyle{unsrtnat}  % This style cites with names, e.g. [Adelmann, 2019]
+% \usepackage{biblatex}
+
+\usepackage{caption}
+\captionsetup{justification   = raggedright,
+              singlelinecheck = false}
+
+
+% Tikz stuff:
+\usetikzlibrary{positioning}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes}
+\usetikzlibrary{matrix, arrows,decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{fadings}
+\usetikzlibrary{arrows.meta,bending}
+
+\usepackage{hyperref}
+

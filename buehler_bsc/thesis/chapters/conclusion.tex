@@ -1,0 +1,32 @@
+\chapter{Conclusion}
+
+This thesis and the implemented building blocks for it are the first big step into FEM
+for IPPL. It not only contains the building blocks for FEM, it can already be considered a FEM
+framework by itself, with the inclusion of the solver.
+We have shown the implementation from the ground up and have been able to achieve good
+convergence using the solver.
+
+% Design
+% Elements
+% Finite Element Space
+% LagrangeSpace and basis functions
+% Quadrature
+% Assembly
+% Solver
+
+We started by designing the general software architecture of the \texttt{C++} FEM framework in IPPL,
+with extensibility in mind.
+Then, element classes along with dimension-independent affine transformations were implemented,
+followed by the \texttt{FiniteElementSpace} base class handling the mapping of the mesh to the elements.
+Then the \texttt{LagrangeSpace} class was implemented, which supports first-order Lagrangian finite elements,
+for one- to three-dimensional meshes. It was also designed to be easily extensible to higher-order basis functions.
+Next, a base class for numerical quadrature was added which has methods for creating
+tensor-product quadrature points and weights for all the reference elements. It serves
+as the basis of the Midpoint quadrature rule and the Gauss-Jacobi quadrature rule which were also implemented
+in this work.
+The latter uses an iterative algorithm to compute the roots of the Jacobi-Polynomial.
+With the main building blocks taken care of, a special matrix-free assembly algorithm, interfacing with the CG method,
+was implemented for ideal performance on GPUs, in the future.
+And finally, the \texttt{FEMPoissonSolver} was added as a proof-of-concept and as an example
+for future FEM solvers.
+

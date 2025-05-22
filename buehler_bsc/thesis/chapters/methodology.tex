@@ -1,0 +1,66 @@
+\chapter{Methodology}
+
+For electromagnetic (EM) simulations, it is common to use the Finite Difference Time Domain (FDTD) scheme \cite{yee_finite-difference_1997}.
+The FDTD scheme discretizes the time and space derivatives with central finite differences, hence, it only has 2nd-order accuracy.
+
+Another method that can be used to solve the Maxwell equations is the Finite Element Method (FEM).
+When solving EM problems with FEM, the space discretization is done using FEM
+and other schemes such as Runge-Kutta methods are used to solve in the time domain.
+This is known as Finite Element Time Domain (FETD).
+
+FEM has multiple advantages compared to finite differences. It allows for more complex geometries
+and higher-order elements (i.e.\ higher-order basis functions for the finite element spaces) to improve accuracy.
+Using higher-order elements to improve the accuracy is known as $p$-refinement.
+The higher-order elements allow FEM to achieve better accuracy without having to refine the mesh
+and therefore improve the accuracy without really affecting the runtime, scalability and memory footprint.
+It is also possible to refine the mesh, just as in the finite difference scheme,
+which is known as $h$-refinement. It is even possible to do both with $hp$-refinement.
+
+Furthermore, a matrix-free assembly algorithm can be used, which gives the method an even smaller memory footprint
+and thus further improves the performance on GPUs.
+
+In this work, we show an implementation of a Finite Element Method framework in IPPL \cite{frey_ippl-frameworkippl_2023}
+with a matrix-free assembly algorithm and the possibility for $p$-refinement.
+
+\input{chapters/introduction/fem_intro}
+
+
+\input{chapters/introduction/matrix_free}
+
+
+\section{Independent Parallel Particle Layer (IPPL)}
+
+The Independent Parallel Particle Layer (IPPL) \cite{frey_ippl-frameworkippl_2023} \cite{muralikrishnan_scaling_2022}
+is a performance portable \texttt{C++} library for Particle-Mesh methods.
+It is a portable, massively parallel toolkit using the Message Passing Interface (MPI) for inter-processor communication,
+HeFFTe \cite{ayala_heffte_2020} as a Fast Fourier Transform (FFT) library and Kokkos \cite{carter_edwards_kokkos_2014} for hardware portability.
+
+\section{Arguments against using an external FEM library}
+
+The Finite Element Method has been studied in great detail already and has been implemented for many languages, environments and use cases.
+There are also many \texttt{C++} FEM libraries, for example, MFEM \cite{anderson_mfem_2021} and deal.II \cite{bangerth_dealiigeneral-purpose_2007}.
+
+The possibility of interfacing IPPL with an external library to introduce the Finite Element Method was considered,
+but it was decided against for several reasons.
+Firstly, new dependencies can bring problems in the future and they further complicate the compilation and installation of IPPL.
+Secondly, almost all external libraries use non-standard or custom datatypes.
+Since the performance of IPPL on supercomputers is very important, it is crucial to avoid data copies,
+which would occur when using a different data type to support an external library,
+as they incur high data movement costs, especially on GPUs.
+
+\section{Focus and Scope of this Thesis}
+
+The focus of this Bachelor thesis is the software design and implementation
+of the building blocks for the Finite Element Method in the IPPL \cite{frey_ippl-frameworkippl_2023} library.
+The focus was on structured, rectilinear grids with rectangular hexahedral (``brick'') elements and the possibility for $p$-refinement.
+
+The term `building blocks' refers to the different parts that are necessary for a functioning FEM implementation.
+For example, a class for numerical integration (quadrature),
+classes for mesh and degree of freedom (DOF) index mapping and assembly functions for building the resulting linear system of equations.
+
+The framework implemented in this thesis supports first-order Lagrangian finite elements in
+one to three dimensions with a matrix-free assembly function that interfaces directly into the CG algorithm.
+It supports the basic midpoint quadrature rule and the polynomial Gauss-Jacobi quadrature rule.
+For essential boundary conditions, only homogeneous Dirichlet boundary conditions are supported at the moment.
+
+Additionally, a solver to solve the Poisson equation was implemented as a proof-of-concept.

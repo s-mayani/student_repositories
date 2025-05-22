@@ -1,0 +1,123 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[c]{Friction Coefficient: DIH}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.6\linewidth]{figures/friction_Nemittance.pdf}
+      \caption{Poisson Solver possibly computes $ - F_d(\vec v)$?}
+      \label{fig:Fd_DIH}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[c]{Diffusion Coefficient: DIH}
+    \begin{enumerate}[$\cdot$]
+        \item Simulation crashes after 200-400 timesteps.
+        \item Computed $\boldsymbol D(\vec v)$ are positive definite and symmetric.
+        \item Crashes in \texttt{scatterCIC()} as $\boldsymbol Q$ is too big (particles leave configuration space).
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]{$\boldsymbol D$-Field Analysis: Maxwellian Test-Case}
+    Diagonal elements of 3x3 matrices in the center of the domain $\Omega$, averaged over all velocity cells:
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/D_diagonal.pdf}
+      \caption{Diagonal elements of $\Omega$ (without boundary cells).}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.03\linewidth]{figures/reference_distribution_maxwell.png}
+      \caption{Reference distribution \cite{Qiang_selfConsistentLangevin}}
+      \label{fig:Fd_asymptotic_behavior_reference}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{$\boldsymbol D$-Field Analysis: Maxwellian Test-Case}
+    Diagonal elements of 3x3 matrices averaged over all velocity cells:
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1\linewidth]{figures/Dxx_avg_maxwellian.png}
+      \caption{Diagonal elements of boundary cells $\partial \Omega$ compared to center cells $\Omega$.}
+      \label{fig:Fd_asymptotic_behavior_2nd}
+    \end{figure}
+    $\implies$ Onesided Hessian is needed to resolve boundary cells properly.
+\end{frame}
+
+\begin{frame}[c]{$\boldsymbol D$-Field Analysis: Maxwellian Test-Case}
+    Off-Diagonal elements $\boldsymbol D_{xy}$ of 3x3 matrices:
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.7\linewidth]{figures/Dxy_maxwellian_nolog.png}
+      \caption{Distribution of off-diagonal entries on both the center domain and the boundary cells.}
+      \label{fig:Fd_asymptotic_behavior_reference}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Progress}
+    \begin{itemize}
+        \item[\done] Maxwellian Test-Case
+        \item[$\square$] Onesided Hessian: $\boldsymbol D(\vec v) = \Gamma \frac{\partial^2}{\partial \vec v \partial \vec v}$
+        \item[$\square$] Test how FD gradient impacts $F_d(\vec v)$ (instead of computing it in Fourier space)
+        \item[$\square$] Check if \texttt{FFTPoissonSolver} solves for $\Delta \phi=-\rho$ or $\Delta \phi=\rho$?
+        \item Analyse Diffusion Coefficients on Boundary Cells in DIH:
+        \begin{itemize}
+            \item[\done] Check that calculated $\boldsymbol D(\vec v)$ are positive definite and symmetric 
+            \item[$\square$] Analyse Error introduced by Cholesky decomposition
+        \end{itemize}
+        \item Application to DIH:
+        \begin{itemize}
+            \item[\done] $F_d(\vec v)$
+            \item[$\square$] $\boldsymbol D(\vec v)$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{(Adjusted) Timeline}
+
+\begin{table}[]
+    \def\arraystretch{1.5}
+    \begin{tabular}{p{0.08\linewidth} | p{0.85\linewidth}}
+        Date & Target Goals \\
+        \hline \hline
+        16/05 & Setup v-space datastructures in \texttt{LangevinParticles.hpp}. Add Friction coefficient. Add Solver for 2nd Rosenbluth potential $g(\vec v)$.\\
+        23/05 & Analyse structure of $\boldsymbol D$. Finish Diffusion coefficient computation (via onesided Hessian operator). \\
+        30/05 & Analyse interplay between collision coeff.`s (see whether Severin`s conclusions are confirmed or can be disproved). \\
+              & Profiling of runtime and memory consumption. \\
+        06/06 & Start improving most pressing bottlenecks. Start writing. \\
+        17/07 & Submission. \\
+    \end{tabular}
+    \caption{Timeline with approximate milestones}
+\end{table}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+	\bibliographystyle{unsrtnat}
+	\bibliography{references.bib}
+\end{frame}
+
+\end{document}

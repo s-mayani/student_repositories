@@ -1,0 +1,59 @@
+\section{Solver}
+\label{sec:solver}
+
+The \texttt{FEMPoissonSolver} class inherits from the IPPL \texttt{Poisson} class and follows in functionality
+the existing IPPL \texttt{PoissonCG} class.
+This new solver class provides a constructor, a solve function and getters for the total number
+of iterations and the residue after solving.
+The constructor takes in a left-hand-side IPPL \texttt{Field}, a right-hand-side IPPL \texttt{Field} and the source function $f$.
+In the constructor, the right-hand-side field values are then set according to the
+\texttt{evaluateLoadVector} assembly function with the given source function $f$.
+
+Inside the \texttt{solve} function, the \texttt{eval} lambda function for the Poisson equation is defined.
+The \texttt{eval} function is a function that depends on the PDE weak form and is used to decouple the
+assembly function from the problem itself. It is passed to the assembly function which
+provides the arguments needed to solve the problem.
+
+For the Poisson equation, the \texttt{eval} function is:
+\begin{align}
+    \text{eval}(i, j, k) = (\mat{D \Phi}_K^{-\top}) \nabla \hat{b}^j(\vec{q}_k) \cdot
+    (\mat{D \Phi}_K^{-\top}) \nabla \hat{b}^i(\vec{q}_k)
+    |\det \mat{D \Phi}_K|,
+\end{align}
+where $i$ and $j$ are the indices for the local degrees of freedom used
+to select the corresponding reference element shape function and
+$\vec{q}_k$ is the $k$-th integration point.
+
+It is important to note, that everything in this \texttt{eval} function can be pre-computed because
+everything is evaluated on the reference element (see section \ref{sec:elements}).
+
+Inside the \texttt{FEMPoissonSolver}, the transformation variables $\mat{D \Phi}^{-\top}$
+and $|\det \mat{D \Phi}|$ are pre-computed but the values of the basis functions
+at the quadrature nodes $k$ are precomputed inside the assembly function instead
+and passed by reference to the \texttt{eval} function.
+In the future, the signature of the \texttt{eval} function might need tweaking to support
+problems that have more than the gradient of the basis in their weak form.
+
+\begin{Code}
+    \begin{minted}{cpp}
+const auto poissonEquationEval =
+    [DPhiInvT, absDetDPhi](
+        const std::size_t& i, const std::size_t& j,
+        const Vector<Vector<Tlhs, Dim>, NumElementDOFs>& grad_b_q_k) {
+        return dot((DPhiInvT * grad_b_q_k[j]), (DPhiInvT * grad_b_q_k[i])).apply()
+                * absDetDPhi;
+    };
+\end{minted}
+    \caption{\texttt{eval} function implementation from \texttt{FEMPoissonSolver}.}
+\end{Code}
+
+In the \texttt{FEMPoissonSolver}, after pre-computation of the transformation variables,
+the IPPL \texttt{PCG} (Preconditioned Conjugate Gradient) algorithm class is used
+to solve the linear system of equations.
+
+Currently, the \texttt{FEMPoissonSolver} is using Gauss-Legendre quadrature with five integration points in one dimension.
+It is used by initializing the
+\texttt{GaussJacobiQuadrature} class with the parameters $\alpha = \beta = 0$.
+points and first-order Lagrangian Finite Elements using the \texttt{LagrangeSpace} class.
+
+The dimension of the mesh is the same as the dimension of the input fields that are passed to the constructor.

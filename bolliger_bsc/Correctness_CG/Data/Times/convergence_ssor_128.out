@@ -1,0 +1,37 @@
+Warning: Option '7' is not parsed by Ippl.
+Warning: Option 'ssor' is not parsed by Ippl.
+Warning: Option '4' is not parsed by Ippl.
+Warning: Option '2' is not parsed by Ippl.
+Warning: Option '1.57079632679' is not parsed by Ippl.
+Config{0}> Got 7 as size parameter
+Config{0}> Solver is preconditioned
+Config{0}> Preconditioner is ssor
+Config{0}> Solver is set up
+Config{0}> Solver is done
+Convergence{0}> 128,0.0002317313213520525,4.003168788231291e-10,97
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> findInternal........ Wall tot = 1.2843e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max = 1.0339e-05
+Timings{0}>                      Wall avg = 8.07775e-06
+Timings{0}>                      Wall min =  7.134e-06
+Timings{0}> 
+Timings{0}> SSOR Init........... Wall max = 0.00539804
+Timings{0}>                      Wall avg = 0.00527401
+Timings{0}>                      Wall min = 0.00516114
+Timings{0}> 
+Timings{0}> SSOR loop........... Wall max =   0.852552
+Timings{0}>                      Wall avg =   0.852326
+Timings{0}>                      Wall min =    0.85212
+Timings{0}> 
+Timings{0}> PCG iter............ Wall max =   0.934434
+Timings{0}>                      Wall avg =   0.934418
+Timings{0}>                      Wall min =   0.934397
+Timings{0}> 
+Timings{0}> Preconditioner...... Wall max =   0.850169
+Timings{0}>                      Wall avg =   0.850118
+Timings{0}>                      Wall min =   0.850092
+Timings{0}> 
+Timings{0}> ---------------------------------------------

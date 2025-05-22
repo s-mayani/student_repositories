@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" modified="2023-07-10T09:26:34.698Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0" etag="OOHwm-lstBcIe9zftFIo" version="21.6.1" type="device">
+  <diagram name="Page-1" id="wvXsaifKq-ixM3sqZ3M7">
+    <mxGraphModel dx="1185" dy="639" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="f4GMONhXs96ZF-tLtL2y-1" target="f4GMONhXs96ZF-tLtL2y-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="f4GMONhXs96ZF-tLtL2y-1" target="f4GMONhXs96ZF-tLtL2y-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-1" value="$$\nabla ^{2} \phi (\boldsymbol{r}) \ =\ -\ \frac{\rho (\boldsymbol{r})}{\varepsilon _{0}}$$" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="440" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-2" value="$$\phi (\boldsymbol r) \ =\ \int G(\boldsymbol r, \boldsymbol r&#39;) \rho (\boldsymbol r) dV&#39;,\ \quad \text{Definition I}$$" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="400" width="330" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-3" value="$$\hat{\phi }(\boldsymbol \xi ) \ =\ \frac{\hat{\rho }(\boldsymbol \xi )}{k^{2} \varepsilon _{0}} ,\quad&amp;nbsp; \text{Definition II}$$" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="480" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-6" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shadow=0;rounded=1;" edge="1" source="f4GMONhXs96ZF-tLtL2y-8" target="f4GMONhXs96ZF-tLtL2y-9" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-7" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;shadow=0;rounded=1;" edge="1" source="f4GMONhXs96ZF-tLtL2y-8" target="f4GMONhXs96ZF-tLtL2y-10" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-8" value="$$\nabla ^{2} \phi (\boldsymbol{r}) \ =\ -\ \frac{\rho (\boldsymbol{r})}{\varepsilon _{0}}$$" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="680" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-9" value="$$\phi (\boldsymbol r) \ =\ \int G(\boldsymbol r, \boldsymbol r&#39;) \rho (\boldsymbol r) dV&#39;,\ \quad \text{Definition I}$$" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="640" width="330" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f4GMONhXs96ZF-tLtL2y-10" value="$$\ \ \hat{\phi }(\boldsymbol \xi ) \ =\ \frac{\hat{\rho }(\boldsymbol \xi )}{k^{2} \varepsilon _{0}} ,\quad \quad \quad \quad \quad \quad \quad \&amp;nbsp; \text{Definition II}$$" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="720" width="330" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

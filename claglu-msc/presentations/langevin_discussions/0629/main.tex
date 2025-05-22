@@ -1,0 +1,79 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+\begin{frame}[c]{Convergence in Divergence Identity}
+    Run FFT Poisson solve on $[-1,1]^3$ to compute $\boldsymbol D(\tilde v)$ and identities, then
+    rescale ($\tilde v = v/v_{max}$).
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.65\linewidth]{figures/identities_convergence_sigma20.pdf}
+      \caption{Add missing scaling after computing divergence on [-1,1] \\ (Relative Error: $\eta =
+      \frac{\lvert x_{\text{appr}}-x \rvert}{\lvert x \rvert}$).}
+      \label{fig:identity_convergence}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[c]{Testcase Scaled to DIH Magnitude at Iteration 100}
+    We actually see convergence for Langevin input (HOCKNEY and VICO results are very similar). \\
+    Potential causes why coeff.'s are nevertheless too small:
+    \begin{itemize}
+        \item DIH violates some assumption we make in the derivation of the FP coefficients
+        \item ...
+    \end{itemize}
+
+    
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.05\linewidth]{figures/Fd_convergence_sigma005vmax.pdf}
+      \caption{Relative Error Friction Coefficient $F_d$.}
+      \label{fig:rb_potentials_convergence}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=1.05\linewidth]{figures/D_005vmax_HOCKNEY.pdf}
+      \caption{Relative Error Diffusion Matrix $\boldsymbol D$.}
+      \label{fig:Fd_convergence}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Charge Density B.C.}
+    \begin{itemize}
+        \item Until now we used periodic b.c.'s for $\rho(\boldsymbol r)$ since we compared our implementation to Ulmer's
+        \item Open b.c.'s crash as the domain must start at $(0.0)^3$
+        \item All test-cases conform to this, but ours is centered around $(0.0)^3$
+    \end{itemize}
+    
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+        \includegraphics[width=0.80\linewidth]{figures/rmeanX.pdf}
+      \caption{DIH with shifted mesh domain starting at $(0.0)^3$. Sphere moves to origin, causing the simulation to crash.}
+      \label{fig:identity_convergence}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[t]{TODOs}
+    \begin{itemize}
+        \item Continue writing
+        \item {[Test performance of E-Field solve for using open b.c. solvers]}
+    \end{itemize}
+\end{frame}
+
+\end{document}

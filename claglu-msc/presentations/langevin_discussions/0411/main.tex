@@ -1,0 +1,65 @@
+\input{./title_page/PSI.tex}
+\title[\today]{Langevin Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}{Problem: Upwards Trend of the Emittance}
+        \begin{itemize}
+            \item Potential Causes
+                \begin{itemize}
+                    \item Timestepping might not be conserving (tested with synchronous Leapfrog scheme / Velocity Verlet) \done
+                    \item Check $\gamma$-factor \done
+                    \item Macro-particle number is the same as simulated particles \done
+                    \item Split constant focusing for Leapfrog \done
+                    \item Maybe the simulated domain is too small (running with $512^3$ currently running into OOM issues) $\square$
+                    \item Check Correlation Matrix with analytical values of Normally Distributed particles in the sphere $\square$
+                \end{itemize}
+
+            \item Furthermore
+                \begin{itemize}
+                    \item Merged the two dumping functions into \texttt{129-langevin-collision\_refactored}
+                \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{P3M Timestepping (Synchronous Leapfrog)}
+    \begin{figure}[!htb]
+      \includegraphics[width=0.6\linewidth]{figures/comparison_verlet.pdf}
+        \caption{Synchronous Leapfrog.}
+      \label{fig:forward_euler}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Gamma Factor}
+    \begin{figure}[!htb]
+      \includegraphics[width=\linewidth]{figures/comparison_gamma.pdf}
+        \caption{Gamma Factor Check. It is equal to $1$ as expected.}
+      \label{fig:gamma_factor}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}{Increased Focusing}
+    \begin{figure}[!htb]
+      \includegraphics[width=0.6\linewidth]{figures/comparison_focus.pdf}
+        \caption{Increased Focusing Strength causes expected periodic behaviour to break down.}
+      \label{fig:increased_focusing}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]{Code Snippets}
+    \inputminted{c++}{./code_snippets/stencils.cpp}
+    \inputminted{c++}{./code_snippets/operator.cpp}
+\end{frame}
+
+\end{document}

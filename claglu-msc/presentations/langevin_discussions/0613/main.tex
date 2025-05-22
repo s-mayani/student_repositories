@@ -1,0 +1,71 @@
+
+\input{./title_page/PSI.tex}
+\title[\today]{IPPL Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[c]{Expected Convergence}
+    Relative Error: $\eta = \frac{\lvert x_{\text{appr}}-x \rvert}{\lvert x \rvert}$
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      %\includegraphics[width=1.05\linewidth]{figures/rb_potentials_convergence.pdf}
+      \includegraphics[width=1.05\linewidth]{figures/rb_potentials_convergence_sigma20.pdf}
+      \caption{Relative Error Rosenbluth Potentials.}
+      \label{fig:rb_potentials_convergence}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      %\includegraphics[width=1.05\linewidth]{figures/Fd_convergence.pdf}
+      \includegraphics[width=1.05\linewidth]{figures/Fd_convergence_sigma20.pdf}
+      \caption{Relative Error Friction Coefficient $F_d$.}
+      \label{fig:Fd_convergence}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Partial Convergence}
+    \begin{multicols}{2}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      %\includegraphics[width=1.05\linewidth]{figures/D_convergence.pdf}
+      \includegraphics[width=1.05\linewidth]{figures/D_convergence_sigma20.pdf}
+      \caption{Relative Error Rosenbluth Potentials.}
+      \label{fig:D_convergence}
+    \end{figure}
+    \columnbreak
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      %\includegraphics[width=1.05\linewidth]{figures/identities_convergence.pdf}
+      \includegraphics[width=1.05\linewidth]{figures/identities_convergence_sigma20.pdf}
+      \caption{Relative Error Diffusion Identities.}
+      \label{fig:identities_convergence}
+    \end{figure}
+    \end{multicols}
+\end{frame}
+
+\begin{frame}[c]{Appendix: Normalized Emittance in DIH}
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.7\linewidth]{figures/emittance.pdf}
+      \caption{Normalized Emittance with / without collisions.}
+      \label{fig:emittance}
+    \end{figure}
+\end{frame}
+
+\end{document}

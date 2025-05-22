@@ -1,0 +1,44 @@
+% Custom glossary style
+\newglossarystyle{custom_acronym_style}{%
+  \renewenvironment{theglossary}{%
+    \begin{description}[align=left, labelwidth=2cm, itemsep=0.5ex, leftmargin=3.5cm]%
+  }{\end{description}}%
+  \renewcommand*{\glossentry}[2]{%
+    \item[\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}]
+    \glossentrydesc{##1}%
+  }%
+}
+
+%Set the glossary style
+\setglossarystyle{custom_acronym_style}
+
+\makeglossaries
+
+% Introduction
+\newacronym{fp}{FP}{Fokker-Planck}
+\newacronym{fd}{FD}{Finite Difference}
+\newacronym{pic}{PIC}{Particle-in-Cell}
+\newacronym{fel}{FEL}{Free Electron Laser}
+\newacronym{p3m}{P\textsuperscript{3}M}{Particle-Particle Particle-Mesh}
+
+% Background
+\newacronym{dih}{DIH}{Disorder Induced Heating}
+\newacronym{pde}{PDE}{Partial Differential Equation}
+
+% Computational Model
+\newacronym{vpfp}{VPFP}{Vlasov-Poisson-Fokker-Planck}
+\newacronym{rms}{RMS}{Root-Mean-Square}
+\newacronym{fft}{FFT}{Fast Fourier Transform}
+\newacronym{pp}{PP}{Particle-Particle}
+\newacronym{pm}{PM}{Particle-Mesh}
+\newacronym{ldlt}{LDLT}{Factorization of a Matrix as $\matr A = \matr L \matr D \matr L^{*}$}
+\newacronym{sde}{SDE}{Stochastic Differential Equation}
+
+% Results
+\newacronym{ippl}{IPPL}{Independent Parallel Particle Layer}
+\newacronym{opal}{OPAL}{Object Oriented Particle Accelerator Library}
+
+% Conclusion
+\newacronym{mpi}{MPI}{Message Passing Interface}
+\newacronym{openmp}{OpenMP}{Open Multi-Processing API}
+\newacronym{simd}{SIMD}{Single Instruction Multiple Data}

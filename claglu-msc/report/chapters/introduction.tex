@@ -1,0 +1,74 @@
+\chapter{Introduction}
+\label{chapter:introduction}
+
+Plasma, often referred to as the fourth state of matter, consists of a gas-like collection of
+charged particles (ions and electrons) that exhibit a collective behavior.
+Understanding its dynamics under the influence of electric and magnetic fields is of critical
+importance for numerous areas in research as well as industry.
+A prime example are non-neutral plasmas confined in particle accelerators where particle bunches are exposed to
+a range of interesting phenomena which depend on the present plasma state.
+
+In this report, we aim to model a phenomenon arising in ultra-cold plasmas where the transport of
+the contained particles is strongly influenced by inter-particle collisions.
+Modeling these scattering processes has been an active area of research for many decades
+\cite{piwinski1974intra,kubo2001intrabeam}.
+The individual scattering events are very weak and often happen over large distances.
+Thus, modeling them as binary collisions requires very small timesteps which is not feasible for the
+number of particles one usually encounters in dense plasmas.
+
+Instead, researchers have explored methods emanating from plasma kinetic theory which model the scattering
+processes via the Fokker-Planck (\gls{fp}) equation \cite{chandrasekhar1943,rosenbluth}.
+It can be derived with a Taylor expansion of the statistically averaged effect on the velocity space due to
+small-angle deflections. This effect describes advection (via friction) and diffusion in velocity space.
+The definition of the friction and diffusion term of the \gls{fp} formalism is not straightforward, thus
+researches usually have to state assumptions on the system state in order to approximate them
+\cite{manheimer1997langevin,cadjan_ivanov_1999,jonesLangevin_1996}.
+In our work we model the collisions via the Langevin formulation of the \gls{fp} equation \cite{cadjan_ivanov_1999}, allowing us to
+model them as a stochastic process, providing a velocity dependent
+deterministic friction and stochastic diffusion term \cite{stoel}.
+This formulation facilitates the use of the Fokker-Planck term as part of the well-established
+Particle-in-Cell (\gls{pic}) method \cite{bunemanPIC, dawsonPIC}.
+
+\section{Motivation}
+
+Free Electron Lasers (\gls{fel}) have the ability to generate beams that emit very short coherent light
+pulses which exhibit wave lengths down to 0.1\ nm.
+This laser is used, among many other applications, to map the atomic structure of proteins with a
+high temporal resolution or allows investigating the atomic structure of crystalline matter.
+An electron beam is emitted from an electron gun which is subsequently accelerated through an array
+of magnets causing a lumping of the beam into bunches.
+This process is prone to be negatively impacted by intra-beam scattering of the particles, causing the beam to widen
+over time.
+As this phenomenon negatively affects the achievable beam brightness, it is important to calibrate an
+accelerator to counter this effect as much as possible.
+
+Swiss\gls{fel} is an X-ray \gls{fel} at the Paul Scherrer Institute containing multiple beamlines for producing
+many different types of X-ray pulses.
+Prat et al. \cite{prat2022energy} have measured in experiments on this machine an energy spread for increased bunch
+charges which is a magnitude larger than what their standard simulation codes predicted.
+They showed that this blowup is caused mainly by intra-beam scattering and microbunching instabilities.
+Being able to model the energy spread correctly is important as it directly influences how much
+bunches can be compressed and also defines a lower bound on the achievable wavelength.
+An existing method \cite{p3m_ulmer} based on the \gls{p3m} algorithm
+(Particle-Particle Particle-Mesh, see Section \ref{section:PIC_method}) has been shown to model
+intra-beam collisions adequately, but it does so at a considerable computational cost.
+This inhibits simulating bunches over a complete beamline.
+The aforementioned method of modeling collisions stochastically via the Langevin formulation promises
+better computational complexity, therefore allowing to simulate larger number of particles and simulation domains.
+We test the method on an experiment which is governed by disorder induced heating (\gls{dih}) \cite{mitchell2015parallel} and has been
+shown to be resolved correctly only if individual particle collisions are considered (via the
+\gls{p3m} method \cite{p3m_ulmer}).
+This provides us with a challenging test case for the implemented method.
+
+\section{Outline}
+
+We start by introducing the notation used throughout the report, followed by a succinct treatise of the
+underlying theory of plasma modeling in the context of kinetic theory, resulting in the Langevin formulation of
+the \gls{fp} equation.
+Subsequently we discuss the numerical methods used to solve the previously introduced equations and
+propose an analytical test case that is used to verify the correctness of our implementation in the following chapter.
+We then apply it to the physical test case governed by \gls{dih} and explore what
+values the two collisional coefficients attain and how they impact the quantity of normalized emittance.
+We conclude this work by highlighting the key findings of our investigation.
+Additionally, we propose algorithmic improvements and suggest possible directions for further exploration
+of the collisional terms applied in the context of \gls{dih}.

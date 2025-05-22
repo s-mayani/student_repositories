@@ -1,0 +1,37 @@
+\input{./title_page/PSI.tex}
+\title[\today]{IPPl Meeting}
+
+\author{Tobia Claglüna}
+\institute[LSM, PSI]{
+    AMAS Group, LSM\\ % Your institution for the title page.
+}
+\date{\today}
+\def \myEmail {tobia.clagluena@psi.ch}
+
+\begin{document}
+\input{./title_page/title.tex}
+
+
+\begin{frame}[t]{Current Status}
+    \begin{large}
+    \begin{itemize}
+        \item Spectral solver does not work well for this problem (have to use regular FFT solver)
+        \item $256^3$ grid is needed to resolve the heating process properly
+        \begin{itemize}
+            \item Will be running on Gwendolen from now on
+        \end{itemize}
+        \item Problem might lie in computation of the E-field (have to check potential only)
+    \end{itemize}
+    \end{large}
+
+    \begin{figure}[!htb]
+        \centering
+        \captionsetup{justification=centering}
+      \includegraphics[width=0.45\linewidth]{figures/avgEF.pdf}
+      \caption{Average E-field in $x$-direction, 4 plasma periods.}
+      \label{fig:awesome_image6}
+    \end{figure}
+
+\end{frame}
+
+\end{document}

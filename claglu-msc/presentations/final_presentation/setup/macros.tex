@@ -1,0 +1,75 @@
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%% Maths definitions.
+\newcommand{\frametitlepsi}[1]{\frametitle{\hspace{0.8cm}\includegraphics[width=1.5cm]{logos/PSI.pdf}\hspace{1.1cm} #1}}
+
+% \newtheorem{theorem}{Theorem} %13.05.2015, https://www.sharelatex.com/learn/Theorems_and_proofs#Proofs
+
+\newcommand{\lstref}[1] {Lst.\ \ref{#1}}
+\newcommand{\tabref}[1] {Tab.\ \ref{#1}}
+\newcommand{\secref}[1] {Sec.\ \ref{#1}}
+\newcommand{\outref}[1] {Output \ref{#1}}
+\newcommand{\enumref}[1] {Appendix \ref{#1}}
+% \newcommand{\eqsref}[1] {Eq.\ \ref{#1}}
+
+\lstdefinestyle{MyLstDesign}{
+    basicstyle=\scriptsize\ttfamily,
+    captionpos=b,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    frame=L,
+    xleftmargin=0.65cm,
+    numbers=left,
+    commentstyle=\itshape\color{red},
+    keywordstyle=\color{black!50!green}
+}
+
+% 06.09.2015, http://stackoverflow.com/questions/2709898/change-list-of-listings-text
+% \renewcommand{\lstlistingname}{List of Listings}
+\renewcommand{\lstlistlistingname}{List of Listings}
+
+% Command for bold symbols (Vector and Matrix notation)
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\uuline}[1]{\underline{\underline{#1}}}
+\newcommand{\matr}[1]{\uuline{#1}}
+
+% Vacuum permitivity
+\newcommand{\vp}{\varepsilon_0}
+
+% Normalized x-emittance
+\newcommand{\eps}{\varepsilon_{x}}
+\newcommand{\neps}{\varepsilon_{x,n}}
+
+% Operators in separated phase space
+\newcommand{\posNabla}{\nabla_{\vect r}}
+\newcommand{\velNabla}{\nabla_{\vect v}}
+\newcommand{\fdVelNabla}{\nabla_{\vect v}^{\text{fd}}}
+\newcommand{\spVelNabla}{\nabla_{\vect v}^{\text{sp}}}
+\newcommand{\fdPosNabla}{\nabla_{\vect r}^{\text{fd}}}
+\newcommand{\spPosNabla}{\nabla_{\vect r}^{\text{sp}}}
+
+\newcommand{\velHess}{\matr H_{\vect v}}
+\newcommand{\fdVelHess}{\matr H_{\vect v}^{\text{fd}}}
+\newcommand{\spVelHess}{\matr H_{\vect v}^{\text{sp}}}
+
+% Spacing between equations
+\newcommand{\eqVspace}{\\[7pt]}
+
+% Row spacing in tables
+\newcommand{\tabVspace}{\\\noalign{\vspace{4pt}}}
+
+
+% Moment brackets
+\newcommand{\bracket}[1]{\langle {#1} \rangle}
+
+% Method names
+\newcommand{\pcubem}{P\textsuperscript{3}M\ }
+
+% Set itemize vertical spacing locally for the current environment
+\newcommand{\itemVspace}{\setlength\itemsep{1em}}

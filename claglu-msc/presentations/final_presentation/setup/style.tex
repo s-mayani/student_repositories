@@ -1,0 +1,100 @@
+\documentclass[.08pt,t]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Boadilla}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+% \usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+% \usecolortheme{dolphin}
+%\usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+\usecolortheme{seahorse}  % The them I usually use, because it resembles the PSI template.
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+% \setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+}
+
+% Disable shadowed blocks and rounded corners in blocks
+\setbeamertemplate{blocks}[rounded][shadow=false, rounded=false]
+
+% Custom bullet-points for the whole document
+\setbeamertemplate{itemize items}[circle]
+
+% Use regular font for math mode text
+\renewcommand\mathfamilydefault{\rmdefault}
+
+\setbeamertemplate{sections/subsections in toc}[sections numbered]  % Controls style of number in the table of contents.
+
+\makeatletter
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{\fontsize{5}{7}\selectfont%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.8ex,dp=1ex,left]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\hspace*{2ex}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.8ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.8ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{4em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+\setbeamertemplate{navigation symbols}{}  % Remove navigation symbols
+\setbeamersize{text margin left=1cm,text margin right=1cm}
+
+\setbeamertemplate{caption}[numbered]
+
+% Insert title slide at beginning of each section
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=False,rounded=true]{title}
+      \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% \newenvironment<>{greyBlock}{%
+%     \setbeamercolor{block title}{use=structure,fg=white,bg=\usebeamercolor[fg]{structure}}%
+%     \setbeamercolor{block body}{use=structure,fg=black,bg=gray!20!white}%
+%     \setbeamerfont{block body}{size=\footnotesize}%
+% \begin{beamercolorbox}
+%     \begin{block}{}%
+%     }{%
+%     \end{block}%
+% }
+
+% Set font size for regular blocks for whole documents
+\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{block body}{size=\small}
+
+\newenvironment<>{definitionBlock}{%
+    \setbeamercolor{block title}{use=structure,fg=white,bg=gray!50!black}%
+    \setbeamercolor{block body}{use=structure,fg=black,bg=gray!20!white}%
+    \setbeamerfont{block body}{size=\footnotesize}%
+    \begin{block}{}%
+    }{%
+    \end{block}%
+}
+
+% Bibliography
+% \makeatletter\@ifpackageloaded{biblatex}{\addbibresource{references.bib}}{\bibliography{references}}\makeatother

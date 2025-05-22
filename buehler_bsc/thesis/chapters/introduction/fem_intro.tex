@@ -1,0 +1,223 @@
+
+
+\section{Finite Element Method (FEM)}
+
+
+\label{sec:fem_intro}
+
+The Finite Element Method (FEM) is a method to solve partial differential equations (PDEs).
+To use it, boundary value problems
+need to be formulated into a variational boundary problem (weak form).
+After that, the FEM consists of three main steps:
+Firstly, discretizing or `meshing' the domain with a finite number of `elements'.
+Secondly, approximating the solution of the PDE on each of the elements and finally
+assembling the solutions from the elements in a linear system of equations (LSE).
+This LSE can then be solved with any LSE solver.
+FEM produces sparse problems,
+which is why sparse LSE solvers are often used.
+In this work, however, we use the conjugate gradient algorithm to solve the LSE instead,
+since this allows us to avoid having to explicitly build the left-hand-side matrix (matrix-free).
+For more details on the matrix-free method, see section \ref{sec:matrix_free}.
+
+\subsection{Variational formulation}
+
+\begin{definition}[Linear form]
+    \label{def:linear_form}
+    Given a vector space $V$ over $\R$, a \emph{linear form} $\ell$ is a mapping
+    $\ell: V \mapsto \R$ that satisfies
+    \cite[Def.~0.3.1.4]{hiptmair_numerical_2023}
+    \begin{align}
+        \ell(\alpha u + \beta v) = \alpha \ell(u) + \beta \ell(v), \quad
+        \forall u,v \in V, \ \forall \alpha, \beta \in \R.
+    \end{align}
+\end{definition}
+
+\begin{definition}[Bilinear form]
+    \label{def:bilinear_form}
+    Given a vector space $V$ over $\R$, a \emph{bilinear form} $\mathrm{a}$ on $V$
+    is a mapping $\mathrm{a}: V \times V \mapsto \R$, for which it holds
+    \cite[Def.~0.3.1.4]{hiptmair_numerical_2023}
+    \begin{align}
+         & \mathrm{a}\left(\alpha_1 v_1+\beta_1 u_1, \alpha_2 v_2+\beta_2 u_2\right)= \nonumber \\
+         & \qquad \alpha_1 \alpha_2 \mathrm{a}\left(v_1, v_2\right)
+        +\alpha_1 \beta_2 \mathrm{a}\left(v_1, u_2\right)
+        +\beta_1 \alpha_2 \mathrm{a}\left(u_1, v_2\right)
+        +\beta_1 \beta_2 \mathrm{a}\left(u_1, u_2\right),                                       \\
+        \nonumber                                                                               \\
+         & \forall u_i, v_i \in V, \alpha_i, \beta_i \in \mathbb{R}, i=1,2. \nonumber
+    \end{align}
+\end{definition}
+
+\begin{definition}[Continuous Linear Form]
+    \label{def:cont_linear_form}
+    Given a normed vector space $V$ with norm $\|\cdot\|$, a linear form $\ell: V \to \R$
+    is \emph{continuous} on $V$ if \cite[Def~1.2.3.42]{hiptmair_numerical_2023}
+    \begin{align}
+        \exists C > 0: \quad |\ell(v)| \leq C\|v\| \quad \forall v \in V,
+    \end{align}
+    holds for $C \in \R$.
+\end{definition}
+\begin{definition}[Continuous Bilinear Form]
+    \label{def:cont_bilinear_form}
+    Given a normed vector space $V$ with norm $\|\cdot\|$,
+    a bilinear form $a: V \times V \to \R$ on $V$ is \emph{continuous}, if
+    \cite[Def~1.2.3.42]{hiptmair_numerical_2023}
+    \begin{align}
+        \exists K > 0: \quad |\mathrm{a}(u, v)| \leq K\|u\| \|v\| \quad \forall u,v \in V_0,
+    \end{align}
+    holds for $K \in \R$.
+\end{definition}
+
+\begin{definition}[(Galerkin) Linear Variational Problem (LVP)]
+    \label{def:lin_var_prob}
+    We define a \emph{linear variational problem (LVP)} as
+    \cite[Def.~1.4.1.7]{hiptmair_numerical_2023}
+    \begin{align}
+        u \in V: \quad \mathrm{a}(u, v) = \ell(v) \quad \forall v \in V, \label{eq:lin_var_prob}
+    \end{align}
+    where $V$ is a vector space, with norm $\|\cdot\|_V$,
+    $\mathrm{a}: V \times V \mapsto \R$ is a continuous bilinear form and
+    $\ell: V \mapsto \R$ is a continuous linear form.
+    The function $u \in V$ is called the \emph{trial function} and the functions $v \in V$ are called the \emph{test functions}.
+
+    In a generalized linear variational problem, the test and trial functions can be from different vector spaces, defined on the same subspace.
+    Then these two vector spaces are called the test space and the trial space. However, in this work, we are only considering
+    Galerkin Finite Element Methods where the test and the trial space are the same vector space, by definition.
+\end{definition}
+
+\subsubsection{Example: Poisson Equation}
+\label{sec:poisson_eq}
+
+The strong form of the Poisson equation with homogeneous Dirichlet boundary conditions is
+\begin{align}
+    \begin{array}{r l}
+        -\Delta u = f & u \in \Omega,          \\
+        u        = 0  & u \in \partial \Omega,
+    \end{array}
+    \label{eq:poisson_strong_form}
+\end{align}
+where $\Omega$ is the domain, $\partial \Omega$ is the boundary of the domain $\Omega$ and $f: \Omega \mapsto \R$ is the source function.
+
+The weak-form or variational equation of the Poisson equation with homogeneous Dirichlet boundary conditions is
+\begin{align}
+    \int_\Omega \nabla u \cdot \nabla v \ d\vec{x} = \int_\Omega f v \ d\vec{x},
+    \label{eq:poisson_weak_form}
+\end{align}
+where $v \in V$ is the test function and $u \in V$ is the trial function,
+and $f: \Omega \to \R$ is the source function.
+The derivation can be found in \cite{hiptmair_numerical_2023}.
+
+The bilinear form and the linear of this problem are therefore
+\begin{align}
+    \mathrm{a}(u, v) & = \int_\Omega \nabla u \cdot \nabla v \ d\vec{x}, \\
+    \ell(v)          & = \int_\Omega f v \ d\vec{x}.
+\end{align}
+
+\subsection{Discretization (Meshing)}
+
+Recall the definition of the linear variational problem (Def. \ref{def:lin_var_prob}):
+
+\begin{align}
+    u \in V: \quad \mathrm{a}(u, v) = \ell(v) \quad \forall v \in V, \tag{\ref{eq:lin_var_prob}}
+\end{align}
+
+where $\mathrm{a}: V \times V \mapsto \R$ is the bilinear form and $\ell: V \mapsto \R$
+is the linear form, $u$ is the trial function and $v$ are the test functions.
+
+The first part of the discretization (meshing) step is the replacement of the
+infinite-dimensional vector space $V$ in the linear variational problem with a
+finite-dimensional subspace $V_{h} \subset V$ \cite[Chapter~2.2.1]{hiptmair_numerical_2023}.
+
+\begin{definition}[Discrete (linear) variational problem (DVP)]
+    \label{def:discrete_var_prob}
+    The \emph{discrete variational problem (DVP)} is defined as
+    \cite[Def.~2.2.1.1]{hiptmair_numerical_2023}
+    \begin{align}
+        \label{eq:discrete_var_eq}
+        u_h \in V_{h}: \quad \mathrm{a}(u_h, v_h) = \ell(v_h), \quad \forall v_h \in V_{h},
+    \end{align}
+    where $u_h$ is the discretized trial function or \emph{Galerkin solution},
+    $v_h$ are the discretized test functions, $\mathrm{a}: V_h \times V_h \to \R$
+    is a continuous bilinear form and $\ell: V_h \to \R$ is a continuous linear form.
+\end{definition}
+
+The next step in the Galerkin Discretization is the definition of the basis
+functions for the discrete variational problem.
+
+We choose an ordered basis $\{b_h^1, \dots, b_h^N\}$ of $V_{h}$ with $N := \dim V_{h}$
+where for every $v_h \in V_h$ there are unique coefficients $\nu_i \in \R, i \in \{ 1, \dots, N \}$,
+such that $v_h = \sum_{i=1}^{N} \nu_i b_h^i$ \cite[Def.~0.3.1.2]{hiptmair_numerical_2023}.
+
+Inserting this basis representation into the variaional equation \ref{eq:discrete_var_eq} yields:
+\begin{align}
+     & v_h \in V_{h} \Rightarrow v_h = \nu_1 b_h^1+\cdots+\nu_N b_h^N, \quad \nu_i \in \mathbb{R}, \\
+     & u_h \in V_{h} \Rightarrow u_h = \mu_1 b_h^1+\cdots+\mu_N b_h^N, \quad \mu_i \in \mathbb{R},
+\end{align}
+
+where the number $N$ is the dimension of the discrete vector space $V_{h}$ and $\nu_i, \mu_i \in \R, \ i \in \{1, \dots, N\}$
+are unique coefficients.
+
+The basis functions also have to satisfy the cardinal basis property, as given by definition \ref{def:cardinal_basis_property}.
+
+\begin{definition}[Cardinal basis property]
+    \label{def:cardinal_basis_property}
+
+    \begin{align}
+        b_h^j(\vec{x}_i) = \begin{cases}
+                               1 & i = j,      \\
+                               0 & \text{else}
+                           \end{cases}, \quad
+        i,j \in \{ 1, ..., N \}.
+    \end{align}
+\end{definition}
+
+Note: In this work, we refer to the basis functions on the global vector space as the
+basis functions and to the basis functions restricted to an element $K$ as the
+\emph{shape functions}.
+
+\begin{definition}[Shape function]
+    For an element $K$, we define the \emph{shape functions} as the basis functions,
+    restricted to the element $K$:
+    \begin{align}
+        b^i_K := b^i_{h|K}.
+    \end{align}
+\end{definition}
+Note: The letter $K$ for the shape function $b^i_K$ may be omitted where the context is clear.
+
+Inserting the definitions of the basis functions into the variational equation %\cite[Chapter~2.2.2]{hiptmair_numerical_2023}
+\begin{align}
+    \mathrm{a}(u_h, v_h)                                                                                            & = \ell(v_h) \quad                                 & \forall u_h, v_h \in V_{0,h},                                   \\
+    \sum_{k=1}^N \sum_{j=1}^N \mu_k \nu_j \, \mathrm{a}\left(b_h^k, b_h^j\right)                                    & = \sum_{j=1}^N \nu_j \ell\left(b_h^j\right) \quad & \forall \nu_1, \dots, \nu_N, \mu_1, \dots \mu_N \in \mathbb{R}, \\
+    \sum_{j=1}^N \nu_j\left(\sum_{k=1}^N \mu_k \, \mathrm{a}\left(b_h^k, b_h^j\right)-\ell\left(b_h^j\right)\right) & = 0 \quad                                         & \forall \nu_1, \dots, \nu_N, \mu_1, \dots \mu_N \in \mathbb{R}, \\
+    \sum_{k=1}^N \mu_k \, \mathrm{a}\left(b_h^k, b_h^j\right)                                                       & = \ell\left(b_h^j\right)                          & \text { for } j=1, \dots, N.
+\end{align}
+
+\begin{definition}[Stiffness matrix]
+    \label{def:stiffness_mat}
+    The stiffness matrix (or Galerkin matrix) is the matrix of the bilinear form evaluations
+    defined as:
+    \begin{align}
+        \mat{A} = \left[ \mathrm{a}(b_h^j, b_h^i) \right]^N_{i,j=1}, \ \in \R^{N,N}.
+        \label{eq:stiffness_mat}
+    \end{align}
+\end{definition}
+
+\begin{definition}[Load vector]
+    \label{def:load_vec}
+    The load vector (or right-hand-side vector) is the vector of linear form evaluations
+    defined as:
+    \begin{align}
+        \vec{\varphi} = \left[ \ell(b_h^i) \right]^N_{i=1} \in \R^{N}.
+        \label{eq:load_vec}
+    \end{align}
+\end{definition}
+
+To compute each entry of the stiffness matrix and load vector,
+the integrals from the bilinear form and linear form are approximated.
+This is done with numerical quadrature (numerical integration).
+
+We arrive at the linear system of equations (LSE):
+
+\begin{align}
+    \mat{A}\vec{\mu} = \vec{\varphi}.
+\end{align}

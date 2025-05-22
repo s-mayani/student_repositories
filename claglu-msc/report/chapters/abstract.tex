@@ -1,0 +1,20 @@
+\begin{abstract}
+
+We present a numerical solver for the Vlasov-Poisson equation to simulate plasma dynamics including
+Coulomb collisions.
+The method makes use of a Langevin type operator to approximate inter-particle collisions via
+Rosenbluth potentials.
+We employ a Particle-in-Cell approach to efficiently simulate the motion of electrons in a
+self-consistent manner.
+The governing stochastic differential equation introduces a velocity dependent dynamic friction and
+diffusion term accounting for the numerous small angle collisions due to Coulomb repulsion in form of a
+stochastic process.
+
+We carry out a thorough study on suitable differential operators for computing the Rosenbluth
+potentials as well as the collisional coefficients.
+The implementation is subsequently tested on a disorder induced heating process in which particle
+collisions play an essential role for the system to attain an equilibrium state.
+Additionally, we demonstrate the correctness of the computed collisional terms using analytical test
+cases.
+
+\end{abstract}
