@@ -1,0 +1,14 @@
+numpy>=1.19.5
+urllib3==1.26.9 
+chardet==5.1.0 
+scipy==1.9.3
+charset_normalizer==2.0.12
+pycosmo==2.2.0
+setuptools
+pytest
+pyarrow
+csv2parquet
+pandas
+matplotlib 
+h5py
+ipykernel

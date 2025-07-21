@@ -1,0 +1,52 @@
+Nsample          4       % sets the maximum k that the code uses,
+                           % i.e. this effectively determines the
+                           % Nyquist frequency that the code assumes,
+                           % k_Nyquist = 2*PI/Box * Nsample/2
+                           % Normally, one chooses Nsample such that
+                           % Ntot =  Nsample^3, where Ntot is the
+                           % total number of particles
+
+
+Box              64.0 % 7812.5   Periodic box size of simulation
+
+
+Omega            0.25       % Total matter density  (at z=0)
+OmegaLambda      0.71       % Cosmological constant (at z=0)
+OmegaBaryon      0.04       % Baryon density        (at z=0)
+HubbleParam      0.7       % Hubble paramater (may be used for power spec parameterization)
+
+Redshift         11.5        % Starting redshift
+
+Sigma8           0.8       % power spectrum normalization
+
+LinearFittingFunction        1    % "0" selects "EH"; Eisenstein & Hu, 1998, ApJ, 511, 5
+                                          % "1" selects "BBKS"; as summarized by Peacock, 1997, MNRAS, 284, 885
+
+NonLinearFittingFunction     0    % "0" selects "halofit" from Smith et al., 2003, MNRAS, 341, 1311
+                                  % "1" selects "rev_halofit" from revision by Takahashi et al., 2012,
+                                  % ApJ, 761, 152
+                                  % "2" selects "mead" incorporates the implementation of the as
+                                  % described in Mead et al. 2015 and Mead et al. 2016
+
+InputSpectrum_UnitLength_in_cm  3.085678e24 % defines length unit of tabulated
+                                            % input spectrum in cm/h.
+                                            % Note: This can be chosen different from UnitLength_in_cm
+
+ReNormalizeInputSpectrum   1                % if set to zero, the
+                                            % tabulated spectrum is
+                                            % assumed to be normalized
+                                            % already in its amplitude to
+                                            % the starting redshift,
+                                            % otherwise this is recomputed
+                                            % based on the specified sigma8
+
+UnitLength_in_cm          3.085678e21   % defines length unit of output (in cm/h)
+UnitMass_in_g             1.989e43      % defines mass unit of output (in g/cm)
+UnitVelocity_in_cm_per_s  1e5           % defines velocity unit of output (in cm/sec)
+
+
+
+
+
+
+

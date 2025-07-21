@@ -1,0 +1,419 @@
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/infile16.dat' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/tf.dat' is not parsed by Ippl.
+Warning: Option 'out' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/results/results_weak_gpu/16_particles_1_' is not parsed by Ippl.
+Warning: Option 'FFT' is not parsed by Ippl.
+Warning: Option '0.01' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+DataBase > Done loading parameters.
+Inititalise: > time: 0.0366085, timestep: inf
+Inititalise: > Dloga: inf
+Inititalise: > z: 50, scaling factor: 0.0196078
+Inititalise: > H0: 0.1, H_initial: 18.2108
+Inititalise: > critical density (today): 2.7755e-08
+Pre Run> total mass: 1.81895e+06
+Pre Run> mass of a single particle 444.08
+Pre Run> Discretization:
+Pre Run> nt 0, Np = 4096, grid = ( 16 , 16 , 16 )
+initspec > Pulled all needed phyice quantities
+initspec > kh_tmp= 0.154252 n_s= 0.9 tpiL= 0.0981748
+initspec > Pk created using hu_sugiyama TFFlag ==2
+initspec > sigma_8=0.800001, target was 0.8
+initspec > norm= 3.0615e+06
+initspec > Gaussian initial conditions, f_NL=0
+LinearZeldoInitMP > Fourier density field is Hermitian.
+createParticles > local number of galaxies after initializer 4096
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation> Starting iterations ... up to 0
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation> End.
+Timings> ---------------------------------------------
+Timings>      Timing results for 1 nodes:
+Timings> ---------------------------------------------
+Timings> total............... Wall tot =   0.540131
+Timings> 
+Timings> Fourier Density..... Wall max = 4.6789e-05
+Timings>                      Wall avg = 4.6789e-05
+Timings>                      Wall min = 4.6789e-05
+Timings> 
+Timings> Hermiticity Timer... Wall max = 7.3489e-05
+Timings>                      Wall avg = 7.3489e-05
+Timings>                      Wall min = 7.3489e-05
+Timings> 
+Timings> Fourier Displacemen. Wall max = 0.00882196
+Timings>                      Wall avg = 0.00882196
+Timings>                      Wall min = 0.00882196
+Timings> 
+Timings> Position/Velocity i. Wall max = 6.9192e-05
+Timings>                      Wall avg = 6.9192e-05
+Timings>                      Wall min = 6.9192e-05
+Timings> 
+Timings> particleBC.......... Wall max = 4.0046e-05
+Timings>                      Wall avg = 4.0046e-05
+Timings>                      Wall min = 4.0046e-05
+Timings> 
+Timings> updateParticle...... Wall max =          0
+Timings>                      Wall avg =          0
+Timings>                      Wall min =          0
+Timings> 
+Timings> ---------------------------------------------
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/infile20.dat' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/tf.dat' is not parsed by Ippl.
+Warning: Option 'out' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/results/results_weak_gpu/20_particles_2_' is not parsed by Ippl.
+Warning: Option 'FFT' is not parsed by Ippl.
+Warning: Option '0.01' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+DataBase {0}> Done loading parameters.
+Inititalise: {0}> time: 0.0366085, timestep: inf
+Inititalise: {0}> Dloga: inf
+Inititalise: {0}> z: 50, scaling factor: 0.0196078
+Inititalise: {0}> H0: 0.1, H_initial: 18.2108
+Inititalise: {0}> critical density (today): 2.7755e-08
+Pre Run{0}> total mass: 1.81895e+06
+Pre Run{0}> mass of a single particle 227.369
+Pre Run{0}> Discretization:
+Pre Run{0}> nt 0, Np = 8000, grid = ( 20 , 20 , 20 )
+initspec {0}> Pulled all needed phyice quantities
+initspec {0}> kh_tmp= 0.154252 n_s= 0.9 tpiL= 0.0981748
+initspec {0}> Pk created using hu_sugiyama TFFlag ==2
+initspec {0}> sigma_8=0.800001, target was 0.8
+initspec {0}> norm= 3.0615e+06
+initspec {0}> Gaussian initial conditions, f_NL=0
+LinearZeldoInitMP {0}> Fourier density field is Hermitian.
+createParticles {1}> local number of galaxies after initializer 624
+createParticles {0}> local number of galaxies after initializer 4127
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> Starting iterations ... up to 0
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> End.
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 2 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> total............... Wall tot =   0.188122
+Timings{0}> 
+Timings{0}> findInternal........ Wall max = 1.5528e-05
+Timings{0}>                      Wall avg = 1.5448e-05
+Timings{0}>                      Wall min = 1.5368e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max = 3.0178e-05
+Timings{0}>                      Wall avg = 2.9857e-05
+Timings{0}>                      Wall min = 2.9536e-05
+Timings{0}> 
+Timings{0}> Fourier Density..... Wall max = 5.1658e-05
+Timings{0}>                      Wall avg = 5.0461e-05
+Timings{0}>                      Wall min = 4.9264e-05
+Timings{0}> 
+Timings{0}> Hermiticity Timer... Wall max = 0.00736718
+Timings{0}>                      Wall avg =   0.007361
+Timings{0}>                      Wall min = 0.00735481
+Timings{0}> 
+Timings{0}> Fourier Displacemen. Wall max =  0.0123533
+Timings{0}>                      Wall avg =  0.0123484
+Timings{0}>                      Wall min =  0.0123436
+Timings{0}> 
+Timings{0}> Position/Velocity i. Wall max = 6.9051e-05
+Timings{0}>                      Wall avg = 6.82945e-05
+Timings{0}>                      Wall min = 6.7538e-05
+Timings{0}> 
+Timings{0}> basicOperations..... Wall max = 0.000102945
+Timings{0}>                      Wall avg = 0.000101594
+Timings{0}>                      Wall min = 0.000100242
+Timings{0}> 
+Timings{0}> perpReduction....... Wall max = 0.00032806
+Timings{0}>                      Wall avg = 0.000326522
+Timings{0}>                      Wall min = 0.000324984
+Timings{0}> 
+Timings{0}> allReduce........... Wall max = 1.4648e-05
+Timings{0}>                      Wall avg = 1.4287e-05
+Timings{0}>                      Wall min = 1.3926e-05
+Timings{0}> 
+Timings{0}> scatterR............ Wall max =  3.065e-06
+Timings{0}>                      Wall avg =  3.035e-06
+Timings{0}>                      Wall min =  3.005e-06
+Timings{0}> 
+Timings{0}> updateLayout........ Wall max = 0.000186222
+Timings{0}>                      Wall avg = 0.000174906
+Timings{0}>                      Wall min = 0.000163589
+Timings{0}> 
+Timings{0}> updatePB............ Wall max =  3.076e-06
+Timings{0}>                      Wall avg =  3.076e-06
+Timings{0}>                      Wall min =  3.076e-06
+Timings{0}> 
+Timings{0}> particleBC.......... Wall max = 4.2209e-05
+Timings{0}>                      Wall avg = 4.16685e-05
+Timings{0}>                      Wall min = 4.1128e-05
+Timings{0}> 
+Timings{0}> updateParticle...... Wall max =  0.0241414
+Timings{0}>                      Wall avg =  0.0241127
+Timings{0}>                      Wall min =   0.024084
+Timings{0}> 
+Timings{0}> locateParticles..... Wall max = 0.000606877
+Timings{0}>                      Wall avg = 0.000601863
+Timings{0}>                      Wall min = 0.000596849
+Timings{0}> 
+Timings{0}> neighborSearch...... Wall max = 0.00014741
+Timings{0}>                      Wall avg = 0.000144474
+Timings{0}>                      Wall min = 0.000141537
+Timings{0}> 
+Timings{0}> nonNeighboringParti. Wall max = 3.3623e-05
+Timings{0}>                      Wall avg = 3.31725e-05
+Timings{0}>                      Wall min = 3.2722e-05
+Timings{0}> 
+Timings{0}> sendPreprocess...... Wall max =   0.019164
+Timings{0}>                      Wall avg =  0.0191607
+Timings{0}>                      Wall min =  0.0191575
+Timings{0}> 
+Timings{0}> particleSend........ Wall max = 0.00366898
+Timings{0}>                      Wall avg = 0.00282009
+Timings{0}>                      Wall min = 0.00197121
+Timings{0}> 
+Timings{0}> particleDestroy..... Wall max = 0.000370982
+Timings{0}>                      Wall avg = 0.000352026
+Timings{0}>                      Wall min = 0.00033307
+Timings{0}> 
+Timings{0}> particleRecv........ Wall max = 0.00199247
+Timings{0}>                      Wall avg =  0.0011358
+Timings{0}>                      Wall min = 0.000279128
+Timings{0}> 
+Timings{0}> ---------------------------------------------
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/infile25.dat' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/tf.dat' is not parsed by Ippl.
+Warning: Option 'out' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/results/results_weak_gpu/25_particles_4_' is not parsed by Ippl.
+Warning: Option 'FFT' is not parsed by Ippl.
+Warning: Option '0.01' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+DataBase {0}> Done loading parameters.
+Inititalise: {0}> time: 0.0366085, timestep: inf
+Inititalise: {0}> Dloga: inf
+Inititalise: {0}> z: 50, scaling factor: 0.0196078
+Inititalise: {0}> H0: 0.1, H_initial: 18.2108
+Inititalise: {0}> critical density (today): 2.7755e-08
+Pre Run{0}> total mass: 1.81895e+06
+Pre Run{0}> mass of a single particle 116.413
+Pre Run{0}> Discretization:
+Pre Run{0}> nt 0, Np = 15625, grid = ( 25 , 25 , 25 )
+initspec {0}> Pulled all needed phyice quantities
+initspec {0}> kh_tmp= 0.154252 n_s= 0.9 tpiL= 0.0981748
+initspec {0}> Pk created using hu_sugiyama TFFlag ==2
+initspec {0}> sigma_8=0.800001, target was 0.8
+initspec {0}> norm= 3.0615e+06
+initspec {0}> Gaussian initial conditions, f_NL=0
+LinearZeldoInitMP {0}> Fourier density field is Hermitian.
+createParticles {1}> local number of galaxies after initializer 1100
+createParticles {2}> local number of galaxies after initializer 1134
+createParticles {3}> local number of galaxies after initializer 541
+createParticles {0}> local number of galaxies after initializer 9825
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> Starting iterations ... up to 0
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> End.
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 4 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> total............... Wall tot =   0.163889
+Timings{0}> 
+Timings{0}> findInternal........ Wall max = 4.2171e-05
+Timings{0}>                      Wall avg = 4.11078e-05
+Timings{0}>                      Wall min = 4.0556e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max = 6.2447e-05
+Timings{0}>                      Wall avg = 5.99585e-05
+Timings{0}>                      Wall min = 5.8058e-05
+Timings{0}> 
+Timings{0}> Fourier Density..... Wall max = 4.8261e-05
+Timings{0}>                      Wall avg = 4.72642e-05
+Timings{0}>                      Wall min = 4.5445e-05
+Timings{0}> 
+Timings{0}> Hermiticity Timer... Wall max = 0.00923999
+Timings{0}>                      Wall avg = 0.00922768
+Timings{0}>                      Wall min = 0.00921995
+Timings{0}> 
+Timings{0}> Fourier Displacemen. Wall max =  0.0147944
+Timings{0}>                      Wall avg =  0.0147899
+Timings{0}>                      Wall min =  0.0147832
+Timings{0}> 
+Timings{0}> Position/Velocity i. Wall max = 6.8751e-05
+Timings{0}>                      Wall avg = 6.81643e-05
+Timings{0}>                      Wall min = 6.6956e-05
+Timings{0}> 
+Timings{0}> basicOperations..... Wall max = 0.000151306
+Timings{0}>                      Wall avg = 0.000150505
+Timings{0}>                      Wall min = 0.000148502
+Timings{0}> 
+Timings{0}> perpReduction....... Wall max = 0.00114622
+Timings{0}>                      Wall avg = 0.000953313
+Timings{0}>                      Wall min = 0.00077198
+Timings{0}> 
+Timings{0}> allReduce........... Wall max = 0.000457016
+Timings{0}>                      Wall avg = 0.000281946
+Timings{0}>                      Wall min = 0.000105269
+Timings{0}> 
+Timings{0}> scatterR............ Wall max =  3.106e-06
+Timings{0}>                      Wall avg = 3.07575e-06
+Timings{0}>                      Wall min =  3.025e-06
+Timings{0}> 
+Timings{0}> updateLayout........ Wall max = 0.000159973
+Timings{0}>                      Wall avg = 0.000157515
+Timings{0}>                      Wall min = 0.000155644
+Timings{0}> 
+Timings{0}> updatePB............ Wall max =  3.166e-06
+Timings{0}>                      Wall avg = 3.11575e-06
+Timings{0}>                      Wall min =  3.095e-06
+Timings{0}> 
+Timings{0}> particleBC.......... Wall max = 4.2711e-05
+Timings{0}>                      Wall avg = 4.18567e-05
+Timings{0}>                      Wall min = 4.1408e-05
+Timings{0}> 
+Timings{0}> updateParticle...... Wall max =  0.0327283
+Timings{0}>                      Wall avg =  0.0306484
+Timings{0}>                      Wall min =  0.0297845
+Timings{0}> 
+Timings{0}> locateParticles..... Wall max = 0.000619502
+Timings{0}>                      Wall avg = 0.000610362
+Timings{0}>                      Wall min = 0.000592972
+Timings{0}> 
+Timings{0}> neighborSearch...... Wall max = 0.00015351
+Timings{0}>                      Wall avg = 0.000147902
+Timings{0}>                      Wall min = 0.000140105
+Timings{0}> 
+Timings{0}> nonNeighboringParti. Wall max = 3.9915e-05
+Timings{0}>                      Wall avg = 3.62662e-05
+Timings{0}>                      Wall min = 3.2832e-05
+Timings{0}> 
+Timings{0}> sendPreprocess...... Wall max =  0.0271852
+Timings{0}>                      Wall avg =   0.027112
+Timings{0}>                      Wall min =   0.027041
+Timings{0}> 
+Timings{0}> particleSend........ Wall max = 0.00155834
+Timings{0}>                      Wall avg = 0.00119093
+Timings{0}>                      Wall min = 0.00097813
+Timings{0}> 
+Timings{0}> particleDestroy..... Wall max = 0.000328802
+Timings{0}>                      Wall avg = 0.000328091
+Timings{0}>                      Wall min = 0.000326498
+Timings{0}> 
+Timings{0}> particleRecv........ Wall max = 0.00354272
+Timings{0}>                      Wall avg = 0.00136425
+Timings{0}>                      Wall min = 0.000613501
+Timings{0}> 
+Timings{0}> ---------------------------------------------
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/infile32.dat' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/tf.dat' is not parsed by Ippl.
+Warning: Option 'out' is not parsed by Ippl.
+Warning: Option '/psi/home/bobrov_e/cosmo-sim/runCosmo/scaling_studies/results/results_weak_gpu/32_particles_8_' is not parsed by Ippl.
+Warning: Option 'FFT' is not parsed by Ippl.
+Warning: Option '0.01' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+DataBase {0}> Done loading parameters.
+Inititalise: {0}> time: 0.0366085, timestep: inf
+Inititalise: {0}> Dloga: inf
+Inititalise: {0}> z: 50, scaling factor: 0.0196078
+Inititalise: {0}> H0: 0.1, H_initial: 18.2108
+Inititalise: {0}> critical density (today): 2.7755e-08
+Pre Run{0}> total mass: 1.81895e+06
+Pre Run{0}> mass of a single particle 55.51
+Pre Run{0}> Discretization:
+Pre Run{0}> nt 0, Np = 32768, grid = ( 32 , 32 , 32 )
+initspec {0}> Pulled all needed phyice quantities
+initspec {0}> kh_tmp= 0.154252 n_s= 0.9 tpiL= 0.0981748
+initspec {0}> Pk created using hu_sugiyama TFFlag ==2
+initspec {0}> sigma_8=0.800001, target was 0.8
+initspec {0}> norm= 3.0615e+06
+initspec {0}> Gaussian initial conditions, f_NL=0
+LinearZeldoInitMP {0}> Fourier density field is Hermitian.
+createParticles {1}> local number of galaxies after initializer 336
+createParticles {2}> local number of galaxies after initializer 336
+createParticles {3}> local number of galaxies after initializer 1568
+createParticles {4}> local number of galaxies after initializer 336
+createParticles {5}> local number of galaxies after initializer 1568
+createParticles {6}> local number of galaxies after initializer 1568
+createParticles {7}> local number of galaxies after initializer 0
+createParticles {0}> local number of galaxies after initializer 23681
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> Starting iterations ... up to 0
+/psi/home/bobrov_e/ippl/build-cosmo-gpu/cosmology-new/StructureFormation{0}> End.
+Timings{0}> ---------------------------------------------
+Timings{0}>      Timing results for 8 nodes:
+Timings{0}> ---------------------------------------------
+Timings{0}> total............... Wall tot =   0.309247
+Timings{0}> 
+Timings{0}> findInternal........ Wall max = 0.000103127
+Timings{0}>                      Wall avg = 9.62144e-05
+Timings{0}>                      Wall min = 9.1063e-05
+Timings{0}> 
+Timings{0}> findPeriodic........ Wall max = 0.000113727
+Timings{0}>                      Wall avg = 0.000111179
+Timings{0}>                      Wall min = 0.000107823
+Timings{0}> 
+Timings{0}> Fourier Density..... Wall max = 4.8883e-05
+Timings{0}>                      Wall avg = 4.68825e-05
+Timings{0}>                      Wall min = 4.5667e-05
+Timings{0}> 
+Timings{0}> Hermiticity Timer... Wall max =  0.0169443
+Timings{0}>                      Wall avg =  0.0169246
+Timings{0}>                      Wall min =  0.0169137
+Timings{0}> 
+Timings{0}> Fourier Displacemen. Wall max =  0.0262293
+Timings{0}>                      Wall avg =  0.0262257
+Timings{0}>                      Wall min =  0.0262202
+Timings{0}> 
+Timings{0}> Position/Velocity i. Wall max =  7.344e-05
+Timings{0}>                      Wall avg = 7.01645e-05
+Timings{0}>                      Wall min = 6.7629e-05
+Timings{0}> 
+Timings{0}> basicOperations..... Wall max = 0.000264951
+Timings{0}>                      Wall avg = 0.000252592
+Timings{0}>                      Wall min = 0.000246606
+Timings{0}> 
+Timings{0}> perpReduction....... Wall max = 0.00329306
+Timings{0}>                      Wall avg = 0.00227426
+Timings{0}>                      Wall min = 0.00147978
+Timings{0}> 
+Timings{0}> allReduce........... Wall max =  0.0020135
+Timings{0}>                      Wall avg = 0.00121943
+Timings{0}>                      Wall min = 0.00020464
+Timings{0}> 
+Timings{0}> scatterR............ Wall max =  3.567e-06
+Timings{0}>                      Wall avg = 3.19375e-06
+Timings{0}>                      Wall min =  3.056e-06
+Timings{0}> 
+Timings{0}> updateLayout........ Wall max = 0.000177085
+Timings{0}>                      Wall avg = 0.000164579
+Timings{0}>                      Wall min = 0.000156917
+Timings{0}> 
+Timings{0}> updatePB............ Wall max =  3.236e-06
+Timings{0}>                      Wall avg = 3.14725e-06
+Timings{0}>                      Wall min =  3.045e-06
+Timings{0}> 
+Timings{0}> particleBC.......... Wall max = 4.8031e-05
+Timings{0}>                      Wall avg = 4.3601e-05
+Timings{0}>                      Wall min = 4.1678e-05
+Timings{0}> 
+Timings{0}> updateParticle...... Wall max =  0.0721207
+Timings{0}>                      Wall avg =  0.0679947
+Timings{0}>                      Wall min =  0.0650277
+Timings{0}> 
+Timings{0}> locateParticles..... Wall max = 0.00064996
+Timings{0}>                      Wall avg = 0.000626175
+Timings{0}>                      Wall min = 0.000605505
+Timings{0}> 
+Timings{0}> neighborSearch...... Wall max = 0.000162157
+Timings{0}>                      Wall avg = 0.000159021
+Timings{0}>                      Wall min = 0.00015323
+Timings{0}> 
+Timings{0}> nonNeighboringParti. Wall max =  3.712e-05
+Timings{0}>                      Wall avg = 3.40695e-05
+Timings{0}>                      Wall min = 3.2161e-05
+Timings{0}> 
+Timings{0}> sendPreprocess...... Wall max =  0.0523278
+Timings{0}>                      Wall avg =  0.0501128
+Timings{0}>                      Wall min =  0.0492311
+Timings{0}> 
+Timings{0}> particleSend........ Wall max =  0.0193022
+Timings{0}>                      Wall avg = 0.00936644
+Timings{0}>                      Wall min = 0.00289714
+Timings{0}> 
+Timings{0}> particleDestroy..... Wall max = 0.000352497
+Timings{0}>                      Wall avg = 0.000295399
+Timings{0}>                      Wall min =  6.091e-06
+Timings{0}> 
+Timings{0}> particleRecv........ Wall max =  0.0164342
+Timings{0}>                      Wall avg = 0.00754848
+Timings{0}>                      Wall min =  3.296e-06
+Timings{0}> 
+Timings{0}> ---------------------------------------------

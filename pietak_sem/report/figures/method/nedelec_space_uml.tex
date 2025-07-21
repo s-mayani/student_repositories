@@ -1,0 +1,21 @@
+\begin{tikzpicture}[scale=1.5]
+    \tikzumlset{fill class=red!5, draw=red!60, class width=20ex}
+    \umlclass{ippl::NedelecSpace}{
+        ...
+    }{
+        + getGlobalDOFIndices()\\
+        + getFEMVectorDOFIndices()\\
+        + evaluateAx()\\
+        + evaluateLoadVector()\\
+        + createFEMVector()\\
+        + computeError()\\
+        + reconstructToPoints()\\
+        ...
+    }
+
+    \umlsimpleclass[y=3,x=-2]{ippl::FiniteElementSpace}
+
+
+    \umlinherit{ippl::FEMVector}{ippl::FiniteElementSpace}
+
+\end{tikzpicture}

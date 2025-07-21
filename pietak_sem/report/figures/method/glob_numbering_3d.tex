@@ -1,0 +1,68 @@
+\tdplotsetmaincoords{70}{15}
+\begin{tikzpicture}[scale=1.8,tdplot_main_coords]
+    \draw[black, line cap = round, ->] (-0.2,-0.2,-0.2) -- (0,-0.2,-0.2) node[color=black, anchor=west] {\footnotesize\(x\)};
+    \draw[black, line cap = round, ->] (-0.2,-0.2,-0.2) -- (-0.2,0,-0.2) node[color=black, anchor=south west] {\footnotesize\(y\)};
+    \draw[black, line cap = round, ->] (-0.2,-0.2,-0.2) -- (-0.2,-0.2,0) node[color=black, anchor=south] {\footnotesize\(z\)};
+    
+
+    
+    
+    \foreach \y in {1,0} {
+        \foreach \z in {0,...,1} {
+            \foreach \x in {0,...,1} {
+                %\node[] at (\x+0.5,\y+0.5,\z+0.5) {$\the\numexpr\z*4 + \y*2 + \x\relax$};
+                %\node[] at (\x+0.5,\y+0.5,\z+0.25) { \scriptsize(\x,\y,\z)};
+
+                \ifthenelse{1 = \y}{
+                    \draw[black, very thick, line cap = round] (\x,\y+1,\z) -- (\x+1,\y+1,\z);
+                    \draw[black, very thick, line cap = round] (\x,\y+1,\z) -- (\x,\y+1,\z+1);
+
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+0.5,\y+1,\z) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+5\relax$};
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x,\y+1,\z+0.5) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\z*21+12+\y*3+\x+3\relax$};
+                }{};
+
+                \draw[black, very thick, line cap = round] (\x,\y,\z) -- (\x,\y+1,\z);
+                \draw[black, very thick, line cap = round] (\x,\y,\z) -- (\x+1,\y,\z);
+                \draw[black, very thick, line cap = round] (\x,\y,\z) -- (\x,\y,\z+1);
+                \filldraw[color=blue!60, fill=blue!5, thick](\x + 0.5,\y,\z) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21\relax$};
+                \filldraw[color=blue!60, fill=blue!5, thick](\x,\y + 0.5,\z) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+2\relax$};
+                \filldraw[color=blue!60, fill=blue!5, thick](\x,\y,\z + 0.5) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\z*21+12+\y*3+\x\relax$};
+                
+
+                \ifthenelse{1 = \z}{
+                    \draw[black, very thick, line cap = round] (\x,\y,\z+1) -- (\x,\y+1,\z+1);
+                    \draw[black, very thick, line cap = round] (\x,\y,\z+1) -- (\x+1,\y,\z+1);
+
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+0.5,\y,\z+1) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+21\relax$};
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x,\y+0.5,\z+1) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+23\relax$};
+                }{};
+
+
+
+                \ifthenelse{1 = \x}{
+                    \draw[black, very thick, line cap = round] (\x+1,\y,\z) -- (\x+1,\y+1,\z);
+                    \draw[black, very thick, line cap = round] (\x+1,\y,\z) -- (\x+1,\y,\z+1);
+
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+1,\y+0.5,\z) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+3\relax$};
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+1,\y,\z+0.5) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\z*21+12+\y*3+\x+1\relax$};
+                }{};
+
+                \ifthenelse{1 = \x \AND 1 = \y}{
+                    \draw[black, very thick, line cap = round] (\x+1,\y+1,\z) -- (\x+1,\y+1,\z+1);
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+1,\y+1,\z+0.5) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\z*21+12+\y*3+\x+4\relax$};
+                }{}
+                \ifthenelse{1 = \x \AND 1 = \z}{
+                    \draw[black, very thick, line cap = round] (\x+1,\y,\z+1) -- (\x+1,\y+1,\z+1);
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+1,\y+0.5,\z+1) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+24\relax$};
+                }{}
+                \ifthenelse{1 = \y \AND 1 = \z}{
+                    \draw[black, very thick, line cap = round] (\x,\y+1,\z+1) -- (\x+1,\y+1,\z+1);
+                    \filldraw[color=blue!60, fill=blue!5, thick](\x+0.5,\y+1,\z+1) circle (0.1cm) node[color=black] {\scriptsize$\the\numexpr\x+\y*5+\z*21+26\relax$};
+                }{}
+            }
+        }
+    }
+            
+
+
+\end{tikzpicture}

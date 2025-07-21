@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=1.5]
+    \tikzumlset{fill class=red!5, draw=red!60, class width=20ex}
+    \umlclass{ippl::Solver}{
+        \# pcg\_algo\_m : ippl::CG\\
+        ...
+    }{
+        + solve()\\
+        + getL2Error()\\
+        + reconstructToPoints()\\
+        ...
+    }
+
+    \umlsimpleclass[y=3,x=-2]{ippl::Maxwell}
+    \umlemptyclass[y=3,x=2]{ippl::FEMVector}
+
+
+    \umlinherit{ippl::Solver}{ippl::FiniteElementSpace}
+    
+    \umlaggreg[mult1={\#lhsVector, \#rhsVector}]{ippl::Solver}{ippl::FEMVector}
+\end{tikzpicture}

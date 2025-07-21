@@ -1,0 +1,5 @@
+\begin{abstract}
+    Currently the Finite Element implementation in \texttt{IPPL} only supports the first order Lagrangian space, which limits its usability to scalar valued functions. In the future we would like to be able to solve problems from electromagnetism, which requires different finite element spaces. To this extent we are introducing the Nédélec space into \texttt{IPPL}. While the Lagrangian degrees of freedom are defined on the vertices, the Nédélec ones are defined on the edges, making a one to one translation of the current implementation, especially with regards to storing of degrees of freedom, not possible. To solve this problem we introduce a new \texttt{FEMVector} class used to store the values at degrees of freedom located at arbitrary positions, with which we then implement the Nédélec space.
+    
+    In this report we will talk about why we need the Nédélec space, how we implemented it, and then finish of by showing the correctness and performance of our implementation.
+\end{abstract}

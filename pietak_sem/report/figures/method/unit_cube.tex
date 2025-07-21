@@ -1,0 +1,37 @@
+\tdplotsetmaincoords{70}{15}
+\begin{tikzpicture}[scale=2.5,tdplot_main_coords]
+
+    \draw[black, line cap = round, ->] (-0.1,-0.1,-0.1) -- (0,-0.1,-0.1) node[color=black, anchor=west] {\footnotesize\(x\)};
+    \draw[black, line cap = round, ->] (-0.1,-0.1,-0.1) -- (-0.1,0,-0.1) node[color=black, anchor=south west] {\footnotesize\(y\)};
+    \draw[black, line cap = round, ->] (-0.1,-0.1,-0.1) -- (-0.1,-0.1,0) node[color=black, anchor=south] {\footnotesize\(z\)};
+
+
+
+    \draw[black, very thick, line cap = round] (0,0,0) -- (1,0,0);
+    \draw[black, very thick, line cap = round] (0,0,0) -- (0,1,0);
+    \draw[black, very thick, line cap = round] (1,0,0) -- (1,1,0);
+    \draw[black, very thick, line cap = round] (0,1,0) -- (1,1,0);
+    \draw[black, very thick, line cap = round] (0,0,1) -- (1,0,1);
+    \draw[black, very thick, line cap = round] (0,0,1) -- (0,1,1);
+    \draw[black, very thick, line cap = round] (1,0,1) -- (1,1,1);
+    \draw[black, very thick, line cap = round] (0,1,1) -- (1,1,1);
+    
+    \draw[black, very thick, line cap = round] (0,0,0) -- (0,0,1);
+    \draw[black, very thick, line cap = round] (0,1,0) -- (0,1,1);
+    \draw[black, very thick, line cap = round] (1,0,0) -- (1,0,1);
+    \draw[black, very thick, line cap = round] (1,1,0) -- (1,1,1);
+
+
+    \filldraw[color=red!60, fill=red!5, thick](0.5,0,0) circle (0.1cm) node[color=black] {0};
+    \filldraw[color=red!60, fill=red!5, thick](0,0.5,0) circle (0.1cm) node[color=black] {1};
+    \filldraw[color=red!60, fill=red!5, thick](0.5,1,0) circle (0.1cm) node[color=black] {2};
+    \filldraw[color=red!60, fill=red!5, thick](1,0.5,0) circle (0.1cm) node[color=black] {3};
+    \filldraw[color=red!60, fill=red!5, thick](0,0,0.5) circle (0.1cm) node[color=black] {4};
+    \filldraw[color=red!60, fill=red!5, thick](1,0,0.5) circle (0.1cm) node[color=black] {5};
+    \filldraw[color=red!60, fill=red!5, thick](1,1,0.5) circle (0.1cm) node[color=black] {6};
+    \filldraw[color=red!60, fill=red!5, thick](0,1,0.5) circle (0.1cm) node[color=black] {7};
+    \filldraw[color=red!60, fill=red!5, thick](0.5,0,1) circle (0.1cm) node[color=black] {8};
+    \filldraw[color=red!60, fill=red!5, thick](0,0.5,1) circle (0.1cm) node[color=black] {9};
+    \filldraw[color=red!60, fill=red!5, thick](0.5,1,1) circle (0.1cm) node[color=black] {10};
+    \filldraw[color=red!60, fill=red!5, thick](1,0.5,1) circle (0.1cm) node[color=black] {11};
+\end{tikzpicture}

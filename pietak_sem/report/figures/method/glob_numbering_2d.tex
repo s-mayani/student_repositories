@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=1.5]
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (0,-0.1) node[color=black, anchor=west] {\footnotesize\(x\)};
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (-0.1,0) node[color=black, anchor=south] {\footnotesize\(y\)};
+    
+    \draw[black, very thick, line cap = round] (0,3) -- (3,3);
+    \draw[black, very thick, line cap = round] (3,0) -- (3,3);
+
+    \foreach \x in {0,...,2}
+        \foreach \y in {0,...,2} 
+            {\draw[black, very thick, line cap = round] (\x,\y) -- (\x,\y+1);
+             \draw[black, very thick, line cap = round] (\x,\y) -- (\x+1,\y);
+             \filldraw[color=blue!60, fill=blue!5, thick](\x + 0.5,\y) circle (0.1) node[color=black] {\scriptsize$\the\numexpr\x+\y*7\relax$};
+             \filldraw[color=blue!60, fill=blue!5, thick](\x,\y + 0.5) circle (0.1) node[color=black] {\scriptsize$\the\numexpr\x+\y*7+3\relax$};
+             \ifthenelse{2 = \x}{\filldraw[color=blue!60, fill=blue!5, thick](\x+1,\y + 0.5) circle (0.1) node[color=black] {\scriptsize$\the\numexpr\x+\y*7+4\relax$}}{};
+             \ifthenelse{2 = \y}{\filldraw[color=blue!60, fill=blue!5, thick](\x+0.5,\y + 1) circle (0.1) node[color=black] {\scriptsize$\the\numexpr\x+(\y+1)*7\relax$}}{};
+             \node[] at (\x+0.5,\y+0.5) (a) {$\the\numexpr\y*3 + \x\relax$};
+             \node[] at (\x+0.5,\y+0.25) {\scriptsize(\x,\y)};}
+
+
+\end{tikzpicture}

@@ -1,0 +1,28 @@
+                      ranks  Wall tot
+=====================================
+total...............      2     1.997
+
+                      ranks  Wall max  Wall min  Wall avg
+=========================================================
+total...............      2     1.997     1.923      1.96
+findInternal........      2 1.392e-05 1.321e-05 1.357e-05
+findPeriodic........      2 9.549e-05 9.412e-05 9.481e-05
+Fourier Density.....      2   0.02025   0.02018   0.02022
+Hermiticity Timer...      2   0.03991   0.03982   0.03986
+Fourier Displacemen.      2    0.6272     0.627    0.6271
+Position/Velocity i.      2   0.03156   0.03093   0.03124
+basicOperations.....      2  0.007122 0.0008778     0.004
+perpReduction.......      2  0.007787   0.00771  0.007749
+allReduce...........      2  0.000585 5.812e-05 0.0003216
+scatterR............      2  5.51e-07  4.91e-07  5.21e-07
+updateLayout........      2   0.01928  0.003184   0.01123
+updatePB............      2  6.41e-07  5.72e-07 6.065e-07
+particleBC..........      2  0.006432  0.006256  0.006344
+updateParticle......      2    0.4865     0.386    0.4362
+locateParticles.....      2     0.304     0.302     0.303
+neighborSearch......      2    0.2825    0.2812    0.2818
+nonNeighboringParti.      2   0.01662   0.01638    0.0165
+sendPreprocess......      2   0.03132  0.002523   0.01692
+particleSend........      2   0.06987  0.006217   0.03804
+particleDestroy.....      2  0.008681  0.007713  0.008197
+particleRecv........      2    0.1383  0.001931   0.07009

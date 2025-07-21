@@ -1,0 +1,3 @@
+# Semester Project Reproducibility Repository
+
+This repository hosts all the files which are needed to reproduce the report and all the plots/data stored in it. It is split into two folders. The first one is `/report/` and it stores the Latex files needed to recreate the report, there one also finds the scripts which are needed to create the plots in the report, they are located in the `/report/fig_gen/` folder. The second part, located in the `/scripts/` folder contains the scripts which will generate the data needed for the plots. Check the readmes of the two folders for more information.

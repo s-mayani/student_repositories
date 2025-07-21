@@ -1,0 +1,348 @@
+\chapter{Method}
+\label{sec:method}
+\section{Theory}
+\label{subsec:theory}
+%\begin{itemize}
+%    \item Explain how the IPPL meshes look like.
+%    \item How are then the DOFs defined on such elements.
+%    \item Write down the local ordering.
+%    \item Write down the global ordering.
+%    \item Write down conversion formulae.
+%    \item Write down the shape function formulas.
+%    \item Write down curl of shape function formulas.
+%\end{itemize}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \input{figures/method/glob_numbering_2d}
+        \caption{Global DOF numbering scheme, element numbering, and multidimensional index in 2D, for a \(4 \times 4\) mesh.}
+    \end{subfigure}
+    \hspace{0.08\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \input{figures/method/glob_numbering_3d}
+        \caption{Global DOF numbering scheme for 3D, given for a \(3 \times 3 \times 3\) mesh.}
+    \end{subfigure}
+    \caption{The global DOF numbering scheme (blue circles) for the Nédélec space in both 2D and 3D. For 2D also the element numbering (black number), and its multidimensional index (black pair) is given, for 3D this was omitted for visual clarity.}
+    \label{fig:glob_numbering}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \input{figures/method/unit_square}
+        \caption{The reference element for the 2D case, with the local DOF numbering.}
+    \end{subfigure}
+    \hspace{0.08\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \input{figures/method/unit_cube}
+        \caption{The reference element for the 3D case, with the local DOF numbering.}
+    \end{subfigure}
+    \caption{The reference elements for the Nédélec space in both 2D and 3D with the DOF numbering scheme.}
+    \label{fig:ref_elements}
+\end{figure}
+
+Currently \texttt{IPPL} only supports structured, rectilinear grid meshes. Therefore our FEM reference elements are the unit square in 2D and the unit cube in 3D, for which our Nédélec Degrees of Freedom (DOFs) reside on the edges. In order to be able to interact with them we assign each DOF a number, this numbering happens by sorting, low to high, the DOF positions according to first their \(z\)-coordinate (only in 3D), because there are multiple DOFs with same \(z\)-coordinate we have not created a unique ordering, but a block ordering, where we have multiple blocks of DOFs with same \(z\)-coordinate and these blocks are sorted correctly. Then in order to further sort we now take each of these blocks and sort them according to their \(y\)-coordinate (in 2D we would simply start here and order all DOFs according to their \(y\)-coordinate), but this again will create a block sorting for which we then sort each block according to their \(x\)-coordinate. After we have sorted the final blocks according to \(x\) we now should have created an unique ordering of the DOFs. An example can be seen in Figure \ref{fig:glob_numbering}. The elements are numbered in the same manner, but additionally also have a multidimensional index, which is a coordinate vector \(\vec p\), that tells the position of an element relative to the mesh itself, so it gives you the offset in elements of an element relative to the element with smallest position, this can also be seen in Figure \ref{fig:glob_numbering}. During the FEM calculations we are going to work with a reference element, which in our case is either the unit square or the unit cube. On it we are also going to have to number the local DOFs, this is given in Figure \ref{fig:ref_elements}. This notion of local numbering does not only apply to the reference element, but also for the elements inside of the mesh, where the local DOFs are simply the ones which lie on this element.\medskip
+
+During the FEM calculations we are often required to retrieve the global shape functions associated with an element given by its multidimensional index, in other words: figuring out what the global indices of the local shape functions of an element are. The global DOF indices for an element with multidimensional index \(\vec{p}\) living in a mesh with number of vertices per axis given by \(n_x\), \(n_y\), and \(n_z\) are given in Equation (\ref{eq:el2glob2d}) for the 2D case and in Equation (\ref{eq:el2glob3d}) for 3D, where they are ordered according to the local shape functions.
+\begin{align}
+    \text{DOFs} =
+    \begin{bNiceMatrix}
+        a \\ b \\ c \\ d
+    \end{bNiceMatrix} = 
+    \begin{bNiceMatrix}[l]
+        \vec{v} \cdot \vec{p} \\
+        a + n_x - 1 \\
+        b + n_x \\
+        b + 1
+    \end{bNiceMatrix}, \text{ with } \vec{v} =
+    \begin{bNiceMatrix}
+        1 \\ 2n_x -1
+    \end{bNiceMatrix} \label{eq:el2glob2d}
+\end{align}
+
+\begin{align}
+    \text{DOFs} =
+    \begin{bNiceMatrix}
+        a \\ b \\ c \\ d \\ e \\ f \\ g \\ h \\ i \\ j \\ k \\ l
+    \end{bNiceMatrix} = 
+    \begin{bNiceMatrix}[l]
+        \vec{v} \cdot \vec{p} \\
+        a + n_x - 1\\
+        b + n_x \\
+        b + 1 \\
+        \vec{v}_z \vec{p}_z + 2 n_x n_y - n_x - n_y + \vec{p}_y n_x + \vec{p}_x \\
+        e + 1 \\
+        e + n_x \\
+        e + n_x + 1 \\
+        a + 3n_x n_y - n_x -n_y \\
+        i + n_x -1 \\
+        j + n_x \\
+        j+1
+    \end{bNiceMatrix}, \text{ with } \vec{v} =
+    \begin{bNiceMatrix}
+        1 \\ 2n_x -1 \\ 3n_x n_y - n_x - n_y
+    \end{bNiceMatrix}\label{eq:el2glob3d}
+\end{align}\medskip
+
+The last thing left to do is to the state the formulae for the basis functions. Here we follow standard FEM methodology and do not evaluate the basis functions on the mesh, but define a reference element on which we evaluate them and then use a transformation in order to transform them to the actual element in the mesh. We define with \(\vec \beta_i\) the \(i\)-th local shape function, \(i \in \{0,1,2,3\}\) for 2D and \(i \in \{0,1,2,...,11\}\) for 3D, of an element in the mesh, and with \(\hat{\vec{\beta}}_i\) the corresponding shape function in the reference element. The formulae for the \(\hat{\vec{\beta}}_i\) are readily available, such as in \cite{maxwellBook}, and they are given in Collection \ref{tab:shape_funcs}. So we want to evaluate the function \(f(\cdot)\), which depends on the shape function \(\vec\beta_i\) transformed by an arbitrary operator \(\mathcal{L}\), i.e., \(f(\mathcal L \circ \vec \beta_i)\), using the reference element shape functions, such that we get:
+\begin{align}
+    f(\mathcal L \circ \vec \beta_i) = f(\mathcal{G} \circ (\mathcal L \circ \hat{\vec{\beta}}_i))\text{,}
+\end{align}
+where \(\mathcal{G}\) is the operator that we are looking for. In the case of curl-conforming Nédélec space \(\mathcal{L}\) will in most cases either be identity or the curl operator, for them we have that the \(\mathcal{G}\) will look as follows:
+\begin{align}
+    f(\vec \beta_i) &= f(\hat{\vec{\beta}}_i) \text{ and } \\
+    f(\nabla \times \vec \beta_i) &= f(J^{-T} (\nabla \times \hat{\vec{\beta}}_i))\text{,}
+\end{align}
+so in the case of identity \(\mathcal{G}\) is identity and for the curl it is \(J^{-T}\), which is the inverse transpose Jacobian of the affine transformation between the reference element and the actual element.
+
+\begin{table}[!ht]
+    \centering
+    2D
+    \begin{multicols}{4}
+    \begin{itemize}
+        \item[] \(\hat{\vec{\beta}}_0 = \begin{bmatrix}1 - y \\ 0\end{bmatrix}\),
+        \item[] \(\hat{\vec{\beta}}_1 = \begin{bmatrix}0 \\ 1 - x\end{bmatrix}\),
+        \item[] \(\hat{\vec{\beta}}_2 = \begin{bmatrix}y \\ 0\end{bmatrix}\),
+        \item[] \(\hat{\vec{\beta}}_3 = \begin{bmatrix}0 \\ x\end{bmatrix}\).
+    \end{itemize}
+    \end{multicols}
+    
+    \vspace{0.5cm}
+    
+    3D
+    \begin{multicols}{3}
+    \begin{itemize}
+        \item[] $\hat{\vec{\beta}}_0$ = $\begin{bmatrix}yz - y - z + 1 \\ 0 \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_1$ = $\begin{bmatrix}0 \\ xz - x - z + 1 \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_2$ = $\begin{bmatrix}y(1-z) \\ 0 \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_3$ = $\begin{bmatrix}0 \\ x(1-z) \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_4$ = $\begin{bmatrix}0 \\ 0 \\ xy - x - y +1\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_5$ = $\begin{bmatrix}0 \\ 0 \\ x(1-y)\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_6$ = $\begin{bmatrix}0 \\ 0 \\ xy\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_7$ = $\begin{bmatrix}0 \\ 0 \\ y(1-x)\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_8$ = $\begin{bmatrix}z(1-y) \\ 0 \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_9$ = $\begin{bmatrix}0 \\ z(1-x) \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_{10}$ = $\begin{bmatrix}yz \\ 0 \\ 0\end{bmatrix}$, \\
+        \item[] $\hat{\vec{\beta}}_{11}$ = $\begin{bmatrix}0 \\ xz \\ 0\end{bmatrix}$. \\
+    \end{itemize}
+    \end{multicols}
+    \renewcommand{\tablename}{Collection}
+    \caption{Formulae for the local shape functions on the reference element of the Nédélec space in both 2D and 3D.}
+    \renewcommand{\tablename}{Table}
+    \label{tab:shape_funcs}
+\end{table}
+
+
+\section{Pipeline}
+%\begin{itemize}
+%    \item General pipeline (solver, Nédélec space,...).
+%    \item Explain what type of problem we can solve \(F(u) = g \text{ in } \Omega\), with \(u\times n = 0 \text{ on } \partial \Omega \).
+%    \item Have diagram explaining it.
+%    \item PIC provides rhs \(g\), get passed to a solver (which solves one specific type of problem), solver interacts with Nédélec space in order to obtain rhs and Ax, solver calls CG to solve Ax=b, solver provides coefficients.
+%    \item Talk about matrix-free-ness.
+%    \item Therefore need solver and Nédélec space class.
+%    \item Additionally problem of how store x and b \(\implies\) need FEMVector.
+%    \item These are all the building blocks required.
+%\end{itemize}
+\begin{figure}[!h]
+    \centering
+    \input{figures/method/pipeline.tex}
+    \caption{General pipeline diagram, for the solving of a problem using the Nédélec space.}
+    \label{fig:gen_diag}
+\end{figure}
+The general pipeline we are using is shown in Figure \ref{fig:gen_diag}. We define a solver, to solve a problem for $\vec{u}(\vec{x})$ of the form:
+\begin{align}
+    &F(\vec{u}(\vec{x})) = \vec{g}(\vec{x}) \text{ in } \Omega\text{,} \\
+    &\vec{u}(\vec{x}) \times \vec{n} = 0 \text{ on } \partial \Omega \text{,}
+\end{align}
+where $F(\cdot)$ defines some functional which determines the type of problem we are solving, $\vec{g}(\cdot)$ is the right hand side (RHS) function, and $\vec{n}$ is the normal vector of the domain $\Omega$.\medskip
+
+The first step of the pipeline regards the right hand side function $\vec{g}$, which will be provided to us, in some form, by the PIC code; We will later go into more detail on the exact way in which we represent this RHS. The next step in the pipeline consists of assembling the Galerkin system $A\vec{\mu} = \vec{b}$, where $A$ is defined by $F(\cdot)$, $\vec{b}$ by \(\vec g\), and \(\vec\mu\) is the solution vector. During the assembly is where the finite element space comes into play, in our case this is the \texttt{NedelecSpace} class, as it knows about how the Galerkin discretization looks like and therefore how the matrix \(A\) and the vector \(\vec b\) need to be constructed. Note that in our case we are doing this matrix-free, so instead of fully expressing the entries of the matrix $A$ we construct a functional which returns the result of the multiplication $A\vec{v}$ for some arbitrary vector $\vec{v}$, as such a multiplication is the only information needed to solve such a system using the Conjugate Gradient (CG) method. When the information about the linear system is created we pass it to the CG solver, which will then solve it for us and returns the solution vector $\vec{\mu}$. Note that the solution vector $\vec{\mu}$ only stores the basis function coefficients of the Nédélec space and in order to retrieve the solution $\vec{u}(\vec{x})$ we have to reconstruct it, something which is done by the Nédélec space. After all this is done we can pass the solution back to PIC and we are done with the FEM-based solve.\medskip
+
+One question we have to answer is how we store the vectors $\vec{b}$ and $\vec{\mu}$. Both of them are 1D vector which store values at the DOF positions and which need to provide functionality for halo exchanges and domain boundaries. Until now \texttt{IPPL} only supported the first order Lagrangian space, where the DOF positions coincide with the vertex positions and therefore an \texttt{ippl::Field} could be used, which is a data structure containing values at the mesh grid-points, i.e., vertex positions. However, for the Nédélec space the DOFs are edge centered and therefore cannot be stored inside of an \texttt{ippl::Field}. To this end we implemented a new class called \texttt{FEMVector}, which represents a 1D vector and provides functionality for halo exchanges (currently no boundary operations are implemented).\medskip
+
+With this general overview provided, we will now discuss in more detail the different parts of the pipeline.
+
+\section{FEMVector}
+%\begin{itemize}
+%    \item Explain basic principle behind FEMVector.
+%    \item Go into implementation details.
+%    \item Explain how halo exchange is implement.
+%    \item Talk about fact, that FEMVector is general object, but each one has to be specifically tailored to a space, due to the halo exchange, boundary, and mapping from index to DOF.
+%\end{itemize}
+\begin{figure}[!ht]
+    \centering
+    \input{figures/method/femvector_uml.tex}
+    \caption{UML Class diagram for the \texttt{FEMVector}.}
+    \label{fig:uml_femvector}
+\end{figure}
+In its very core the \texttt{FEMVector}, Figure \ref{fig:uml_femvector}, is a wrapper around a 1D \texttt{Kokkos::View} which stores data of a templated type. So the \texttt{FEMVector} has a member called \texttt{data} which is a 1D \texttt{Kokkos::View} and then some methods to interact with it, like retrieving its size, an entry, or even itself. While this is neither revolutionary, nor particularly useful, its actual usefulness comes from its ability to perform halo operations (used during parallelization with MPI). Additionally it also allows for the future implementation of new features, like the handling of domain boundaries.\medskip
+
+In order to allow for the halo exchange the \texttt{FEMVector} exposes a set of functions to manipulate the halo, namely \texttt{fillHalo()}, \texttt{accumulateHalo()}, and \texttt{setHalo()}, where the first two are equivalent to their \texttt{ippl::Field} counter parts and the third one is used to set the value of the halo to what is passed as an argument. The way in which the halo is internally handled is by having three lists, the first one, called \texttt{neighbors}, simply stores the MPI ranks of all the other ranks from which information needs to be send or received. The other two lists, called \texttt{sendIdxs} and \texttt{recvIdxs}, are lists of lists which store for each rank in \texttt{neighbors} a list of indices of the underlying \texttt{Kokkos::View}, which are part of their halo and we therefore have to send (\texttt{sendIdxs}), or which are part of our halo and we therefore have to receive values into (\texttt{recvIdxs}). All these lists are passed to the \texttt{FEMVector} at construction time. As we are simply working with indices we are able to create an exchange mechanism that is completely independent of the underlying geometry of the problem and by already passing the lists in the constructor we can also have that the \texttt{FEMVector} is completely unaware of the geometry it is used upon, which adds flexibility.\medskip
+
+These three lists are implemented using a \texttt{std::vector<size\_t>} for \texttt{neighbors} and a \texttt{std::vector<Kokkos::View<size\_t*>>} for both \texttt{sendIdxs} and \texttt{recvIdxs}. They are not directly stored inside of the \texttt{FEMVector} class, but inside of a helper struct, called \texttt{BoundaryInfo}, to which the \texttt{FEMVector} owns a pointer. The reason for having this separation between the \texttt{FEMVector} with its boundary exchange logic and the \texttt{BoundaryInfo} with the data needed to perform the exchange is to have a smaller footprint of the \texttt{FEMVector}, allowing for cheaper copying to device, and for the easy creation of \texttt{FEMVector}s which do not have any halo information; of course this means that when the entire \texttt{FEMVector} is copied to device any information about the boundary is lost. On the other hand we still have that the exchange of data needs to happen via the device, as the entries of the \texttt{FEMVector} are stored there, this is the reason why the \texttt{sendIdxs} and \texttt{recvIdxs} store \texttt{Kokkos::Views}, which then are passed (in the form of \texttt{Kokkos::View}s) by the CPU to the GPU during the exchange. The actual exchange logic then becomes rather trivial, and consists of looping over the entries in \texttt{neighbors} and for each of them copy data, on the device, according to either \texttt{sendIdxs} or \texttt{recvIdxs} to a buffer which then is sent over the network. For receiving we again loop over the \texttt{neighbors}, receive into the buffer and then copy into the \texttt{FEMVector} data according to either \texttt{sendIdxs} or \texttt{recvIdxs}. The logic used to handle the buffer is equivalent to the one utilized by the \texttt{ippl::HaloCells} class, which can be found in \cite{matthias_frey_2024_10878166}, and will therefore not be discussed in detail.\medskip
+
+The last important thing that the \texttt{FEMVector} provides are methods for copying, namely a function called \texttt{deepCopy()} and one called \texttt{skeletonCopy()}. The function \texttt{deepCopy()} creates a new \texttt{FEMVector} which is identical to the current one and stores the same values. The function \texttt{skeletonCopy()} on the other hand will not copy over the values, it creates a new \texttt{FEMVector} of same size and boundary info, but it takes a template parameter which sets the value-type of the entries of the new object, allowing for the creation of a \texttt{FEMVector} with same structure, but which stores different types of values. This becomes especially useful when dealing with both \texttt{FEMVectors} that need to store vectors and \texttt{FEMVectors} that need to store scalars.\medskip
+
+From all this we can see that the \texttt{FEMVector} is a general object, which is independent from any sort of mesh, DOFs, MPI layout, or even FEM itself. Meaning, that it can be utilized in a lot of different situations, from higher order Lagrange, to new finite element spaces, or something completely independent of FEM like general mesh data that needs to support communication, but this flexibility also means that when we use a \texttt{FEMVector} we need to create a supporting structure around it, that relates the \texttt{FEMVector} to its use case. This structure has to mainly provide two things, the first one is functionality to map between the entries of the \texttt{FEMVector} and the DOFs (or arbitrary points) inside of the mesh, and the second one is functionality to create \texttt{FEMVector}s, this includes figuring out the correct size and setting-up all the halo exchange information, given some representation of the MPI domain decomposition. So while the \texttt{FEMVector} is a general object we still need to custom tailor it to the use-case that we have, which in our case is all part of the Nédélec space.
+
+\section{Nédélec Space}
+%\begin{itemize}
+%    \item Class storing all the information about the Nédélec space. Basis function information (formula, mapping from global to local index, curls,...), provides methods for the creation of FEMVectors, provides method for the evaluation of the rhs (currently given Functional for \(g\)), provides method for the Ax evaluation given some description of \(F(u)\) by the solver.
+%    \item Provides some additional helper things like error metrics.
+%\end{itemize}
+\begin{figure}[!ht]
+    \centering
+    \input{figures/method/nedelec_space_uml.tex}
+    \caption{UML Class diagram for the Nédélec Space.}
+    \label{fig:uml_nedelec_space}
+\end{figure}
+The \texttt{NedelecSpace} class (UML diagram in Figure \ref{fig:uml_nedelec_space}) stores all the information regarding the Nédélec space. This means all the information about the basis functions, from the mapping between global and local index to their formula and their curl. It provides methods for the evaluation of the RHS given a representation of \(g(\vec{x})\) and the evaluation of the multiplication \(A\vec{v}\), between the Galerkin matrix and an arbitrary vector. It also creates the supporting structure around the \texttt{FEMVector}, namely the mapping between the DOF indices and the entries of the \texttt{FEMVector}, as well as routines for the creation of \texttt{FEMVector}s. Lastly it provides functionality for the calculation of the L2 error, given an analytical form, and the reconstruction of the solution given the Nédélec basis coefficients. All these points are discussed in more detail in the next few sections.
+
+
+\subsection{Basis Functions}
+%\begin{itemize}
+%    \item More information about what we store about the basis functions.
+%    \item Mostly references to theory part.
+%\end{itemize}
+As already mentioned we store information regarding the mapping from local to global DOFs, this equates to implementing the formulae defined in Equations (\ref{eq:el2glob2d}) and (\ref{eq:el2glob3d}). Similarly we also have methods to retrieve the shape function values at arbitrary points inside of the reference element, which is laid out by Collection (\ref{tab:shape_funcs}). Next to simply retrieving the shape function values we also need the curl of it, defined by $\nabla \times \vec{\beta}_i$ with $\vec{\beta}_i$ the $i$-th basis function, as this is one of the most common operators needed in curl-conforming Nédélec FEM. In the future different operators can be implemented depending on what the problem to solve requires, as different PDEs require different operators.
+
+
+\subsection{FEMVector}
+\label{subsubsec:femvector}
+%\begin{itemize}
+%    \item Talk about order in which we store the DOFs in the FEMVector, also with regard to multirank.
+%    \item Talk about how the halo boundaries look like.
+%    \item Talk about what we need to exchange.
+%    \item Talk about fact, that we do not exchange some of the diagonals, but that it still works.
+%\end{itemize}
+\begin{figure}
+    \centering
+    \input{figures/method/halo2d.tex}
+    \caption{Example boundary setup in 2D for the exchange between two ranks. The image displays a north-south exchange, for a west-east exchange the image can simply be rotated clockwise by \(90\) degree. The colored areas indicate that these elements are completely owned by that rank, the uncolored elements are shared between the two ranks, i.e., both ranks have DOFs on them.}
+    \label{fig:halo2d}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{figures/method/domain_decomp2d.tex}
+    \caption{Example 2D \(6 \times 6\) domain decomposition into 4 ranks. The colored areas indicate that these elements are completely owned by that rank, the uncolored elements are shared between different ranks, i.e., multiple ranks have DOFs on them. The small colored dots inside of the degrees of freedom indicate that that rank has this DOF as part of their halo. Note that the \texttt{FEMVectors} expand one hyperplane of elements further out than the mesh (black grid), this also means that the element numbering for the global domain and the MPI subdomains have different origins. Also note that we do not make a halo exchange between rank 1 and rank 2.}
+    \label{fig:domain_decomp2d}
+\end{figure}
+
+One of the main responsibilities of the \texttt{NedelecSpace} class with regards to the \texttt{FEMVector} is its creation. The \texttt{NedelecSpace} class provides a function, called \texttt{createFEMVector()}, which takes as input an MPI rank layout (calculated by \texttt{IPPL}) and returns a \texttt{FEMVector} for the MPI subdomain of the current rank with correct size and halo communication setup. We therefore need to discuss how the different boundaries with their halo cells are laid out. The layout provided by \texttt{IPPL} follows a vertex based approach, so it will provide a range of vertices which dictate the subdomains of each rank, this leads to some complication when having edge based DOFs, but a simple rule can be followed: a rank owns all the DOFs which are part of the elements that are engulfed by the vertex ranges of the layout. For example if the start of subdomain is marked by \((0,1)\) and the end by \((1,2)\), it would mean that this rank owns the elements \((0,1)\), \((1,1)\), \((0,2)\), and \((1,2)\). For a boundary where two MPI ranks meet, we have a hyperplane of elements which are owned by neither of the ranks, but both ranks have a DOF on opposing edges of the elements. There the rank for which this boundary is at the end of its domain will additionally own the DOFs on the edges connecting the two domains with the DOFs owned by the other rank in its halo. The rank for which the boundary is at the beginning of its domain will not get any additional DOFs, but will simply put all the ones the other rank owns into its halo. Naturally if the DOF is part of the halo of one rank (so part of the \texttt{recvIdxs}) it needs to be in the \texttt{sendIdxs} of the other rank. A visual representation of this for the 2D case can be seen in Figure \ref{fig:halo2d}, where a north south boundary is displayed, a west east would look identical just rotated \(90\) degrees clockwise. For 3D the same scheme is used, one simply adds a new dimension with everything else staying the same.\medskip
+
+From these boundaries we can see that it appears as if we are growing one hyperplane of elements outwards, so if the layout dictates that the rank has a domain of size $\hat{m}_x \times \hat{m}_y \times \hat{m}_z$ elements it appears like we are actually interacting with a domain of size $\hat{m}_x + 2 \times \hat{m}_y + 2 \times \hat{m}_z + 2 = m_x \times m_y \times m_z$. Note that we are also adding one additional hyperplane of elements on the mesh domain boundary, to stay in line with this definition and to also allow for more complicated boundary conditions (like periodic) in the future. From this we then have that the \texttt{FEMvector} will store
+\begin{align}
+    \begin{cases}
+    m_x(m_y-1) + m_y(m_x-1), &\text{for 2D} \\
+    (m_z-1)(m_x(m_y-1) + m_y(m_x-1) + m_xm_y) + m_x(m_y-1) + m_y(m_x-1), &\text{for 3D}\\
+    \end{cases}
+\end{align}
+elements. An example 2D decomposition for 4 ranks is given in Figure \ref{fig:domain_decomp2d}. Note that we have to pay special attention at points where multiple ranks meet, as it can get somewhat complicated trying to figure out which rank owns what. Another interesting fact is that for this case we would in theory have that rank 1 and rank 2 would exchange values over the diagonal, but in our implementation we are not doing such an exchange. Our test showed that this does not have an impact on the final result or the convergence of the algorithm. A similar thing is observed in 3D, where we do handle the diagonal exchange over edges, but not the diagonal exchange over corners, but again no impact on the error can be observed. We are not entirely sure why this happens and further research is required.\medskip
+
+Now that we have established the DOFs which are stored by each \texttt{FEMVector} and how the boundary is handled the last thing we need to look at is the order in which these DOFs are stored inside of the \texttt{FEMVector} and related to that how we map between the global DOF numbering scheme (as displayed in Figure \ref{fig:glob_numbering}) and the entries in the \texttt{FEMVector}, i.e., given the global number of a DOF, what is its index in the \texttt{FEMVector}. For the ordering we follow the idea laid out in Section \ref{subsec:theory}, where we treat each MPI rank independently and do the numbering for its $m_x \times m_y \times m_z$ subdomain, note that when we are on the domain boundary the \texttt{FEMVector} is storing DOFs which are not part of the mesh, as the \texttt{FEMVector} is unaware of the mesh it will handle them like every other DOF. Then in order to translate between the global number of a DOF and its entry inside of the \texttt{FEMVector} we have to go over the element it belongs to, and there its local number (as displayed in Figure \ref{fig:ref_elements}). Suppose we have an element with a global position $\vec{p}$ in the mesh. This element will belong to a subdomain of a rank, where it will have a subdomain relative position of $\bar{\vec{p}}$. Then we can use Equations (\ref{eq:el2glob2d}) and (\ref{eq:el2glob3d}), replace $\vec{p}$ by $\bar{\vec{p}}$ and $n_x$, $n_y$, $n_z$ by $m_x$, $m_y$, $m_z$. These equations will then return the global DOF indices of all the DOFs related to this element, from them we then want to pick out the one which corresponds to our original DOF, which we do with the local shape function index, as we are working on the same element the local index of the original DOF will be the same as the one of DOF in the \texttt{FEMVector}. For example in Figure \ref{fig:domain_decomp2d} we want to get the \texttt{FEMVector} index of the DOF on the south edge (so local shape function index \(0\)) of the element with global position $\vec p = (3,1)$. This element lies in subdomain of rank 2 where it has a subdomain specific position of \(\bar{\vec{p}} = (1,2)\), note that here we are considering elements for which the \texttt{FEMVector} stores DOFs and because the \texttt{FEMVector} has DOFs outside of the mesh we have to include those elements (which are not part of the mesh) in our calculations, furthermore rank 2 has dimensions \(m_x \times m_y = 5\times 5\) and from this using Equation (\ref{eq:el2glob2d}) we figure out that the index of the DOF inside of the \texttt{FEMVector} is \(19\).\medskip
+
+This might seem somewhat tedious to have to go over the element in order to translate indices, but in practice this does not lead to any problems, as for the assemble of the RHS, the evaluation of $A\vec v$, and the error metric calculations we are following an element based approach, where we loop over the elements and then for each of them do local calculations which we then translate to the global domain, therefore we always will be working with the shape functions of a given element, and it then is quite natural to both retrieve their global indices and their positions inside of the \texttt{FEMVector}.
+
+\subsection{RHS}
+\label{subsubsec:rhs}
+%\begin{itemize}
+%    \item Quickly write down variational formulation.
+%    \item Quick overview on how this is done (loop over elements, for each,...)
+%    \item Quick note about domain boundaries.
+%\end{itemize}
+The implementation of this is given by the function \texttt{evaluateLoadVector()}. In Galerkin FEM one generally transforms the problem in a linear system of equations \(A \vec \mu = \vec b\), here we will now discuss how we obtain the RHS \(\vec b\). The PDEs we are currently solving have a RHS which corresponds to a load term, which means that the $I$-th entry of the vector $\vec{b}$, of the linear system, is given by:
+\begin{align}
+    \vec{b}_I = \int_\Omega \vec{\beta}_I \cdot \vec{g}(\vec{x}) d\vec{x} \text{,}
+\end{align}
+where $\vec{\beta}_I$ is the basis function with global index $I$ and \(\vec g(\cdot)\) is the RHS function of the PDE we are solving. We implement this in standard FEM fashion using an element oriented assembling scheme, where we loop through all the elements, then for each of them calculate the local contribution of the local shape functions to the global basis indices, where we evaluate the integral using numerical quadrature. For a detailed description of the numerical quadrature used in \texttt{IPPL} refer to \cite{femIppl}. As we are currently only supporting zero Dirichlet boundaries in Nédélec FEM we skip all DOFs which are located on the boundary.\medskip
+
+In theory the function $\vec{g}(\vec{x})$ will be provided by the PIC loop and how exactly this interface looks like is at this stage of the \texttt{IPPL} development not clear yet. Therefore we currently implemented it by passing a \texttt{FEMVector} which stores the values of $\vec g(\vec x)$ at the Nédélec DOF positions (center of edges) and we then do a very crude interpolation to the quadrature points using the distance between the edge centers and the quadrature nodes. One caveat that needs to be remembered here is that a \texttt{FEMVector} can never exist by itself and that it always needs a supporting structure. In this case of passing the RHS as a \texttt{FEMVector} it means we need to define what DOFs the \texttt{FEMVector} is storing, especially with regards to MPI ranks, and how they are ordered inside of it (here we are ignoring the halo, as we do not need to make any exchanges). In theory this is defined by the \texttt{NedelecSpace} class, but this leads to a problem, because the PIC loop would have to provide this vector and it does not know (and should not know) anything about the Nédélec space. This means that in the future some other way needs to be defined on how the RHS should be provided, one that is independent of the underlying FEM space being used. This is currently ongoing research in \texttt{IPPL}, also with regards to how interpolation between particles and mesh should be handled. In our implementation we are circumventing this problem by defining that the \texttt{FEMVector} that gets passed to the \texttt{evaluateLoadVector()} function needs to have a structure identical ont the one described is Section \ref{subsubsec:femvector}, except for any of the halo information (so simply the DOFs it stores and the order of this). We are able to do this as we are currently only solving standalone test cases without any PIC for which we manually defined the RHS. Therefore we can use our ``human'' knowledge to construct \texttt{FEMVector}s for these specific cases.
+
+
+\subsection{Evaluate \(A\vec{v}\)}
+\label{subsubsec:evaluateAx}
+%\begin{itemize}
+%    \item Quickly recap variational thing and that we get it from the solver.
+%    \item Quick overview on how is done (similar to RHS)
+%    \item Again note about boundary.
+%\end{itemize}
+In the previous section we saw how we obtain the RHS $\vec{b}$ of the system $A\vec{\mu} = \vec{b}$, now we discuss how the left hand side (LHS) is calculated. In theory one can explicitly construct the matrix $A$ and then solve the system directly, the problem with this approach is that for larger domain sizes the matrix $A$ can become very large making it unfeasible to store it inside of memory, especially on GPUs. For this reason we are taking a matrix-free approach in which we provide a functional that calculates the matrix vector product $A\vec{v}$, for some arbitrary $\vec{v}$, and combine this with an iterative solver, currently we use CG. Like this a much smaller memory footprint is achieved making the problem solvable even for large domains and higher orders. One part of this functional is the member function \texttt{evaluateAx()}\footnote{Note the somewhat different naming convention} that calculates the result of a multiplication between \(A\) and a vector \(\vec v\). \medskip
+
+The entry $(I,J)$ for the global indices $I$ and $J$ of the matrix $A$ are given by:
+\begin{align}
+    A_{I,J} = \int_\Omega \mathcal{F}(\vec\beta_I, \vec\beta_J) d\vec{x}\text{,} \label{eq:varlhs}
+\end{align}
+where $\mathcal{F}(\vec\beta_I, \vec\beta_J)$ is related to the $F(\vec{u}(\vec{x}))$ of the \texttt{Solver} class through its variational formulation and it will be different for each type of problem that we want to solve. In order to obtain the product $A\vec{v} = \vec{s}$ we can say:
+\begin{align}
+\vec{s}_I = \sum_J A_{I,J} \vec{v}_J \label{eq:AxEval}
+\end{align}
+\medskip
+
+In order to implement this in code we take a very similar approach to the calculation of the RHS. We loop through all the elements and then for each element \(K\) calculate the local element Matrix $\bar{A}$ which stores the contributions of the local shape functions of the element to the global matrix \(A\):
+\begin{align}
+    \bar{A}_{i,j} = \int_K \mathcal{F}(\vec\beta_i, \vec\beta_j) d\vec{x} \text{.}
+\end{align}
+Here the integral is solved using numerical quadrature and the $\mathcal{F}$ is provided to the \texttt{NedelecSpace} class by the \texttt{Solver} class through a functor that takes as input the basis function values and their curl at the quadrature points and returns the corresponding value of $\mathcal{F}(\cdot, \cdot)$. This approach allows for the solving of problems with arbitrary $F(\cdot)$, and in the future the parameters which are passed to the functional representation can be expanded to allow for the solving of problems which do not only rely on the basis function value and the curl. After the local element matrix $\bar{A}$ is constructed we use it to update $\vec{s}$ according to Equation (\ref{eq:AxEval}) where we need to map the local DOF indices $(i,j)$ to their global ones $(I,J)$ using the local to global mapping discussed previously. Like with the RHS the DOFs on the boundaries are skipped, due to their zero Dirichlet nature. After all this is done we should have an $\vec{s}$ which corresponds to the product $A\vec{v}$ and we can then take this entire function and pass it to the CG solver as an operator.
+
+
+\subsection{Error metric}
+\label{subsubsec:error_metric}
+%\begin{itemize}
+%    \item Say what sort of error we are solving for.
+%    \item For this then get the coefficients of the DOFs.
+%    \item Interpolate using basis functions to the Quadrature nodes.
+%    \item Calc error and good is.
+%\end{itemize}
+In order to gauge the accuracy and correctness of our implementation we added an error metric namely the continuous L2 error, implemented by the function \texttt{computeError()}. The error that we are solving for is:
+\begin{align}
+    \epsilon = \int_\Omega |\vec{u}(\vec{x}) - \vec{u}_{sol}(\vec{x})|^2 d\vec{x}\text{,}
+\end{align}
+where $\vec{u}(\cdot)$ is our numerical solution and $\vec{u}_{sol}(\cdot)$ in an analytical solution. In true FEM fashion we do not compute this directly on a global level, but do it element wise, such that we have:
+\begin{align}
+    \epsilon = \sum_{K\in \text{elements}} \int_K |\vec{u}(\vec{x}) - \vec{u}_{sol}(\vec{x})|^2 d\vec{x}\text{.} \label{eq:errorLocalInt}
+\end{align}
+As we can see this would require us to have a functional representation of our solution $\vec{u}(\cdot)$, but in practice we have a vector $\vec{\mu}$ which corresponds to the basis function coefficients. In order to overcome this we utilize interpolation, specifically interpolation based on the basis functions. In order to get the value \(\vec{u}(\vec{x})\) for some \(\vec{x}\) inside of an element \(K\) we use:
+\begin{align}
+    \vec{u}(\vec{x}) = \sum_{i \in \text{local DOFs of }K} \mu_i \vec{\beta}_i(\vec{x})\text{,} \label{eq:interpolation}
+\end{align}
+where \(\mu_i\) is the basis function coefficient of the local shape function \(i\) and \(\vec{\beta}_i\) is the corresponding shape function. We then use numerical quadrature to evaluate the integral in Equation (\ref{eq:errorLocalInt}) and retrieve the final error. In standard FEM fashion we expect the error to decrease with second order when increasing the number of elements per dimension linearly.
+
+
+
+\subsection{Solution reconstruction}
+
+At the end of the day, after the problem has been solved, we need to pass the solution back to PIC, so we need a method for reconstructing the solution \(\vec u(\vec x)\) from the basis function coefficients \(\vec \mu\). Like with the RHS we also have here that the exact interface between PIC and FEM has not been designed yet. What we currently provide is a function called \texttt{reconstructToPoints()}, which takes as input a list of points inside of the mesh, stored in a \texttt{Kokkos::View}, and then reconstructs the function value of \(\vec u(\cdot)\) at these points and returns this as also as a \texttt{Kokkos::View}. In the future this might be used to directly retrieve the function value at the particle positions.\medskip
+
+The implementation of this is rather straight forward and shares similarities to the error metric calculations. The general idea is that we loop through all the points, then for each point \(\vec w\) figure out to which element \(K\) it belongs too and then reconstruct the function value \(\vec u(\vec w)\) using the formula of Equation (\ref{eq:interpolation}), with \(\vec x\) replaced by \(\vec w\). Note that all this requires that the points passed to the function lie inside of the subdomain of the current MPI rank, which in turn means that every rank gets its unique set of positions. We think that this implementation makes more sense compared to one where a singular global set of positions is passed as each rank represents an individual unit that to a degree should be unaware of the global scheme and should generally only work on its subdomain.
+
+\section{Solver}
+%\begin{itemize}
+%    \item Class to solve a problem of a specific type.
+%    \item Provides the variational formulation of the lhs. Therefore have to create a new one for every problem we want solve.
+%    \item Provide diagram showing workflow.
+%    \item From initialisation creating the rhs thing to solve calling the CG.
+%\end{itemize}
+\begin{figure}[!h]
+    \centering
+    \input{figures/method/solver_uml.tex}
+    \caption{UML Class diagram for the \texttt{Solver} class.}
+    \label{fig:uml_solver}
+\end{figure}
+
+Finally we have the \texttt{Solver} class, displayed in Figure \ref{fig:uml_solver}, which contains the information for solving a problem of a specific type. This mainly boils down to providing a representation of the variational formulation of the LHS, corresponding to \(\mathcal{F}\), and storing the \texttt{FEMVector} representations of the RHS \(\vec{b}\) and the final solution vector \(\vec\mu\). Because the \(\mathcal{F}\) is unique for each problem that we are solving we have to create an individual class for each of these problem types. It also interacts with the Nédélec space to retrieve the RHS and the functor for the \(A\vec{v}\) multiplication, which it then passes to the CG solver. For example we implemented a class \texttt{FEMMaxwellDiffusionSolver} which solves a problem of the kind
+\begin{align}
+    &\nabla \times \nabla \times \vec{u}(\vec{x}) + \vec{u}(\vec{x}) = \vec{g}(\vec{x}) \text{ in } \Omega\\
+    &\vec{u}(\vec{x}) \times \vec n =  \text{ on } \partial \Omega\text{,}
+\end{align}
+which we will discussed in more detail in Section \ref{sec:experiments} as part of our experiments.
+
+Figure \ref{fig:gen_diag} already provided a simplified overview of how this works. More concrete we pass the RHS \(\vec{g}(\cdot)\) evaluated at the Nédélec DOFs to the constructor of the \texttt{Solver} class, which will assemble the RHS using the Nédélec space according to Section \ref{subsubsec:rhs} and store this inside of its \texttt{rhsVector} member. Then in order to solve the actual problem the function \texttt{solve()} is called which will first retrieve the functor for the \(A\vec{v}\) evaluation from the Nédélec space according to Section \ref{subsubsec:evaluateAx} with the help of its definition of \(\mathcal{F}\). After this both the RHS and the functor for \(A\vec{v}\) is passed to the CG solver which solves the entire problem and returns the basis function coefficients \(\vec{\mu}\) which are then stored in \texttt{lhsVector}, completing the solve routine.\medskip
+
+After the problem has been solved we normally would pass the solution back to the PIC loop, but as this interface is not yet fully designed we currently do not do anything with the finished result and we simply store the basis function coefficients. But we also expose two functions \texttt{getL2Error()} and \texttt{reconstructToPoints()} which are wrappers around the \texttt{NedelecSpace::computeError()} and \texttt{NedelecSpace::reconstructToPoints()} functions of the Nédélec space which can be used during testing in order to gauge the correctness of the implementation.

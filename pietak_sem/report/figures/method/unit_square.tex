@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=2.5]
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (0,-0.1) node[color=black, anchor=west] {\footnotesize\(x\)};
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (-0.1,0) node[color=black, anchor=south] {\footnotesize\(y\)};
+
+    \draw[black, very thick, line cap = round] (0,0) -- (1,0);
+    \draw[black, very thick, line cap = round] (0,0) -- (0,1);
+    \draw[black, very thick, line cap = round] (1,0) -- (1,1);
+    \draw[black, very thick, line cap = round] (0,1) -- (1,1);
+
+    \filldraw[color=red!60, fill=red!5, thick](0.5,0) circle (0.1) node[color=black] {0};
+    \filldraw[color=red!60, fill=red!5, thick](0,0.5) circle (0.1) node[color=black] {1};
+    \filldraw[color=red!60, fill=red!5, thick](0.5,1) circle (0.1) node[color=black] {2};
+    \filldraw[color=red!60, fill=red!5, thick](1,0.5) circle (0.1) node[color=black] {3};
+\end{tikzpicture}

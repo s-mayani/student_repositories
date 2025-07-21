@@ -1,0 +1,29 @@
+Warning: Option 'infile.dat' is not parsed by Ippl.
+Warning: Option 'tf.dat' is not parsed by Ippl.
+Warning: Option 'out' is not parsed by Ippl.
+Warning: Option '/data/user/bobrov_e/data/zeldovich_ICs' is not parsed by Ippl.
+Warning: Option 'FFT' is not parsed by Ippl.
+Warning: Option '1.0' is not parsed by Ippl.
+Warning: Option 'LeapFrog' is not parsed by Ippl.
+DataBase > Done loading parameters.
+Inititalise: > time: 0.0366085, timestep: inf
+Inititalise: > Dloga: inf
+Inititalise: > z: 50, scaling factor: 0.0196078
+Inititalise: > H0: 0.1, H_initial: 18.2108
+Inititalise: > critical density (today): 2.7755e-08
+Pre Run> total mass: 1.81895e+06
+Pre Run> mass of a single particle 2495.13
+Pre Run> Discretization:
+Pre Run> nt 0, Np = 729, grid = ( 9 , 9 , 9 )
+initspec > Pulled all needed phyice quantities
+initspec > kh_tmp= 0.154252 n_s= 0.9 tpiL= 0.0981748
+initspec > Pk created using hu_sugiyama TFFlag ==2
+initspec > sigma_8=0.800001, target was 0.8
+initspec > norm= 3.0615e+06
+initspec > Gaussian initial conditions, f_NL=0
+LinearZeldoInitMP > Fourier density field is Hermitian.
+createParticles > local number of galaxies after initializer 729
+hermiticityTest1> [1/4] Real Fourier field (Multi-Rank Init): TRUE
+hermiticityTest1> [2/4] Real Fourier field (Multi-Rank Init): FALSE (expected)
+hermiticityTest2> [3/4] Random Gaussian Field (Multi-Rank Init): TRUE
+hermiticityTest2> [4/4] Random Gaussian Field (Multi-Rank Init): FALSE (expected) 

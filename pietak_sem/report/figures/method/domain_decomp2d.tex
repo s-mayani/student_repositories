@@ -1,0 +1,153 @@
+\begin{tikzpicture}[scale=1.5]
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (0,-0.1) node[color=black, anchor=west] {\footnotesize\(x\)};
+    \draw[black, line cap = round, ->] (-0.1,-0.1) -- (-0.1,0) node[color=black, anchor=south] {\footnotesize\(y\)};
+    
+
+    \fill[fill=red!10] (0,0) rectangle (2,2) node[pos=0.25, color=red!60] {rank 0};
+    \fill[fill=blue!10] (0,3) rectangle (2,5) node[pos=0.25, color=blue!60] {rank 1};
+    \fill[fill=violet!10] (3,0) rectangle (5,2) node[pos=0.25, color=violet!60] {rank 2};
+    \fill[fill=green!10] (3,3) rectangle (5,5) node[pos=0.25, color=green!60] {rank 3};
+
+    % Horizontal lines
+    \draw[black, very thick, line cap = round] (0,0) -- (5,0);
+    \draw[black, very thick, line cap = round] (0,1) -- (5,1);
+    \draw[black, very thick, line cap = round] (0,2) -- (5,2);
+    \draw[black, very thick, line cap = round] (0,3) -- (5,3);
+    \draw[black, very thick, line cap = round] (0,4) -- (5,4);
+    \draw[black, very thick, line cap = round] (0,5) -- (5,5);
+
+    % vertical lines
+    \draw[black, very thick, line cap = round] (0,0) -- (0,5);
+    \draw[black, very thick, line cap = round] (1,0) -- (1,5);
+    \draw[black, very thick, line cap = round] (2,0) -- (2,5);
+    \draw[black, very thick, line cap = round] (3,0) -- (3,5);
+    \draw[black, very thick, line cap = round] (4,0) -- (4,5);
+    \draw[black, very thick, line cap = round] (5,0) -- (5,5);
+
+
+    \foreach \x in {-1,...,2}{
+        \foreach \y in {-1,...,2}{
+            \filldraw[color=red!60, fill=red!5, thick](\x,\y + 0.5) circle (0.1);
+            \filldraw[color=red!60, fill=red!5, thick](\x + 0.5,\y) circle (0.1);
+        }
+    }
+
+
+    \foreach \x in {-1,...,2}{
+        \foreach \y in {3,...,5}{
+            \filldraw[color=blue!60, fill=blue!5, thick](\x,\y + 0.5) circle (0.1);
+            \filldraw[color=blue!60, fill=blue!5, thick](\x + 0.5,\y) circle (0.1);
+        }
+        \filldraw[color=blue!60, fill=blue!5, thick](\x + 0.5,6) circle (0.1);
+    }
+
+    \foreach \y in {-1,...,2}{
+        \foreach \x in {3,...,5}{    
+            \filldraw[color=violet!60, fill=violet!5, thick](\x,\y + 0.5) circle (0.1);
+            \filldraw[color=violet!60, fill=violet!5, thick](\x + 0.5,\y) circle (0.1);
+        }
+        \filldraw[color=violet!60, fill=violet!5, thick](6,\y+0.5) circle (0.1);
+    }
+
+    \foreach \x in {3,...,5}{
+        \foreach \y in {3,...,5}{
+            \filldraw[color=green!60, fill=green!5, thick](\x,\y + 0.5) circle (0.1);
+            \filldraw[color=green!60, fill=green!5, thick](\x + 0.5,\y) circle (0.1);
+        }
+        \filldraw[color=green!60, fill=green!5, thick](\x + 0.5,6) circle (0.1);
+        \filldraw[color=green!60, fill=green!5, thick](6,\x + 0.5) circle (0.1);
+    }
+
+
+    \foreach \x in {-1,...,1}{
+        \fill[fill=blue!60] (\x,2.5) circle (0.025);
+        \fill[fill=blue!60] (\x+0.5,2) circle (0.025);
+
+        \fill[fill=red!60] (\x+0.5,3) circle (0.025);
+    }
+
+    \fill[fill=green!60] (3.5,2) circle (0.025);
+    \fill[fill=violet!60] (3.5,3) circle (0.025);
+    \foreach \x in {4,...,5}{
+        \fill[fill=green!60] (\x,2.5) circle (0.025);
+        \fill[fill=green!60] (\x+0.5,2) circle (0.025);
+
+        \fill[fill=violet!60] (\x+0.5,3) circle (0.025);
+    }
+    \fill[fill=green!60] (6,2.5) circle (0.025);
+
+    \foreach \y in {-1,...,1}{
+        \fill[fill=violet!60] (2.5,\y) circle (0.025);
+        \fill[fill=violet!60] (2,\y+0.5) circle (0.025);
+        
+        \fill[fill=red!60] (3,\y+0.5) circle (0.025);
+    }
+
+    \fill[fill=green!60] (2,3.5) circle (0.025);
+    \fill[fill=blue!60] (3,3.5) circle (0.025);
+    \foreach \y in {4,...,5}{
+        \fill[fill=green!60] (2.5,\y) circle (0.025);
+        \fill[fill=green!60] (2,\y+0.5) circle (0.025);
+        \fill[fill=blue!60] (3,\y+0.5) circle (0.025);
+    }
+    \fill[fill=green!60] (2.5,6) circle (0.025);
+
+
+
+    \fill[fill=violet!60] (2-.025,2.5+.025) circle (0.025);
+    \fill[fill=blue!60] (2+.025,2.5-.025) circle (0.025);
+
+    \fill[fill=violet!60] (2.5-.025,2+.025) circle (0.025);
+    \fill[fill=blue!60] (2.5+.025,2-.025) circle (0.025);
+
+    \fill[fill=green!60] (3-.025,2.5+.025) circle (0.025);
+    \fill[fill=red!60] (3+.025,2.5-.025) circle (0.025);
+
+    \fill[fill=green!60] (2.5-.025,3+.025) circle (0.025);
+    \fill[fill=red!60] (2.5+.025,3-.025) circle (0.025);
+
+    % rank a DOFs
+    %\filldraw[color=red!60, fill=red!5, thick](1,0.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=red!60, fill=red!5, thick](2,0.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=red!60, fill=red!5, thick](3,0.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=red!60, fill=red!5, thick](4,0.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=red!60, fill=red!5, thick](0.5,1) circle (0.1);
+    %\fill[fill=blue!60] (0.5,1) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](1.5,1) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (1.5,1) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](2.5,1) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (2.5,1) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](3.5,1) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (3.5,1) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](4.5,1) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (4.5,1) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](1,1.5) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (1,1.5) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](2,1.5) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (2,1.5) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](3,1.5) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (3,1.5) circle (0.025);
+    %\filldraw[color=red!60, fill=red!5, thick](4,1.5) circle (0.1) node[color=black] {};
+    %\fill[fill=blue!60] (4,1.5) circle (0.025);
+%
+%
+    %% rank b DOFs
+    %\filldraw[color=blue!60, fill=blue!5, thick](0.5,2) circle (0.1) node[color=black] {};
+    %\fill[fill=red!60] (0.5,2) circle (0.025);
+    %\filldraw[color=blue!60, fill=blue!5, thick](1.5,2) circle (0.1) node[color=black] {};
+    %\fill[fill=red!60] (1.5,2) circle (0.025);
+    %\filldraw[color=blue!60, fill=blue!5, thick](2.5,2) circle (0.1) node[color=black] {};
+    %\fill[fill=red!60] (2.5,2) circle (0.025);
+    %\filldraw[color=blue!60, fill=blue!5, thick](3.5,2) circle (0.1) node[color=black] {};
+    %\fill[fill=red!60] (3.5,2) circle (0.025);
+    %\filldraw[color=blue!60, fill=blue!5, thick](4.5,2) circle (0.1) node[color=black] {};
+    %\fill[fill=red!60] (4.5,2) circle (0.025);
+    %\filldraw[color=blue!60, fill=blue!5, thick](1,2.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=blue!60, fill=blue!5, thick](2,2.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=blue!60, fill=blue!5, thick](3,2.5) circle (0.1) node[color=black] {};
+    %\filldraw[color=blue!60, fill=blue!5, thick](4,2.5) circle (0.1) node[color=black] {};
+
+    
+
+
+\end{tikzpicture}

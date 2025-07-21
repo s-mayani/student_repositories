@@ -1,0 +1,13 @@
+                      ranks  Wall tot
+=====================================
+total...............      1   0.06114
+
+                      ranks  Wall max  Wall min  Wall avg
+=========================================================
+total...............      1   0.06114   0.06114   0.06114
+Fourier Density.....      1 5.242e-05 5.242e-05 5.242e-05
+Hermiticity Timer...      1  7.06e-05  7.06e-05  7.06e-05
+Fourier Displacemen.      1  0.007586  0.007586  0.007586
+Position/Velocity i.      1 7.029e-05 7.029e-05 7.029e-05
+particleBC..........      1  4.18e-05  4.18e-05  4.18e-05
+updateParticle......      1         0         0         0
